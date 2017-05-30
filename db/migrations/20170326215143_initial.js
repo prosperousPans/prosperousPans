@@ -37,6 +37,7 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('experience', function (table) {
       table.increments('experience_id').unsigned().primary();
+      table.string('user_id').unsigned().references('user_id').inTable('user');
       table.string('name', 15).nullable();
       table.string('role', 30).nullable();
       table.text('description').nullable();
@@ -69,7 +70,6 @@ exports.up = function (knex, Promise) {
       table.integer('user_a_id').unsigned().references('id').inTable('user');
       table.integer('user_b_id').unsigned().references('id').inTable('user');
       table.string('status').notNullable();
-      table.integer('reason_id').unsigned().references('reason_id').inTable('experience');
       table.timestamps(true, true);
     })
   ]);

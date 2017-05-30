@@ -4,13 +4,17 @@ What makes you unique? What puts you in the spotlight? Why do others want pursue
 
 ## Team
 
-- Alan Zheng
-- Lavanya AC
 - Rajas Kale
+- Lavanya AC
+- Alan Zheng
 
 ## Roadmap
 
-View the project roadmap [here](https://docs.google.com/document/d/13wJne-dF-h_GpNHzrMkBzsyKa66tDggbU8HPunhyaH8/edit?usp=sharing)
+View the project roadmap [here](https://trello.com/prosperouspans)
+
+## App Plan
+
+View the app plan [here](https://docs.google.com/document/d/13wJne-dF-h_GpNHzrMkBzsyKa66tDggbU8HPunhyaH8/edit#heading=h.kdpea8yi6wmv)
 
 ## Contributing
 
@@ -86,5 +90,3 @@ To run server: `yarn run start`
 To run tests: `yarn run test`
 
 To run your redis server for the session store `redis-server`
-
-
