@@ -2,10 +2,11 @@
   "name": "course.thesis",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "curl -s bash",
     "start": "nodemon server",
     "test": "NODE_ENV=test grunt test",
-    "build": "webpack --watch"
+    "build": "webpack --watch",
+    "ios-watch": "node node_modules/react-native/local-cli/cli.js start",
+    "ios-dev": "react-native run-ios"
   },
   "author": "Hack Reactor",
   "license": "MIT",
@@ -31,11 +32,14 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "pg": "^6.1.5",
-    "react": "^15.4.2",
+    "react": "16.0.0-alpha.6",
     "react-dom": "^15.4.2",
+    "react-native": "0.44.2",
+    "react-native-cli": "^2.0.1",
     "redis": "^2.7.1"
   },
   "devDependencies": {
+    "babel-preset-react-native": "1.9.2",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
     "babel-preset-latest": "^6.24.0",
