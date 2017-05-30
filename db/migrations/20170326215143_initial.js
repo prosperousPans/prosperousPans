@@ -75,7 +75,15 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('auths'),
-    knex.schema.dropTable('profiles')
+    // knex.schema.dropTable('auths'),
+    // knex.schema.dropTable('profiles'),
+    knex.schema.dropTable('login'),
+    knex.schema.dropTable('user'),
+    knex.schema.dropTable('experience'),
+    knex.schema.dropTable('tag'),
+    knex.schema.dropTable('info_tag'),
+    knex.schema.dropTable('reason'),
+    knex.schema.dropTable('connection_reason'),
+    knex.schema.dropTable('connection')
   ]);
 };
