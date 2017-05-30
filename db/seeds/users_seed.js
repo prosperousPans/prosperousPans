@@ -1,7 +1,7 @@
 const models = require('../models');
 
 exports.seed = function (knex, Promise) {
-
+  // user1
   return models.Users.forge({
     full_name: 'Rajas Kale',
     industry: 'Neural Engineering',
@@ -70,7 +70,7 @@ exports.seed = function (knex, Promise) {
     throw err;
   })
 
-
+  // user2
   .then((user) => {
     return models.Users.forge({
       full_name: 'Alan Zheng',
@@ -141,7 +141,7 @@ exports.seed = function (knex, Promise) {
     throw err;
   })
 
-
+  //user 3
   .then((user) => {
     return models.Users.forge({
       full_name: 'Lavanya AC',
@@ -205,6 +205,152 @@ exports.seed = function (knex, Promise) {
       start_date: 2002,
       end_date: 2006,
       organization: 'BIT'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+
+  //user4
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Tom Dickson',
+      industry: 'Business Developer',
+      github_url: 'https://github.com/tomisbomb',
+      linkedin_url: 'https://www.linkedin.com/in/tom-dickson-4973b920/',
+      image: 'http://d2x83fpq8bsx3q.cloudfront.net/wp-content/uploads/2012/11/Tom-green-smoothie-1024x669.jpg',
+      summary: 'I businessed',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'tomisbomb',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'professional',
+      role: 'Front-end Engineer',
+      description: 'React baby',
+      start_date: 2016,
+      end_date: 2017,
+      organization: 'Self-employed'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'projects',
+      role: 'Skooled',
+      description: 'It renders!',
+      start_date: 2016,
+      end_date: 2017,
+      organization: 'TomBomb'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'education',
+      role: 'Sanitation Engineer',
+      description: 'I cleaned up after people',
+      start_date: 2002,
+      end_date: 2010,
+      organization: 'Clean Ops'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .catch(() => {
+    console.log('WARNING: defualt user already exists.');
+  });
+};
+
+// user5
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Charles Kim',
+      industry: 'Senior Analyst',
+      github_url: 'https://github.com/ChKim',
+      linkedin_url: 'https://www.linkedin.com/in/cjkim0119/',
+      image: 'https://instacart.files.wordpress.com/2015/05/instacart-1622-nobg.png',
+      summary: 'I make stuff for that do things for reasons',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'ChKim',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'professional',
+      role: 'Front-stackEngineer',
+      description: 'Instacart enables and provides on-demand grocery deliveries within as little as one hour in 30+ markets, from 100+ grocery retailers. A YC alum, Instacart has received funding from partners including Kleiner Perkins, Sequoia, and Andreessen Horowitz.',
+      start_date: 2014,
+      end_date: null,
+      organization: 'Instacart'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'projects',
+      role: 'Something Something Recipes',
+      description: 'Eat everything!',
+      start_date: 2016,
+      end_date: 2017,
+      organization: 'Infamous Frogs'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'education',
+      role: 'Student',
+      description: 'Founded in 1881 as the first collegiate business school, the Wharton School of the University of Pennsylvania is recognized globally for intellectual leadership and ongoing innovation across every major discipline of business education. With a broad global community and one of the most published business school faculties, Wharton creates economic and social value around the world.',
+      start_date: 2002,
+      end_date: 2010,
+      organization: 'University of Pennsylvania'
     }).save()
   })
   .error(err => {
