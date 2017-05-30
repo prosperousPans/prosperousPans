@@ -51,8 +51,8 @@ exports.up = function (knex, Promise) {
       table.increments('tag_id').unsigned().primary();
       table.string('name', 25).notNullable();
     }),
-    knex.schema.createTableIfNotExists('info_tag', function (table) {
-      table.increments('info_tag_id').unsigned().primary();
+    knex.schema.createTableIfNotExists('user_tag', function (table) {
+      table.increments('user_tag_id').unsigned().primary();
       table.integer('user_id').unsigned().references('user_id').inTable('user');
       table.integer('tag_id').unsigned().references('tag_id').inTable('tag');
     }),

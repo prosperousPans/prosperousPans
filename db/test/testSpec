@@ -5,6 +5,17 @@ var expect = require('chai').expect;
 
   describe('Postgres Database Testing', function () {
     var dbConnection;
-    var databaseUrl = ''
-  }
-  )
+    var databaseUrl = 'postgres://localhost:5432/test';
+
+    beforeEach(function(done) {
+      dbConnection = new pg.Client(databaseUrl);
+      dbConnection.connect();
+      var tablename = "user";
+
+      dbConnection.query('truncate ' + tablename. done);
+
+    });
+
+    afterEach(function () {
+      dbConnection.end();
+    })
