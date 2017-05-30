@@ -33,6 +33,7 @@ exports.up = function (knex, Promise) {
       table.string('linkedin_url', 75).nullable();
       table.string('image', 75).nullable();
       table.text('summary').nullable();
+      table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('experience', function (table) {
       table.increments('experience_id').unsigned().primary();
@@ -69,6 +70,7 @@ exports.up = function (knex, Promise) {
       table.integer('user_b_id').unsigned().references('id').inTable('user');
       table.string('status').notNullable();
       table.integer('reason_id').unsigned().references('reason_id').inTable('experience');
+      table.timestamps(true, true);
     })
   ]);
 };
