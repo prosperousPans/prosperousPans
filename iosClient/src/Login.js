@@ -8,7 +8,7 @@ import {
 	AsyncStorage
  } from 'react-native';
 
-import Dashboard from './Dashboard.js'
+import ProfileMain from './ProfileMain.js'
 import Auth0Lock from 'react-native-lock';
 var credentials = require('../../config/config.js');
 var lock = new Auth0Lock(credentials.auth0);
@@ -80,8 +80,8 @@ class Login extends Component{
       }
     	this._onValueChange('AuthToken', token.idToken)
     	this.props.navigator.push({
-				component: Dashboard,
-				title: 'Dashboard'
+				component: ProfileMain,
+				title: 'ProfileMain'
 			});
   	});
 	}

@@ -8,7 +8,7 @@ import {
 import Card from './Card.js'
 import Dashboard from './Dashboard.js'
 
-class Main extends Component{
+class ProfileMain extends Component{
   constructor (props) {
     super(props);
   }
@@ -34,7 +34,7 @@ class Main extends Component{
   }
 };
 
-module.exports = Main;
+module.exports = ProfileMain;
 
 var styles = StyleSheet.create({
   container: {

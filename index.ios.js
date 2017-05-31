@@ -7,7 +7,6 @@ import {
     NavigatorIOS,
 } from 'react-native';
 
-import Main from './iosClient/src/Main';
 import Login from './iosClient/src/Login';
 
 var styles = StyleSheet.create({
