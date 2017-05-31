@@ -3,10 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableHighlight,
-  ActivityIndicator
 } from 'react-native';
+import Card from './Card.js'
+import Dashboard from './Dashboard.js'
 
 class Main extends Component{
   constructor (props) {
@@ -14,55 +14,41 @@ class Main extends Component{
   }
   render() {
     return(
-      <View style={styles.mainContainer}>
-        <Text style={styles.title}>Submit Github Username</Text>
+      <View style={styles.container}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            console.log('dash click')
+            this.props.navigator.push({
+              title: 'Dashboard', 
+              component: Dashboard,
+            })
+          }}
+          underlayColor="#88D4F5"
+        >
+          <Text style={styles.buttonText}>View Dashboard</Text>
+        </TouchableHighlight>
+        <Card />
       </View>
     )
   }
 };
 
-var styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        padding: 30,
-        marginTop: 65,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        backgroundColor: '#48BBEC'
-    },
-    title: {
-        marginBottom: 20,
-        fontSize: 25,
-        textAlign: 'center',
-        color: '#fff'
-    },
-    searchInput: {
-        height: 50,
-        padding: 4,
-        marginRight: 5,
-        fontSize: 23,
-        borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 8,
-        color: 'white'
-    },
-    buttonText: {
-        fontSize: 18,
-        color: '#111',
-        alignSelf: 'center'
-    },
-    button: {
-        height: 45,
-        flexDirection: 'row',
-        backgroundColor: 'white',
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 8,
-        marginBottom: 10,
-        marginTop: 10,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
-    },
-});
-
 module.exports = Main;
+
+var styles = StyleSheet.create({
+  container: {
+    marginTop: 65,
+    flex: 1
+  },  
+  button: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor:'#48BBEC'
+  },  
+  buttonText: {
+    fontSize: 24,
+    margin: 5  ,
+    alignSelf: 'center'
+  }
+});
