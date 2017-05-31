@@ -54,6 +54,21 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create experience');
     throw err;
   })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 1,
+      name: 'projects',
+      role: 'Thesis',
+      description: 'We made this damn app!!!!',
+      start_date: 2017,
+      end_date: null,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
 
 
   .then((user) => {
@@ -95,6 +110,36 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create experience');
     throw err;
   })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'projects',
+      role: 'Da Thesis',
+      description: 'You see this app? We made this app!',
+      start_date: 2017,
+      end_date: null,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'education',
+      role: 'Student',
+      description: 'All this learning here',
+      start_date: 2010,
+      end_date: 2014,
+      organization: 'Berkeley'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
 
 
   .then((user) => {
@@ -124,12 +169,42 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 3,
-      name: 'work',
+      name: 'professional',
       role: 'Software Engineer',
       description: 'I like to code',
       start_date: 2013,
       end_date: 2017,
       organization: 'Target'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'projects',
+      role: 'This Thesis',
+      description: 'Best app ever!',
+      start_date: 2017,
+      end_date: null,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 3,
+      name: 'education',
+      role: 'Student',
+      description: 'I graduated',
+      start_date: 2002,
+      end_date: 2006,
+      organization: 'BIT'
     }).save()
   })
   .error(err => {
