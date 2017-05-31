@@ -10,7 +10,7 @@ var expect = require('chai').expect;
     beforeEach(function(done) {
       dbConnection = new pg.Client(databaseUrl);
       dbConnection.connect();
-      var tablename = "user";
+      var tablename = "users";
 
       dbConnection.query('truncate ' + tablename. done);
 

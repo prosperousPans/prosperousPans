@@ -1,7 +1,9 @@
 const db = require('../');
+const Promise = require('bluebird');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 
-const User = db.Model.extend({
-  tableName: 'user',
+const Users = db.Model.extend({
+  tableName: 'users',
   login: function() {
     return this.hasMany('login');
   },
@@ -16,4 +18,4 @@ const User = db.Model.extend({
   }
 });
 
-module.exports = db.model('User', User);
+module.exports = db.model('Users', Users);
