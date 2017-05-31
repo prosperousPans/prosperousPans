@@ -44,6 +44,7 @@ exports.up = function (knex, Promise) {
       table.integer('start_date').nullable();
       table.integer('end_date').nullable();
       table.string('organization', 30).nullable();
+      table.timestamps(true, true);
       // may not be necessary, if end_date = null then it is current
       // table.boolean('latest').nullable();
     }),
