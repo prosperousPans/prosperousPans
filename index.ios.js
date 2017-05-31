@@ -21,9 +21,8 @@ var styles = StyleSheet.create({
 class PursumeIOSApp extends Component {
   render() {
     return (
-      <View>
-        <Text style={styles.title}>Hello World!!</Text>
-      </View>
+      <Main />
+
     );
   }
 }
