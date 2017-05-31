@@ -4,26 +4,31 @@ import {
   Text,
   View,
   TouchableHighlight,
-  NavigatorIOS
 } from 'react-native';
-import Login from './Login.js';
+import Card from './Card.js'
+import Dashboard from './Dashboard.js'
 
 class Main extends Component{
   constructor (props) {
     super(props);
   }
-  navLogin(){
-    this.props.navigator.push({
-        title: 'Pursumé - Login',
-        component: Login
-    })
-  }
   render() {
     return(
-      <View style={styles.content}>
-        <TouchableHighlight onPress={this.navLogin.bind(this)}>
-          <Text>Navigate to second screen</Text>
+      <View style={styles.container}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => {
+            console.log('dash click')
+            this.props.navigator.push({
+              title: 'Dashboard', 
+              component: Dashboard,
+            })
+          }}
+          underlayColor="#88D4F5"
+        >
+          <Text style={styles.buttonText}>View Dashboard</Text>
         </TouchableHighlight>
+        <Card />
       </View>
     )
   }
