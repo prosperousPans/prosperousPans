@@ -1,17 +1,16 @@
-# Project Name
+# Pursumé
 
-The project description
+What makes you unique? What puts you in the spotlight? Why do others want pursue you? With Pursumé, you can remove the shrouds of your identity by allowing others to tell you what makes your stand out. Then, connect with people that share common experiences to synergize your network reach. Pursumé: Pursue Perfect.
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- Alan Zheng
+- Lavanya AC
+- Rajas Kale
 
 ## Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://docs.google.com/document/d/13wJne-dF-h_GpNHzrMkBzsyKa66tDggbU8HPunhyaH8/edit?usp=sharing)
 
 ## Contributing
 

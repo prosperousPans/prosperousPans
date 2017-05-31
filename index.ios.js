@@ -3,27 +3,29 @@ import {
     AppRegistry,
     StyleSheet,
     Text,
-    NavigatorIOS,
     View,
+    NavigatorIOS,
 } from 'react-native';
 
-var Main = require('./iosClient/src/main');
+import Main from './iosClient/src/Main';
 
 var styles = StyleSheet.create({
-    title: {
-        marginTop: 150,
-        fontSize: 25,
-        textAlign: 'center',
-        color: 'black'
-    },
-});
+  container:{
+    flex: 1,
+    backgroundColor: '#111111'
+  }
+
+var Main = require('./iosClient/src/main');
 
 class PursumeIOSApp extends Component {
   render() {
     return (
-      <View>
-        <Text style={styles.title}>Hello World!!</Text>
-      </View>
+      <NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'Pursumé',
+          component: Main
+        }} />
     );
   }
 }
