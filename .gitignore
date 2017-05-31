@@ -72,3 +72,6 @@ bower_components/
 .floobit
 .floo
 .flooignore
+
+#Config
+config/config.js

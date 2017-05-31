@@ -8,14 +8,14 @@ import {
 } from 'react-native';
 
 import Main from './iosClient/src/Main';
+import Login from './iosClient/src/Login';
 
 var styles = StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor: '#111111'
   }
-
-var Main = require('./iosClient/src/main');
+});
 
 class PursumeIOSApp extends Component {
   render() {
@@ -24,7 +24,7 @@ class PursumeIOSApp extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Pursumé',
-          component: Main
+          component: Login
         }} />
     );
   }
