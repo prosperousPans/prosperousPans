@@ -29,7 +29,7 @@ class Card extends Component {
         //1 = down; -1 = up
         const directionDy = Math.abs(dy) / dy;
 
-        if (dy > 200) {
+        if (dy > 180) {
           Animated.decay(this.pan, {
             velocity: {x:0, y:3 * directionDx},
             deceleration: 0.995,
@@ -37,7 +37,7 @@ class Card extends Component {
           .start( () => {
             console.log('swiped down')
           })
-        } else if (dy < -200) {
+        } else if (dy < -180) {
           Animated.decay(this.pan, {
             velocity: {x:0, y:3 * directionDx},
             deceleration: 0.995,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: width * 0.7,
     height: height * 0.7,
-    top: (height * 0.3) / 2,
+    top: (height * 0.2) / 2,
     overflow: 'hidden',
     backgroundColor: 'white',
     margin: 10,
