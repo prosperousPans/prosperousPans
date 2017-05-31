@@ -14,7 +14,8 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#111111'
   }
-});
+
+var Main = require('./iosClient/src/main');
 
 class PursumeIOSApp extends Component {
   render() {
