@@ -75,7 +75,7 @@ class Card extends Component {
     })
   }
 
-  handleGitClick(e) {
+  handleGitClick() {
     Linking.canOpenURL('https://www.github.com/').then(supported => {
       if (supported) {
         Linking.openURL('https://www.github.com/');
@@ -85,7 +85,7 @@ class Card extends Component {
     });
   }
   
-  handleLNKDClick(e) {
+  handleLNKDClick() {
     Linking.canOpenURL('https://www.linkedin.com/').then(supported => {
       if (supported) {
         Linking.openURL('https://www.linkedin.com/');

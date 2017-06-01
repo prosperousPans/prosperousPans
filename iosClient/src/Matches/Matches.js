@@ -6,9 +6,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Card from './Card.js'
-import Dashboard from './Dashboard.js'
 
-class ProfileMain extends Component{
+class Matches extends Component{
   constructor (props) {
     super(props);
   }
@@ -29,7 +28,7 @@ class ProfileMain extends Component{
   }
 };
 
-module.exports = ProfileMain;
+module.exports = Matches;
 
 var styles = StyleSheet.create({ 
   buttonContainer: {
