@@ -2,39 +2,57 @@ const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {
   var count = 0;
-  var userA_Id = 1;
+  var userA_Id = 3;
   var result = [];
-  while ( count < 20 ) {
-    count++;
-    models.Users.fetchAll()
-      .then(users => {
-        var jsonUsers = JSON.parse(JSON.stringify(users));
-        var randIdx = Math.floor(Math.random() * jsonUsers.length);
-        var userB_id = jsonUsers[randIdx].id;
-        console.log(userB_id);
-        return [userB_id, randIdx, jsonUsers]
-      })
-      .then(params => {
-        models.Connection.forge()
-        .where({users_a_id: userA_Id, users_b_id: params[0]})
-        .fetchAll()
-          .then(connection => {
-            var jsonConnection = JSON.parse(JSON.stringify(connection));
-            console.log(jsonConnection);
-            if ( jsonConnection.length === 0 ) {
-              result.push(JSON.stringify(params[2][params[1]]));
-            };
-            if ( result.length === 5 ) {
-              console.log('SENT')
-              res.status(200).send(result);
-            }
-          })
-      })
-      .error(err => {
-        console.error('ERROR: failed to retrieve connections data')
-      })
+  var hashCheck = {};
+  hashCheck[String(userA_Id)] = true;
+  var numOfUsers;
+  var sent = false;
 
-  }
+  models.Users.fetchAll()
+    .then(users => {
+      var jsonUsers = JSON.parse(JSON.stringify(users));
+      numOfUsers = jsonUsers.length;
+      return numOfUsers
+    })
+    // .error(err => {
+    //   console.error('ERROR: failed to retrieve users data')
+    // })
+    .then(numOfUsers => {
+      while ( count < 6 ) {
+        count++;
+        models.Users.fetchAll()
+          .then(users => {
+            var randIdx = Math.floor(Math.random() * numOfUsers);
+            while ( hashCheck[String(randIdx + 1)] === true ) {
+              randIdx = Math.floor(Math.random() * numOfUsers);
+            }
+            var jsonUsers = JSON.parse(JSON.stringify(users));
+            hashCheck[String(randIdx + 1)] = true;
+            var userB_id = jsonUsers[randIdx].id;
+            // returns these as params in next function:
+            return [userB_id, randIdx, jsonUsers]
+          })
+          .then(params => {
+            models.Connection.forge()
+            .where({users_a_id: userA_Id, users_b_id: params[0]})
+            .fetchAll()
+              .then(connection => {
+                if ( JSON.parse(JSON.stringify(connection)).length === 0 ) {
+                  result.push(JSON.stringify(params[2][params[1]]));
+                };
+                if ( result.length === 2 && sent === false) {
+                  sent = true
+                  console.log('SENT');
+                  res.status(200).send(result);
+                }
+              })
+          })
+          .error(err => {
+            console.error('ERROR: failed to retrieve connections data')
+          })
+      }
+    })
 };
 
 
