@@ -16,12 +16,12 @@ import {
   addNavigationHelpers,
 } from 'react-navigation';
 
-import ProfileMain from './ProfileMain';
-import Dashboard from './Dashboard';
-import Chat from './Chat';
+import Matches from './Matches/Matches.js';
+import Dashboard from './Dashboard/Dashboard.js';
+import Chat from './Chat/Chat.js';
 
-const ProfileMainScreen = () => (
-  <ProfileMain />
+const MatchesScreen = () => (
+  <Matches />
 );
 
 
@@ -74,7 +74,7 @@ const CustomTabRouter = TabRouter(
       path: 'dashboard',
     },
     Home: {
-      screen: ProfileMainScreen,
+      screen: MatchesScreen,
       path: '',
     },
     Chat: {
@@ -88,7 +88,7 @@ const CustomTabRouter = TabRouter(
   }
 );
 
-const CustomTabs = createNavigationContainer(
+const Main = createNavigationContainer(
   createNavigator(CustomTabRouter)(CustomTabView)
 );
 
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
   }  
 });
 
-export default CustomTabs;
+export default Main;
