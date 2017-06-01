@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity
 } from 'react-native';
 import Card from './Card.js'
 import Dashboard from './Dashboard.js'
@@ -14,21 +14,16 @@ class ProfileMain extends Component{
   }
   render() {
     return(
-      <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => {
-            console.log('dash click')
-            this.props.navigator.push({
-              title: 'Dashboard', 
-              component: Dashboard,
-            })
-          }}
-          underlayColor="#88D4F5"
-        >
-          <Text style={styles.buttonText}>View Dashboard</Text>
-        </TouchableHighlight>
+      <View>
         <Card />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => console.log('pursume clicked!!')}
+            style={styles.tab}
+          >
+            <Text>Pursume</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -36,19 +31,17 @@ class ProfileMain extends Component{
 
 module.exports = ProfileMain;
 
-var styles = StyleSheet.create({
-  container: {
-    marginTop: 65,
-    flex: 1
-  },  
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+var styles = StyleSheet.create({ 
+  buttonContainer: {
+    marginTop: 10,
+    height: 48,
+  },
+  tab: {
+    alignSelf: 'center',   
+    padding: 5,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 4,
     backgroundColor:'#48BBEC'
-  },  
-  buttonText: {
-    fontSize: 24,
-    margin: 5  ,
-    alignSelf: 'center'
   }
 });

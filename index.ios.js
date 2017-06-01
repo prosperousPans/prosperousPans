@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 import Login from './iosClient/src/Login';
+import ProfileMain from './iosClient/src/ProfileMain';
+import CustomTabs from './iosClient/src/CustomTabs';
 
 var styles = StyleSheet.create({
   container:{
@@ -30,3 +32,4 @@ class PursumeIOSApp extends Component {
 }
 
 AppRegistry.registerComponent('PursumeIOSApp', () => PursumeIOSApp);
+      // <CustomTabs />
