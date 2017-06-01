@@ -6,12 +6,16 @@ import {
   Image,
   PanResponder,
   Animated,
-  Dimensions
+  Dimensions,
+  TouchableOpacity,
+  Linking
 } from 'react-native';
 
 class Card extends Component {
   constructor (props){
     super();
+    this.handleGitClick = this.handleGitClick.bind(this);
+    this.handleLNKDClick = this.handleLNKDClick.bind(this);
   }
 
   componentWillMount() {
@@ -70,7 +74,27 @@ class Card extends Component {
       },
     })
   }
+
+  handleGitClick(e) {
+    Linking.canOpenURL('https://www.github.com/').then(supported => {
+      if (supported) {
+        Linking.openURL('https://www.github.com/');
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
+      }
+    });
+  }
   
+  handleLNKDClick(e) {
+    Linking.canOpenURL('https://www.linkedin.com/').then(supported => {
+      if (supported) {
+        Linking.openURL('https://www.linkedin.com/');
+      } else {
+        console.log('Don\'t know how to open URI: ' + this.props.url);
+      }
+    });
+  }
+
   render() {
     const rotateCard = this.pan.x.interpolate({
       inputRange: [-200, 0, 200],
@@ -96,6 +120,18 @@ class Card extends Component {
         <View style={{flex:1}}>
           <Text style={styles.text}>Name</Text>
           <Text style={styles.text}>Industry</Text>
+          <TouchableOpacity onPress={this.handleGitClick}>
+            <Image 
+              style={styles.iconImg}            
+              source={{uri:'https://assets-cdn.github.com/favicon.ico'}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.handleLNKDClick}>
+            <Image 
+              style={styles.iconImg}            
+              source={{uri:'https://www.iconfinder.com/data/icons/capsocial-round/500/linkedin-128.png'}}
+            />
+          </TouchableOpacity>          
           <Text style={styles.text}>1) Education</Text>
           <Text style={styles.text}>2) Professional</Text>
           <Text style={styles.text}>3) Project</Text>
@@ -129,6 +165,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center'
   },
+  iconImg: {
+    height: 20,
+    width: 20,
+    marginTop: 10,
+    alignSelf: 'center'
+  },  
   text: {
     alignSelf: 'center'
   }  
