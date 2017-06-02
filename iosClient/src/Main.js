@@ -43,7 +43,7 @@ const CustomTabBar = ({ navigation }) => {
           style={styles.tab}
           key={route.routeName}
         >     
-          <Text>{route.routeName}</Text>
+          <Text style={styles.text}>{route.routeName}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -104,16 +104,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 1,
-    margin: 15,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 4,
   },
   divider: {
     height: 1,
     backgroundColor: 'grey',
-  }  
+  },
+  text: {
+    color: 'grey',
+    fontSize: 15,
+    fontWeight: 'bold',
+  }    
 });
 
 export default Main;
