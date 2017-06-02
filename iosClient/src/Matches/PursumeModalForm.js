@@ -57,13 +57,7 @@ class PursumeModalForm extends Component {
         </View>
         <View>
           <Text style={styles.bigText}>Reason?</Text>
-          
-          <Text style={styles.medText}>Education</Text>
-          <Switch
-            onValueChange={(value) => this.setState({educationSwitchIsOn: value})}
-            style={styles.switch}                    
-            value={this.state.educationSwitchIsOn} />
-          
+                    
           <Text style={styles.medText}>Professional</Text>
           <Switch
             onValueChange={(value) => this.setState({professionalSwitchIsOn: value})}
@@ -129,3 +123,4 @@ const styles = StyleSheet.create({
 })
 
 module.exports = PursumeModalForm;
+
