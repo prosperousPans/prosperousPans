@@ -498,7 +498,6 @@ exports.seed = function (knex, Promise) {
     throw err;
   })
 
-
   // user8
   .then((user) => {
     return models.Users.forge({
@@ -570,6 +569,223 @@ exports.seed = function (knex, Promise) {
     throw err;
   })
 
+  // user9
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Brad Pitt',
+      industry: 'Health Care',
+      github_url: 'https://github.com/bradpitt',
+      linkedin_url: 'https://www.linkedin.com/in/bradpitt/',
+      image: 'http://img.usmagazine.com/article-leads-vertical-300/1250530894_brad_pitt_290x402.jpg',
+      summary: 'I am a technical writer',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'bradpitt',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 9,
+      name: 'professional',
+      role: 'Technical Writer',
+      description: 'I like to write about projects or products',
+      start_date: 2011,
+      end_date: 2017,
+      organization: 'facebook'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 9,
+      name: 'projects',
+      role: 'This Thesis',
+      description: 'An app to write about product!',
+      start_date: 2017,
+      end_date: null,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 9,
+      name: 'education',
+      role: 'Student',
+      description: 'I am educated',
+      start_date: 2010,
+      end_date: 2012,
+      organization: 'Havard'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+
+  // user10
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Kevin Spacey',
+      industry: 'Internet',
+      github_url: 'https://github.com/kevinspacey',
+      linkedin_url: 'https://www.linkedin.com/in/kevinspacey/',
+      image: 'https://static01.nyt.com/images/2017/05/30/arts/04SPACEY1/04SPACEY1-master1050-v2.jpg',
+      summary: 'I am a quality assurance engineer',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'Kevin Spacey',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 10,
+      name: 'professional',
+      role: 'Quality Assurance Engineer',
+      description: 'I like to test projects or products',
+      start_date: 2011,
+      end_date: 2017,
+      organization: 'Google'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 10,
+      name: 'projects',
+      role: 'This greenfield',
+      description: 'An app to test the product!',
+      start_date: 2017,
+      end_date: null,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 10,
+      name: 'education',
+      role: 'Student',
+      description: 'Bachelor of Engineering',
+      start_date: 2011,
+      end_date: 2014,
+      organization: 'Yale'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .catch(() => {
+    console.log('WARNING: defualt user already exists.');
+  })
+
+  // user11
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Robin Wright',
+      industry: 'Software Engineering',
+      github_url: 'https://github.com/robinwright',
+      linkedin_url: 'https://www.linkedin.com/in/robinwright/',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBijA6VeZtXtwD7cPkfwRCngtxeOPer1hv5L16YKYDC1pdxVylcxKkA',
+      summary: 'I am a project manager',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'Robin Wright',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 11,
+      name: 'professional',
+      role: 'Senior Project Manager',
+      description: 'I like to manage people',
+      start_date: 2013,
+      end_date: 2016,
+      organization: 'Cisco'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 11,
+      name: 'projects',
+      role: 'This legacy',
+      description: 'An app to help manage people!',
+      start_date: 2017,
+      end_date: null,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 11,
+      name: 'education',
+      role: 'Student',
+      description: 'Bachelor of Arts',
+      start_date: 2012,
+      end_date: 2016,
+      organization: 'California'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+
+
 
   // CREATE CONNECTIONS
   .then((connection) => {
@@ -599,6 +815,50 @@ exports.seed = function (knex, Promise) {
       users_a_id: 1,
       users_b_id: 4,
       status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 1,
+      users_b_id: 6,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 1,
+      users_b_id: 8,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 1,
+      users_b_id: 9,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 1,
+      users_b_id: 10,
+      status: 'accept'
     }).save()
   })
   .error(err => {
@@ -643,6 +903,28 @@ exports.seed = function (knex, Promise) {
       users_a_id: 2,
       users_b_id: 8,
       status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 2,
+      users_b_id: 9,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 2,
+      users_b_id: 11,
+      status: 'accept'
     }).save()
   })
   .error(err => {
@@ -695,6 +977,28 @@ exports.seed = function (knex, Promise) {
   })
   .then((connection) => {
     return models.Connection.forge({
+      users_a_id: 3,
+      users_b_id: 10,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 3,
+      users_b_id: 11,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
       users_a_id: 4,
       users_b_id: 1,
       status: 'reject'
@@ -728,6 +1032,28 @@ exports.seed = function (knex, Promise) {
   })
   .then((connection) => {
     return models.Connection.forge({
+      users_a_id: 4,
+      users_b_id: 10,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 4,
+      users_b_id: 11,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
       users_a_id: 5,
       users_b_id: 1,
       status: 'reject'
@@ -740,7 +1066,51 @@ exports.seed = function (knex, Promise) {
   .then((connection) => {
     return models.Connection.forge({
       users_a_id: 5,
+      users_b_id: 4,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 5,
+      users_b_id: 6,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 5,
       users_b_id: 8,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 5,
+      users_b_id: 10,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 5,
+      users_b_id: 11,
       status: 'reject'
     }).save()
   })
@@ -794,6 +1164,28 @@ exports.seed = function (knex, Promise) {
   })
   .then((connection) => {
     return models.Connection.forge({
+      users_a_id: 6,
+      users_b_id: 10,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 6,
+      users_b_id: 11,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
       users_a_id: 7,
       users_b_id: 1,
       status: 'reject'
@@ -829,6 +1221,28 @@ exports.seed = function (knex, Promise) {
     return models.Connection.forge({
       users_a_id: 7,
       users_b_id: 8,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 7,
+      users_b_id: 10,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 7,
+      users_b_id: 11,
       status: 'accept'
     }).save()
   })
@@ -885,6 +1299,193 @@ exports.seed = function (knex, Promise) {
       users_a_id: 8,
       users_b_id: 7,
       status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 8,
+      users_b_id: 10,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 8,
+      users_b_id: 11,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 9,
+      users_b_id: 2,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 9,
+      users_b_id: 3,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 9,
+      users_b_id: 6,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 9,
+      users_b_id: 10,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 9,
+      users_b_id: 11,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 10,
+      users_b_id: 1,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 10,
+      users_b_id: 3,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 10,
+      users_b_id: 6,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 10,
+      users_b_id: 8,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 10,
+      users_b_id: 11,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 11,
+      users_b_id: 1,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 11,
+      users_b_id: 2,
+      status: 'reject'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 11,
+      users_b_id: 5,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 11,
+      users_b_id: 6,
+      status: 'accept'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 11,
+      users_b_id: 10,
+      status: 'reject'
     }).save()
   })
   .error(err => {

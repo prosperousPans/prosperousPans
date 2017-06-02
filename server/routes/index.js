@@ -4,4 +4,4 @@
 
 module.exports.users = require('./users');
 module.exports.experience = require('./experience');
-module.exports.connection = require('./connection');
+module.exports.insertConnection = require('./insertConnection');
