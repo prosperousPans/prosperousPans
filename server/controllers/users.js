@@ -9,9 +9,9 @@ module.exports.getNewUsers = (req, res) => {
     })
     .then(numOfUsers => {
       // update these
-      var userA_Id = 1;
-      var maxCount = 6;
-      var numOfMatchesReturned = 2
+      var userA_Id = 4;
+      var maxCount = 10;
+      var numOfMatchesReturned = 4
 
       var count = 0;
       var sent = false;
@@ -44,6 +44,7 @@ module.exports.getNewUsers = (req, res) => {
                 if ( result.length === numOfMatchesReturned && sent === false) {
                   sent = true
                   console.log('SENT');
+                  console.log(typeof result);
                   res.status(200).send(result);
                 }
               })

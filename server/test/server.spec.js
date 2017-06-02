@@ -42,7 +42,12 @@ describe('fetches data: ', function () {
 
   it('fetches data in users table', function (done) {
     request(app)
+    .get('/users')
     .expect(200)
     .expect(function(res) {
-      
+      expect(res.body[0])
+      expect(typeof res.body).to.equal('object')
+    })
+    .end(done);
+  })
 })
