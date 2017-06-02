@@ -30,5 +30,8 @@ app.use('/api/profiles', routes.profiles);
 app.use('/users', routes.users);
 app.use('/experience', routes.experience);
 
+// *** FOR INSERTING NEW CONNECTIONS
+app.use('/connection', routes.connection);
+
 
 module.exports = app;
