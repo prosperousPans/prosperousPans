@@ -4,7 +4,7 @@ const router = express.Router();
 const InsertConnectionController = require('../controllers').InsertConnection;
 
 router.route('/')
-  // .get(ConnectionController.getAll)
+  .post(InsertConnectionController.insertConnection)
 
 
 module.exports = router;
