@@ -31,7 +31,7 @@ app.use('/users', routes.users);
 app.use('/experience', routes.experience);
 
 // *** FOR INSERTING NEW CONNECTIONS
-app.use('/connection', routes.connection);
+app.use('/insert-connection', routes.Insertconnection);
 
 
 module.exports = app;
