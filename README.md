@@ -1,10 +1,9 @@
 # Pursumé
 
-<<<<<<< HEAD
-What makes you unique? What puts you in the spotlight? Why do others want pursue you? With Pursumé, you can remove the shrouds of your identity by allowing others to tell you what makes your stand out. Then, connect with people that share common experiences to synergize your network reach. Pursumé: Pursue Perfect.
-=======
+
+What makes you unique? What puts you in the spotlight? Why do others want pursue you? With Pursumé, you can remove the shrouds of your identity by allowing others to tell you what makes your stand out. Then, connect with people that share common experiences to synergize your network reach.
 Pursumé: Be Pursued!
->>>>>>> (test) finalizes schema for now and starts creating seed data and tests
+
 
 ## Team
 
@@ -64,6 +63,14 @@ Yarn is a replacement for npm. It's faster and *guarantees* consistency -- as yo
 ```
 yarn global add grunt-cli knex eslint
 ```
+## App Configuration
+
+ Override settings `config/default.json` in any environment by making a copy of `config/ENV.example.json` and naming it `config/ENV.json` and setting the appropriate variable.
+
+ For environments that require use of environment variables, you can supply variables as defined in `config/custom-environment-variables.json`.
+
+ See https://www.npmjs.com/package/config
+ And https://github.com/lorenwest/node-config/wiki/Environment-Variables#custom-environment-variables
 
 ## Database Initialization
 
