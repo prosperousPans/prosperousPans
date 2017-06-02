@@ -12,19 +12,20 @@ describe('fetches data: ', function () {
       .end(done);
   })
 
-  it('fetches all data in users table', function (done) {
-    request(app)
-      .get('/users')
-      .expect(200)
-      .expect(function(res) {
-        expect(res.body[0].full_name).to.equal('Rajas Kale');
-        expect(res.body[1].full_name).to.equal('Alan Zheng');
-        expect(res.body[2].full_name).to.equal('Lavanya AC');
-        expect(res.body[0].summary).to.equal('I like turtles');
-        expect(res.body[0].full_name).to.not.equal('Argle Bargle');
-      })
-      .end(done);
-  })
+  // *** depracated ***
+  // it('fetches data in users table', function (done) {
+  //   request(app)
+  //     .get('/users')
+  //     .expect(200)
+  //     .expect(function(res) {
+  //       expect(res.body[0].full_name).to.equal('Rajas Kale');
+  //       expect(res.body[1].full_name).to.equal('Alan Zheng');
+  //       expect(res.body[2].full_name).to.equal('Lavanya AC');
+  //       expect(res.body[0].summary).to.equal('I like turtles');
+  //       expect(res.body[0].full_name).to.not.equal('Argle Bargle');
+  //     })
+  //     .end(done);
+  // })
 
   it('fetches all data in experience table', function (done) {
     request(app)
@@ -38,4 +39,10 @@ describe('fetches data: ', function () {
       })
       .end(done);
   })
+
+  it('fetches data in users table', function (done) {
+    request(app)
+    .expect(200)
+    .expect(function(res) {
+      
 })

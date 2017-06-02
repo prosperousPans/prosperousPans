@@ -4,8 +4,7 @@ const router = express.Router();
 const ConnectionController = require('../controllers').Connection;
 
 router.route('/')
-  .get(ConnectionController.getAll)
-  // below: sorting query for desired number of users:
+  // .get(ConnectionController.getAll)
 
 
 module.exports = router;
