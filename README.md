@@ -1,10 +1,10 @@
 # Pursumé
 
-<<<<<<< HEAD
-What makes you unique? What puts you in the spotlight? Why do others want pursue you? With Pursumé, you can remove the shrouds of your identity by allowing others to tell you what makes your stand out. Then, connect with people that share common experiences to synergize your network reach. Pursumé: Pursue Perfect.
-=======
+
+What makes you unique? What puts you in the spotlight? Why do others want pursue you? With Pursumé, you can remove the shrouds of your identity by allowing others to tell you what makes your stand out. Then, connect with people that share common experiences to synergize your network reach.
+
 Pursumé: Be Pursued!
->>>>>>> (test) finalizes schema for now and starts creating seed data and tests
+
 
 ## Team
 
@@ -19,10 +19,6 @@ View the project roadmap [here](https://trello.com/prosperouspans)
 ## App Plan
 
 View the app plan [here](https://docs.google.com/document/d/13wJne-dF-h_GpNHzrMkBzsyKa66tDggbU8HPunhyaH8/edit#heading=h.kdpea8yi6wmv)
-<<<<<<< HEAD
-=======
-
->>>>>>> (test) finalizes schema for now and starts creating seed data and tests
 
 ## Contributing
 
