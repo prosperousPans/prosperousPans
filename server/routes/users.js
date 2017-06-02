@@ -4,7 +4,7 @@ const router = express.Router();
 const UsersController = require('../controllers').Users;
 
 router.route('/')
-  .get(UsersController.getAll)
+  .get(UsersController.getNewUsers)
   // below: sorting query for desired number of users:
 
 

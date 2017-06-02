@@ -1,28 +1,28 @@
 const models = require('../../db/models');
 
-module.exports.getAll = (req, res) => {
-  var count = 0;
-  var userA_Id = 3;
-  var result = [];
-  var hashCheck = {};
-  hashCheck[String(userA_Id)] = true;
-  var numOfUsers;
-  var sent = false;
-
+module.exports.getNewUsers = (req, res) => {
   models.Users.fetchAll()
     .then(users => {
       var jsonUsers = JSON.parse(JSON.stringify(users));
-      numOfUsers = jsonUsers.length;
+      var numOfUsers = jsonUsers.length;
       return numOfUsers
     })
-    // .error(err => {
-    //   console.error('ERROR: failed to retrieve users data')
-    // })
     .then(numOfUsers => {
-      while ( count < 6 ) {
+      // update these
+      var userA_Id = 1;
+      var maxCount = 6;
+      var numOfMatchesReturned = 2
+
+      var count = 0;
+      var sent = false;
+      var result = [];
+      var hashCheck = {};
+
+      while ( count < maxCount ) {
         count++;
         models.Users.fetchAll()
           .then(users => {
+            hashCheck[String(userA_Id)] = true;
             var randIdx = Math.floor(Math.random() * numOfUsers);
             while ( hashCheck[String(randIdx + 1)] === true ) {
               randIdx = Math.floor(Math.random() * numOfUsers);
@@ -41,7 +41,7 @@ module.exports.getAll = (req, res) => {
                 if ( JSON.parse(JSON.stringify(connection)).length === 0 ) {
                   result.push(JSON.stringify(params[2][params[1]]));
                 };
-                if ( result.length === 2 && sent === false) {
+                if ( result.length === numOfMatchesReturned && sent === false) {
                   sent = true
                   console.log('SENT');
                   res.status(200).send(result);
@@ -54,69 +54,3 @@ module.exports.getAll = (req, res) => {
       }
     })
 };
-
-
-// module.exports.getAll = (req, res) => {
-//   models.Users.fetchAll()
-//     .then(users => {
-//       var jsonUsers = JSON.parse(JSON.stringify(users));
-//       var count = 0;
-//       var hash = {};
-//       var result = [];
-//       //FIND USER A ID FROM REQ
-//       var userA_Id = 1;
-//       while ( count < 5 ) {
-//         count++;
-//         // makes sure not to choose the same random number
-//         var randIdx = Math.floor(Math.random() * jsonUsers.length);
-//         var userB_id = jsonUsers[randIdx].id;
-//         // while ( hash.String(randIdx) ) {
-//         //   randIdx = Math.floor(Math.rand() * jsonUsers.length);
-//         // }
-//         // result.push(randIdx)
-//         console.log(userB_id)
-//         // fetchUsers.on('fetching')
-//         models.Connection.forge()
-//         .where({users_a_id: userA_Id, users_b_id: userB_id})
-//         .fetchAll()
-//           .then(connection => {
-//             var jsonConnection = JSON.parse(JSON.stringify(connection))
-//             console.log(typeof jsonUsers[randIdx])
-//             console.log('json', jsonUsers[randIdx])
-//             if ( jsonConnection.length === 0 ) {
-//               console.log('CONNECTION', typeof JSON.stringify(jsonUsers[randIdx]))
-//               result.push(JSON.stringify(jsonUsers[randIdx]))
-//             }
-//             console.log('RESULT111111111', result)
-//             console.log('RESULT111111111', result.length)
-//           })
-//           .error(err => {
-//             console.error('ERROR: failed to retrieve connections data')
-//           })
-//           console.log('RESULT111111111', result)
-//           console.log('RESULT111111111', result.length)
-//         }
-//         console.log('RESULT', result)
-//         // res.status(200).send('asdasd');
-//
-//           // }
-//       //   console.log(models.Connection.query().where({users_a_id: userA_Id}).andWhere({users_b_id: jsonUsers[randIdx].id}).fetchOne());
-//       //   if ( !(models.Connection.query().where({user_a_id: userA_Id}).andWhere({user_b_id: jsonUsers[randIdx].id}).fetchOne) ) {
-//       //     result.push(jsonUsers[randIdx]);
-//       //     hash.String(randIdx) = true;
-//       //   }
-//       //   console.log(result);
-//       // console.log('RESULT', result)
-//
-//     // console.log(result)
-//   })
-//     .error(err => {
-//       console.error('ERROR: failed to retrieve users data')
-//     })
-//
-//     .catch(err => {
-//       // This code indicates an outside service (the database) did not respond in time
-//       res.status(503).send(err);
-//   })
-//   // res.send('Hello getAll');
-// };
