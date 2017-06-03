@@ -10,7 +10,7 @@ import {
 
 import Main from './Main.js'
 import Auth0Lock from 'react-native-lock';
-var credentials = require('../../config/config.js');
+var credentials = require('../../../config/config.js');
 var lock = new Auth0Lock(credentials.auth0);
 
 var styles = StyleSheet.create({

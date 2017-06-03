@@ -24,7 +24,6 @@ const MatchesScreen = () => (
   <Matches />
 );
 
-
 const DashboardScreen = () => (
   <Dashboard />
 );
@@ -117,3 +116,4 @@ const styles = StyleSheet.create({
 });
 
 export default Main;
+

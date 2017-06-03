@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 import { 
     AppRegistry,
     StyleSheet,
@@ -7,28 +11,30 @@ import {
     NavigatorIOS,
 } from 'react-native';
 
-import Login from './iosClient/src/Login';
-import Main from './iosClient/src/Main';
+import configureStore from './iosClient/src/configureStore';
+import Login from './iosClient/src/components/Login';
+import Main from './iosClient/src//components/Main';
 
-var styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    backgroundColor: '#111111'
-  }
-});
 
-class PursumeIOSApp extends Component {
-  render() {
-    return (
-      <Main />
-    );
-  }
-}
+const PursumeIOSApp = () => (
+  <Provider store = { store }>
+    <Main />
+  </Provider>    
+)
+
+const store = configureStore();
 
 AppRegistry.registerComponent('PursumeIOSApp', () => PursumeIOSApp);
-      // <NavigatorIOS
-      //   style={styles.container}
-      //   initialRoute={{
-      //     title: 'Pursumé',
-      //     component: Login
-      //   }} />
+
+// const styles = StyleSheet.create({
+//   container:{
+//     flex: 1,
+//     backgroundColor: '#111111'
+//   }
+// });
+//     <NavigatorIOS
+//       style={styles.container}
+//       initialRoute={{
+//         title: 'Pursumé',
+//         component: Login
+//       }} />
