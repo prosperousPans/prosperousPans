@@ -9,9 +9,14 @@ import {
   View
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import { sendResponse } from '../../actions/Pursume';
+import { getMatches } from '../../actions/Matches';
+
 import ExperienceItem from './ExperienceItem.js'
-class PursumeModalForm extends Component {
-  constructor (){
+
+export class PursumeModalForm extends Component{
+  constructor (props){
     super();
     this.state = {
       meetSwitchIsOn: false,
@@ -23,7 +28,18 @@ class PursumeModalForm extends Component {
       projectSwitchIsOn: false,
       personalSwitchIsOn: false,
     };
+    this.formSubmit =  this.formSubmit.bind(this);
   }
+
+  formSubmit(e) {
+    e.preventDefault();
+    //passed in props
+    this.props.handleSubmit();
+
+    //from redux 
+    this.props.sendResponse(this.state);
+  }
+
   render() {
     return (
       <View style={styles.card}>
@@ -57,13 +73,19 @@ class PursumeModalForm extends Component {
         </View>
         <View>
           <Text style={styles.bigText}>Reason?</Text>
+
+          <Text style={styles.medText}>Education</Text>
+          <Switch
+            onValueChange={(value) => this.setState({educationSwitchIsOn: value})}
+            style={styles.switch}                    
+            value={this.state.educationSwitchIsOn} />                      
                     
           <Text style={styles.medText}>Professional</Text>
           <Switch
             onValueChange={(value) => this.setState({professionalSwitchIsOn: value})}
             style={styles.switch}                    
             value={this.state.professionalSwitchIsOn} />                      
-          
+    
           <Text style={styles.medText}>Project</Text>
           <Switch
             onValueChange={(value) => this.setState({projectSwitchIsOn: value})}
@@ -77,7 +99,7 @@ class PursumeModalForm extends Component {
             value={this.state.personalSwitchIsOn} />            
         </View>
         <TouchableOpacity
-          onPress={()=> {console.log(this.state, 'state all')}}
+          onPress={this.formSubmit}
         >
           <Text style={styles.submitButton}>Submit</Text>
         </TouchableOpacity>
@@ -85,6 +107,20 @@ class PursumeModalForm extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendResponse: (response) => { dispatch( sendResponse(response) ) }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PursumeModalForm);
 
 const {width, height} = Dimensions.get('window')
 const styles = StyleSheet.create({
@@ -122,5 +158,4 @@ const styles = StyleSheet.create({
   }
 })
 
-module.exports = PursumeModalForm;
 

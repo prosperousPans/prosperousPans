@@ -4,11 +4,14 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions  
+  Dimensions,
+  AsyncStorage  
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import Modal from 'react-native-modal'
 
+import { connect } from 'react-redux';
+import { getMatches } from '../../actions/Matches';
 
 import HighlightsCard from './HighlightsCard.js';
 import ProfessionalCard from './ProfessionalCard.js';
@@ -17,7 +20,7 @@ import ProjectCard from './ProjectCard.js';
 import PersonalCard from './PersonalCard.js';
 import PursumeModalForm from './PursumeModalForm.js';
 
-class Matches extends Component{
+export class Matches extends Component{
   constructor (props) {
     super(props);
     this.state = {
@@ -25,20 +28,33 @@ class Matches extends Component{
     }
     this._showModal = this._showModal.bind(this);
     this._hideModal = this._hideModal.bind(this);
+    this.handleModalSubmit = this.handleModalSubmit.bind(this);
   }
+
+  componentWillMount() {
+    // console.log('this.props', this.props)
+    this.props.fetch('USERIDHERE');
+  }
+  
   _showModal() {
    this.setState({ isModalVisible: true }) 
-   console.log('show modal')
   }
  
   _hideModal() {
     this.setState({ isModalVisible: false })
   }
 
+  handleModalSubmit () {
+    console.log('INSIDE HANDLE MODAL SUBMIT')
+    this._hideModal();
+  }
+
   render() {
+    // AsyncStorage.getItem('AuthToken', (err, result) => {
+    //   console.log('HELLOOO');
+    // });
     return(
       <View>
-
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={this._showModal}
@@ -53,7 +69,7 @@ class Matches extends Component{
               <Text style={styles.text}>X</Text>
             </TouchableOpacity>
             <View style={{ flex: 1 }}>
-              <PursumeModalForm />
+              <PursumeModalForm bob={this.handleModalSubmit}/>
             </View>
           </Modal>
         </View>
@@ -71,17 +87,30 @@ class Matches extends Component{
         </Swiper>
 
       </View>
-    )
+    ) 
   }
 };
 
-module.exports = Matches;
+const mapStateToProps = (state) => {
+  console.log('MATCHES STATE', state)
+  return {
+    ...state,
+    matches: state.Matches.allMatches
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetch: (userID) => { dispatch( getMatches(userID) ) }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Matches);
 
 const {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({ 
   buttonContainer: {
-    // margin: 10,
   },
   pursumeButton: {
     alignItems: 'center',     
