@@ -9,12 +9,19 @@ import {
 import ExperienceItem from './ExperienceItem.js'
 class ProfessionalCard extends Component {
   render() {
+    let currentProfileExp = this.props.matches[0][1][0];    
     return (
       <View style={styles.card}>
         <Text style={styles.bigText}>Professional</Text>
-        <ExperienceItem />
-        <ExperienceItem />
-        <ExperienceItem />
+        <Text style={styles.medText}>Organization: 
+          <Text style={styles.smallText}>{currentProfileExp.organization}</Text>
+        </Text>
+        <Text style={styles.medText}>Role: 
+          <Text style={styles.smallText}>{currentProfileExp.role}</Text>
+        </Text>
+        <Text style={styles.medText}>Description: 
+          <Text style={styles.smallText}>{currentProfileExp.description}</Text>
+        </Text>
       </View>
     )
   }
@@ -27,11 +34,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bigText: {
+    justifyContent: 'center',    
     alignSelf: 'center',  
     color: 'grey',
     fontSize: 30,
     fontWeight: 'bold',
-  }
+  },
+  medText: {
+    color: 'grey',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  smallText: {
+    color: 'grey',
+    fontSize: 12,
+    fontWeight: 'bold',
+  }     
 })
 
 module.exports = ProfessionalCard;
