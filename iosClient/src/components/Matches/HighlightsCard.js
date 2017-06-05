@@ -41,8 +41,10 @@ export class HighlightsCard extends Component {
   }
 
   render() {
-    if (this.props.matches) {  
+    // if (this.props.matches) {  
       let currentProfile = this.props.matches[0];
+      let currentProfileExp = this.props.exp;
+      console.log(currentProfileExp, 'currentProfile');
       return (
         <View style={styles.card}>
           <Image
@@ -71,25 +73,27 @@ export class HighlightsCard extends Component {
           </View>
         </View>
       )
-    } else {
-      return (
-        <View>
-          <Text style={styles.text}>No matches left today</Text>
-        </View>
-      )
-    }
+    // } 
+    // else {
+    //   return (
+    //     <View>
+    //       <Text style={styles.text}>No matches left today</Text>
+    //     </View>
+    //   )
+    // }
   }
 }
 
+export default HighlightsCard;
 
-const mapStateToProps = (state) => {
-  return {
-    ...state,
-    matches: state.Matches.allMatches
-  }
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     ...state,
+//     matches: state.Matches.allMatches
+//   }
+// };
 
-export default connect(mapStateToProps)(HighlightsCard);
+// export default connect(mapStateToProps)(HighlightsCard);
 
 const {width, height} = Dimensions.get('window')
 

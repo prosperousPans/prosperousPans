@@ -15,7 +15,7 @@ import { getMatches } from '../../actions/Matches';
 
 import ExperienceItem from './ExperienceItem.js'
 
-export class PursumeModalForm extends Component{
+class PursumeModalForm extends Component{
   constructor (props){
     super();
     this.state = {
@@ -37,7 +37,7 @@ export class PursumeModalForm extends Component{
     this.props.handleSubmit();
 
     //from redux 
-    this.props.sendResponse(this.state);
+    // this.props.sendResponse(this.state);
   }
 
   render() {
@@ -108,19 +108,20 @@ export class PursumeModalForm extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ...state
-  }
-};
+export default PursumeModalForm;
+// const mapStateToProps = (state) => {
+//   return {
+//     ...state
+//   }
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    sendResponse: (response) => { dispatch( sendResponse(response) ) }
-  }
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     sendResponse: (response) => { dispatch( sendResponse(response) ) }
+//   }
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PursumeModalForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(PursumeModalForm);
 
 const {width, height} = Dimensions.get('window')
 const styles = StyleSheet.create({

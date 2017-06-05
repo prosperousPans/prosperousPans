@@ -8,11 +8,15 @@ import {
 
 import ExperienceItem from './ExperienceItem.js'
 class PersonalCard extends Component {
+  constructor (props){
+    super();
+  }
+
   render() {
     return (
       <View style={styles.card}>
         <Text style={styles.bigText}>Personal</Text>
-        <Text style={styles.smallText}>Blurb Here</Text>
+        <Text style={styles.smallText}>{this.props.matches[0].summary}</Text>
       </View>
     )
   }
