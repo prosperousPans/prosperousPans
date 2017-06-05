@@ -16,17 +16,18 @@ var lock = new Auth0Lock(credentials.auth0);
 var styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        padding: 30,
-        marginTop: 65,
+        padding: 10,
+        marginTop: 35,
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: '#82C1C2'
+        backgroundColor: '#fff'
     },
     title: {
-        marginBottom: 20,
-        fontSize: 25,
+        marginBottom: 50,
+        fontSize: 50,
         textAlign: 'center',
-        color: '#fff'
+        color: '#2196F3',
+        fontFamily: 'Avenir-Medium'
     },
     userInput: {
         height: 50,
@@ -39,21 +40,22 @@ var styles = StyleSheet.create({
         color: 'white'
     },
     buttonText: {
-        fontSize: 18,
-        color: '#111',
+        fontSize: 25,
+        color: '#fff',
         alignSelf: 'center'
     },
     button: {
-        height: 45,
+        height: 55,
         flexDirection: 'row',
-        backgroundColor: 'white',
-        borderColor: 'white',
+        backgroundColor: '#2196F3',
+        borderColor: '#54B2F5',
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: 5,
         marginBottom: 10,
         marginTop: 15,
-        alignSelf: 'stretch',
-        justifyContent: 'center'
+        alignSelf:'stretch',
+        justifyContent: 'center',
+        alignItems:'center'
     },
 });
 
@@ -62,9 +64,9 @@ class Login extends Component{
 		super(props);
 	}
 
-	async _onValueChange(item, selectedValue) {
-    try {
-      await AsyncStorage.setItem(item, selectedValue);
+	async _onValueChange(profile,token) {
+    try {  
+      await AsyncStorage.multiSet([['AuthToken', token],['nickname',profile.nickname],['userId',profile.userId],['picture', profile.picture]]);
     } catch (error) {
       console.log('AsyncStorage error: ' + error.message);
     }
@@ -78,18 +80,19 @@ class Login extends Component{
         console.log(err);
         return;
       }
-    	this._onValueChange('AuthToken', token.idToken)
+      console.log(profile);
+    	this._onValueChange(profile,token.idToken);
     	this.props.navigator.push({
 				component: Main,
 				title: 'Main'
-			});
+		});
   	});
 	}
 
 	render(){
 		return(
 			<View style={styles.mainContainer}>
-				<Text style={styles.title}> Login Page </Text>
+				<Text style={styles.title}> Pursumè </Text>
 				<TouchableHighlight 
 					style={styles.button} 
 					onPress={this._onLogin.bind(this)}

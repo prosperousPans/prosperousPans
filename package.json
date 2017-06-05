@@ -37,6 +37,7 @@
     "react-dom": "^15.4.2",
     "react-native": "0.44.2",
     "react-native-cli": "^2.0.1",
+    "react-native-gifted-chat": "^0.1.4",
     "react-native-lock": "^0.6.0",
     "react-native-modal": "^2.4.0",
     "react-native-swiper": "^1.5.4",
@@ -45,7 +46,8 @@
     "redis": "^2.7.1",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "socket.io": "^2.0.2"
   },
   "peerDependencies": {
     "react": "*",

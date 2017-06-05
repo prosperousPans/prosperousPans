@@ -18,7 +18,7 @@ import {
 
 import Matches from './Matches/Matches.js';
 import Dashboard from './Dashboard/Dashboard.js';
-import Chat from './Chat/Chat.js';
+import ChatMain from './Chat/ChatMain.js';
 
 const MatchesScreen = () => (
   <Matches />
@@ -29,7 +29,7 @@ const DashboardScreen = () => (
 );
 
 const ChatScreen = () => (
-  <Chat />
+  <ChatMain />
 );
 
 const CustomTabBar = ({ navigation }) => {

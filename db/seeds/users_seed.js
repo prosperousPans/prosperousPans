@@ -145,6 +145,7 @@ exports.seed = function (knex, Promise) {
   .then((user) => {
     return models.Users.forge({
       full_name: 'Lavanya AC',
+      auth_id:'auth0%7C592e5a4f8fb5fe30a672ce8b',
       industry: 'Software Engineering',
       github_url: 'https://github.com/lavanyaac',
       linkedin_url: 'https://www.linkedin.com/in/lavanya-ammi-chandrashekara-02a21713b/',
