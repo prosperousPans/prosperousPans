@@ -7,7 +7,7 @@ exports.seed = function (knex, Promise) {
     industry: 'Neural Engineering',
     github_url: 'https://github.com/Kale007',
     linkedin_url: 'https://www.linkedin.com/in/rajas-kale/',
-    image: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/005/00f/3dc/078778b.jpg',
+    image: 'https://avatars2.githubusercontent.com/u/26387553?v=3&s=460',
     summary: 'I like turtles',
   }).save()
   .error(err => {
@@ -77,7 +77,7 @@ exports.seed = function (knex, Promise) {
       industry: 'Software Engineering',
       github_url: 'https://github.com/aszheng',
       linkedin_url: 'https://www.linkedin.com/in/aszheng/',
-      image: 'https://avatars1.githubusercontent.com/u/20808751?v=3&u=3e73a0402b412ec68bc2d1c25734382714e0e24b&s=400',
+      image: 'https://avatars0.githubusercontent.com/u/20808751?v=3&s=460',
       summary: 'I like pandas',
     }).save()
   })
@@ -148,7 +148,7 @@ exports.seed = function (knex, Promise) {
       industry: 'Software Engineering',
       github_url: 'https://github.com/lavanyaac',
       linkedin_url: 'https://www.linkedin.com/in/lavanya-ammi-chandrashekara-02a21713b/',
-      image: 'https://avatars2.githubusercontent.com/u/25909813?v=3&s=400',
+      image: 'https://avatars0.githubusercontent.com/u/25909813?v=3&s=460',
       summary: 'I am a full stack developer',
     }).save()
   })
@@ -215,12 +215,12 @@ exports.seed = function (knex, Promise) {
   //user4
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Tom Dickson',
-      industry: 'Business Developer',
-      github_url: 'https://github.com/tomisbomb',
-      linkedin_url: 'https://www.linkedin.com/in/tom-dickson-4973b920/',
-      image: 'http://d2x83fpq8bsx3q.cloudfront.net/wp-content/uploads/2012/11/Tom-green-smoothie-1024x669.jpg',
-      summary: 'I businessed',
+      full_name: 'Anthony Wong',
+      industry: 'Software Engineering',
+      github_url: 'https://github.com/shrimpwongton',
+      linkedin_url: 'https://www.linkedin.com/in/anthonywg/',
+      image: 'https://avatars0.githubusercontent.com/u/6591210?v=3&s=400',
+      summary: 'Android Developer transitioning towards Full Stack Software Engineering.',
     }).save()
   })
   .error(err => {
@@ -229,7 +229,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'tomisbomb',
+      username: 'shrimpwongton',
       password: 'password'
     }).save()
   })
@@ -241,11 +241,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 4,
       name: 'professional',
-      role: 'Front-end Engineer',
-      description: 'React baby',
+      role: 'Andriod Developer',
+      description: 'Java Baby',
       start_date: 2016,
-      end_date: 2017,
-      organization: 'Self-employed'
+      end_date: 2016,
+      organization: 'DabKick'
     }).save()
   })
   .error(err => {
@@ -256,11 +256,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 4,
       name: 'projects',
-      role: 'Skooled',
-      description: 'It renders!',
-      start_date: 2016,
+      role: 'Viator',
+      description: 'Material UI',
+      start_date: 2017,
       end_date: 2017,
-      organization: 'TomBomb'
+      organization: 'Hack Reactor'
     }).save()
   })
   .error(err => {
@@ -271,11 +271,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 4,
       name: 'education',
-      role: 'Sanitation Engineer',
-      description: 'I cleaned up after people',
-      start_date: 2002,
-      end_date: 2010,
-      organization: 'Clean Ops'
+      role: 'Student',
+      description: 'BS Computer Science',
+      start_date: 2012,
+      end_date: 2016,
+      organization: 'UC San Diego'
     }).save()
   })
   .error(err => {
@@ -291,7 +291,7 @@ exports.seed = function (knex, Promise) {
       industry: 'Software Engineering',
       github_url: 'https://github.com/ChKim',
       linkedin_url: 'https://www.linkedin.com/in/cjkim0119/',
-      image: 'https://www.linkedin.com/in/cjkim0119/photo/',
+      image: 'https://avatars1.githubusercontent.com/u/20958854?v=3&s=460',
       summary: 'I make stuff for that do things for reasons',
     }).save()
   })
@@ -313,7 +313,7 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 5,
       name: 'professional',
-      role: 'Front-stackEngineer',
+      role: 'Senior Analyst',
       description: 'Instacart enables and provides on-demand grocery deliveries within as little as one hour in 30+ markets, from 100+ grocery retailers. A YC alum, Instacart has received funding from partners including Kleiner Perkins, Sequoia, and Andreessen Horowitz.',
       start_date: 2014,
       end_date: null,
@@ -361,9 +361,9 @@ exports.seed = function (knex, Promise) {
     return models.Users.forge({
       full_name: 'Ming Feng',
       industry: 'Software Engineering',
-      github_url: 'https://github.com/tifflin',
+      github_url: 'https://github.com/minggfeng',
       linkedin_url: 'https://www.linkedin.com/in/minggfeng/',
-      image: 'https://www.linkedin.com/in/minggfeng/photo/',
+      image: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAADhAAAAJGNkNmRlMGJjLTZiNWItNDBhZC1hOTRiLTc4MWU1NDZiMjJhMw.jpg',
       summary: 'Full stack engineer currently looking for opportunities',
     }).save()
   })
@@ -386,7 +386,7 @@ exports.seed = function (knex, Promise) {
       users_id: 6,
       name: 'professional',
       role: 'Clinical Systems Analyst',
-      description: 'Supported the applications of OpTime, Anesthesia, and the surgical component of Phoenix. Devoted after hours on-call support for multiple projects. Increased team collaboration and improved the knowledge transfer process. Mentored new hires and provided technical expertise for consultants and other teams. Combined specs to build and implement various projects.',
+      description: 'Supported the applications of OpTime, Anesthesia, and the surgical component of Phoenix.',
       start_date: 2014,
       end_date: 2017,
       organization: 'Stanford Health Care'
@@ -415,11 +415,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 6,
       name: 'education',
-      role: 'BA, Chemistry',
-      description: 'Grade 3.68',
-      start_date: 2010,
-      end_date: 2012,
-      organization: 'University of Wisconsin-Madison'
+      role: 'Student',
+      description: 'BS Chemistry',
+      start_date: 2006,
+      end_date: 2010,
+      organization: 'University of Wisconsin-Madision'
     }).save()
   })
   .error(err => {
@@ -434,7 +434,7 @@ exports.seed = function (knex, Promise) {
       industry: 'Software Engineering',
       github_url: 'https://github.com/jeffc12',
       linkedin_url: 'https://www.linkedin.com/in/jeffrey-chen/',
-      image: 'https://www.linkedin.com/in/jeffrey-chen/photo/',
+      image: 'https://avatars1.githubusercontent.com/u/23188557?v=3&s=460',
       summary: 'I like waffles',
     }).save()
   })
@@ -505,7 +505,7 @@ exports.seed = function (knex, Promise) {
       industry: 'Software Engineering',
       github_url: 'https://github.com/t0mdicks0n',
       linkedin_url: 'https://www.linkedin.com/in/t0mdicks0n/',
-      image: 'https://www.linkedin.com/in/t0mdicks0n/photo/',
+      image: 'https://avatars1.githubusercontent.com/u/22496165?v=3&s=400',
       summary: 'I\'m an amazing software engineer' ,
     }).save()
   })
@@ -576,7 +576,7 @@ exports.seed = function (knex, Promise) {
       industry: 'Civil Engineering',
       github_url: 'https://github.com/JonEricEscobedo',
       linkedin_url: 'https://www.linkedin.com/in/jonericescobedo/',
-      image: 'https://www.linkedin.com/in/jonericescobedo/photo/',
+      image: 'https://avatars3.githubusercontent.com/u/22602434?v=3&s=460',
       summary: 'Project Manager with over five years of environmental experience advising environmental professionals in interpreting federal and state air regulatory guidelines and designing best in class customized plans to capture air pollutants for regulatory compliance demonstration. ',
     }).save()
   })
@@ -643,12 +643,12 @@ exports.seed = function (knex, Promise) {
   // user10
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Kevin Spacey',
-      industry: 'Internet',
-      github_url: 'https://github.com/kevinspacey',
-      linkedin_url: 'https://www.linkedin.com/in/kevinspacey/',
-      image: 'https://static01.nyt.com/images/2017/05/30/arts/04SPACEY1/04SPACEY1-master1050-v2.jpg',
-      summary: 'I am a quality assurance engineer',
+      full_name: 'Alexander Liang',
+      industry: 'Software Engineering',
+      github_url: 'https://github.com/axllgn',
+      linkedin_url: 'https://www.linkedin.com/in/alliang/',
+      image: 'https://avatars3.githubusercontent.com/u/17916893?v=3&s=400',
+      summary: 'Looking for Full-Stack engineering opportunities',
     }).save()
   })
   .error(err => {
@@ -657,7 +657,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'Kevin Spacey',
+      username: 'axllgn',
       password: 'password'
     }).save()
   })
@@ -669,11 +669,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 10,
       name: 'professional',
-      role: 'Quality Assurance Engineer',
-      description: 'I like to test projects or products',
-      start_date: 2011,
-      end_date: 2017,
-      organization: 'Google'
+      role: 'Manufacturing Quality Engineer',
+      description: 'I like to test',
+      start_date: 2016,
+      end_date: 2016,
+      organization: 'Fabrinet'
     }).save()
   })
   .error(err => {
@@ -700,29 +700,26 @@ exports.seed = function (knex, Promise) {
       users_id: 10,
       name: 'education',
       role: 'Student',
-      description: 'Bachelor of Engineering',
-      start_date: 2011,
-      end_date: 2014,
-      organization: 'Yale'
+      description: 'BS Mechnical Engineering & Material Science',
+      start_date: 2009,
+      end_date: 2013,
+      organization: 'UC Davis'
     }).save()
   })
   .error(err => {
     console.error('ERROR: failed to create experience');
     throw err;
   })
-  .catch(() => {
-    console.log('WARNING: defualt user already exists.');
-  })
 
   // user11
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Robin Wright',
+      full_name: 'Kriz Cortés',
       industry: 'Software Engineering',
-      github_url: 'https://github.com/robinwright',
-      linkedin_url: 'https://www.linkedin.com/in/robinwright/',
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBijA6VeZtXtwD7cPkfwRCngtxeOPer1hv5L16YKYDC1pdxVylcxKkA',
-      summary: 'I am a project manager',
+      github_url: 'https://github.com/sirkortes',
+      linkedin_url: 'https://www.linkedin.com/in/sirkortes/',
+      image: 'https://avatars2.githubusercontent.com/u/5361945?v=3&s=460',
+      summary: 'A graphic artist and web designer by day. A programming student by night, in pursuance of creating stunning applications for mobile devices and mixed reality platforms.',
     }).save()
   })
   .error(err => {
@@ -731,7 +728,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'Robin Wright',
+      username: 'kriscortez',
       password: 'password'
     }).save()
   })
@@ -743,11 +740,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 11,
       name: 'professional',
-      role: 'Senior Project Manager',
-      description: 'I like to manage people',
+      role: 'Creative Head',
+      description: 'I create visual elements that convey the brand\'s product, service and culture promptly and clear. This includes everything from Logos, Colors, Website, Social Media, Stationery, Advertisements and more.',
       start_date: 2013,
-      end_date: 2016,
-      organization: 'Cisco'
+      end_date: null,
+      organization: 'Strategic Graphic Design'
     }).save()
   })
   .error(err => {
@@ -774,10 +771,10 @@ exports.seed = function (knex, Promise) {
       users_id: 11,
       name: 'education',
       role: 'Student',
-      description: 'Bachelor of Arts',
-      start_date: 2012,
-      end_date: 2016,
-      organization: 'California'
+      description: 'Bachelors Graphic Design and Digital Animation',
+      start_date: 2007,
+      end_date: 2010,
+      organization: 'Atlantic College'
     }).save()
   })
   .error(err => {
@@ -789,12 +786,12 @@ exports.seed = function (knex, Promise) {
   // user12
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Martha Stewart',
-      industry: 'Insider Trading',
-      github_url: 'https://github.com/marthastewart',
-      linkedin_url: 'https://www.linkedin.com/in/marthastewart/',
-      image: 'https://assets.entrepreneur.com/content/16x9/822/4-secrets-lifelong-success-martha-stewart.jpg',
-      summary: 'I manipulate stocks',
+      full_name: 'Oliver Ullman',
+      industry: 'Software Engineering',
+      github_url: 'https://github.com/oriooctopus',
+      linkedin_url: 'https://www.linkedin.com/in/oliver-ullman/',
+      image: 'https://avatars0.githubusercontent.com/u/20331238?v=3&s=400',
+      summary: 'I play piano',
     }).save()
   })
   .error(err => {
@@ -803,7 +800,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'Martha Stewart',
+      username: 'oriooctopus',
       password: 'password'
     }).save()
   })
@@ -815,11 +812,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 12,
       name: 'professional',
-      role: 'Midlevel Money Grabber',
-      description: 'I like to insider trade',
-      start_date: 2010,
-      end_date: 2013,
-      organization: 'NYSE'
+      role: 'Freelance Web Developer',
+      description: 'I build websites',
+      start_date: 2016,
+      end_date: 2017,
+      organization: 'Upwork'
     }).save()
   })
   .error(err => {
@@ -830,11 +827,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 12,
       name: 'projects',
-      role: 'Some project',
-      description: 'An app that steals money from people!',
-      start_date: 2014,
-      end_date: null,
-      organization: 'New York'
+      role: 'Greenfield',
+      description: 'An app that makes music!',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
     }).save()
   })
   .error(err => {
@@ -846,10 +843,10 @@ exports.seed = function (knex, Promise) {
       users_id: 12,
       name: 'education',
       role: 'Student',
-      description: 'Bachelor of Money',
-      start_date: 2001,
-      end_date: 2012,
-      organization: 'Trump University'
+      description: 'Too cool for college',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
     }).save()
   })
   .error(err => {
@@ -861,12 +858,12 @@ exports.seed = function (knex, Promise) {
   // user13
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Homer Simpson',
-      industry: 'Nuclear Engineering',
-      github_url: 'https://github.com/homersimpson',
-      linkedin_url: 'https://www.linkedin.com/in/homesimpson/',
-      image: 'https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png',
-      summary: 'I eat donuts',
+      full_name: 'Kara Marnell',
+      industry: 'Software Engineering',
+      github_url: 'https://github.com/kmarnell',
+      linkedin_url: 'https://www.linkedin.com/in/karamarnell/',
+      image: 'https://avatars0.githubusercontent.com/u/18540889?v=3&s=400',
+      summary: 'I take pictures',
     }).save()
   })
   .error(err => {
@@ -875,7 +872,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'Homer Simpson',
+      username: 'kmarnell',
       password: 'password'
     }).save()
   })
@@ -887,11 +884,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 13,
       name: 'professional',
-      role: 'Nuclear Safety',
-      description: 'Monitor power plants',
-      start_date: 2000,
+      role: 'Genius Admin',
+      description: 'Genius',
+      start_date: 2014,
       end_date: null,
-      organization: 'Burns Co.'
+      organization: 'Apple'
     }).save()
   })
   .error(err => {
@@ -902,32 +899,32 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 13,
       name: 'projects',
-      role: 'Donut eating contest',
-      description: 'An app that counts donuts',
-      start_date: 2012,
-      end_date: 2013,
-      organization: 'Self-employed'
+      role: 'Greenfield',
+      description: 'Greenfield App',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
     }).save()
   })
   .error(err => {
     console.error('ERROR: failed to create experience');
     throw err;
   })
-  // .then((experience) => {
-  //   return models.Experience.forge({
-  //     users_id: 13,
-  //     name: 'education',
-  //     role: 'Student',
-  //     description: 'Doctor of Donuts',
-  //     start_date: 1998,
-  //     end_date: 2006,
-  //     organization: 'Donuts College of Math and Physics'
-  //   }).save()
-  // })
-  // .error(err => {
-  //   console.error('ERROR: failed to create experience');
-  //   throw err;
-  // })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 13,
+      name: 'education',
+      role: 'Student',
+      description: 'BA Spanish Teaching Education',
+      start_date: 2009,
+      end_date: 2011,
+      organization: 'College of Charleston'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
 
 
 
@@ -1735,12 +1732,6 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create connection');
     throw err;
   })
-
-
-
-  .catch(() => {
-    console.log('WARNING: defualt user already exists.');
-  });
 };
 
 

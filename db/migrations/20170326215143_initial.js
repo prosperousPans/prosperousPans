@@ -39,11 +39,11 @@ exports.up = function (knex, Promise) {
       table.increments('id').unsigned().primary();
       table.integer('users_id').unsigned().references('id').inTable('users');
       table.string('name', 15).nullable();
-      table.string('role', 30).nullable();
+      table.string('role', 50).nullable();
       table.text('description').nullable();
       table.integer('start_date').nullable();
       table.integer('end_date').nullable();
-      table.string('organization', 30).nullable();
+      table.string('organization', 50).nullable();
       table.timestamps(true, true);
       // may not be necessary, if end_date = null then it is current
       // table.boolean('latest').nullable();
