@@ -6,7 +6,8 @@
     "test": "NODE_ENV=test grunt test",
     "build": "webpack --watch",
     "ios-watch": "node node_modules/react-native/local-cli/cli.js start",
-    "ios-dev": "react-native run-ios"
+    "ios-dev": "react-native run-ios",
+    "docker": "node server"
   },
   "author": "Hack Reactor",
   "license": "MIT",
