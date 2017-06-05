@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bigText: {
-    // justifyContent: 'center',    
+    justifyContent: 'center',    
     alignSelf: 'center',  
     color: 'grey',
     fontSize: 30,
