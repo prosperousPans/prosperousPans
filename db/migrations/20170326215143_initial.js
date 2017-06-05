@@ -27,6 +27,7 @@ exports.up = function (knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('users', function (table) {
       table.increments('id').unsigned().primary();
+      table.string('auth_id', 200).nullable();
       table.string('full_name', 30).notNullable().unique();
       table.string('industry', 30).nullable();
       table.string('github_url', 150).nullable();
@@ -72,6 +73,13 @@ exports.up = function (knex, Promise) {
       table.integer('users_b_id').unsigned().references('id').inTable('users');
       table.string('status').notNullable();
       table.timestamps(true, true);
+    }),
+    knex.schema.createTableIfNotExists('chat', function (table) {
+      table.increments('id').unsigned().primary();
+      table.integer('from_id').unsigned().references('id').inTable('users');
+      table.integer('to_id').unsigned().references('id').inTable('users');
+      table.string('message').notNullable();
+      table.timestamps(true, true);
     })
   ]);
 };
@@ -87,6 +95,7 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('info_tag'),
     knex.schema.dropTable('reason'),
     knex.schema.dropTable('connection_reason'),
-    knex.schema.dropTable('connection')
+    knex.schema.dropTable('connection'),
+    knex.schema.dropTable('chat')
   ]);
 };

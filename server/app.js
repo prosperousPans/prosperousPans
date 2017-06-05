@@ -33,6 +33,6 @@ app.use('/experience', routes.experience);
 // *** FOR INSERTING NEW CONNECTIONS
 app.use('/insert-connection', routes.insertConnection);
 
-
+app.use('/chat-list', routes.chat);
 
 module.exports = app;
