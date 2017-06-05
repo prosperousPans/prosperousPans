@@ -41,32 +41,8 @@ class Matches extends Component{
     .then( result => {
       const matchArr = result.data;
       console.log('matchArr', matchArr)
-      for (var i=0; i<matchArr.length; i++){
-        matchArr[i] = JSON.parse(matchArr[i]);
-      }
-      return matchArr;
-    })
-    .then( matchesResult => {
-      var userId = [];
-      var allExp = [];
-      
-      for (var i=0; i< matchesResult.length; i++) {
-        var id = matchesResult[i].id;
-        userId.push(matchesResult[i].id);
-        axios.get('http://localhost:3000/experience', {params:{id: id}})
-        .then(expResult => {
-          console.log(expResult, 'RESULT FROM EXP GET')
-          allExp.push(expResult)
-        })
-      }
-
-      return [userId, allExp, matchesResult];
-    })
-    .then( params => {
       this.setState({
-        userId: params[0],
-        allExp: params[1],
-        allMatches: params[2]
+        allMatches: matchArr
       });    
     })
   }
@@ -80,13 +56,9 @@ class Matches extends Component{
   }
 
   handleModalSubmit () {
-    console.log('INSIDE HANDLE MODAL SUBMIT')
-    
-    console.log(this.state.allMatches, 'all matches in modal submit - MATCHES')
     var oldArr = this.state.allMatches;
-
     var newArr = oldArr.slice(1);
-    console.log(newArr,'newArr')
+
     this.setState({
       allMatches: newArr
     })
@@ -97,7 +69,7 @@ class Matches extends Component{
     // AsyncStorage.getItem('AuthToken', (err, result) => {
     //   console.log('HELLOOO');
     // });
-    {console.log(this.state.allMatches, 'IN RENDER') }
+    {console.log(this.state.allMatches, 'IN MATCHES RENDER') }
     if (this.state.allMatches.length > 0) {
       return(
         <View>
@@ -135,6 +107,7 @@ class Matches extends Component{
         </View>
       ) 
     } else {
+      console.log('no more matches');
       return (<View style={styles.card}><Text style={styles.text}>No More Matches</Text></View>)
     }
   }
@@ -175,7 +148,7 @@ const styles = StyleSheet.create({
   },
   text: {
     alignSelf: 'center',  
-    color: 'grey',
+    color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
   }

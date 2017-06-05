@@ -58,7 +58,7 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 1,
       name: 'projects',
-      role: 'Thesis',
+      role: 'Pursumé',
       description: 'We made this damn app!!!!',
       start_date: 2017,
       end_date: null,
@@ -114,7 +114,7 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 2,
       name: 'projects',
-      role: 'Da Thesis',
+      role: 'Pursumé',
       description: 'You see this app? We made this app!',
       start_date: 2017,
       end_date: null,
@@ -185,7 +185,7 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 3,
       name: 'projects',
-      role: 'This Thesis',
+      role: 'Pursumé',
       description: 'Best app ever!',
       start_date: 2017,
       end_date: null,
@@ -288,10 +288,10 @@ exports.seed = function (knex, Promise) {
   .then((user) => {
     return models.Users.forge({
       full_name: 'Charles Kim',
-      industry: 'Senior Analyst',
+      industry: 'Software Engineering',
       github_url: 'https://github.com/ChKim',
       linkedin_url: 'https://www.linkedin.com/in/cjkim0119/',
-      image: 'https://instacart.files.wordpress.com/2015/05/instacart-1622-nobg.png',
+      image: 'https://www.linkedin.com/in/cjkim0119/photo/',
       summary: 'I make stuff for that do things for reasons',
     }).save()
   })
@@ -359,11 +359,11 @@ exports.seed = function (knex, Promise) {
   // user6
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Tiffany lin',
+      full_name: 'Ming Feng',
       industry: 'Software Engineering',
       github_url: 'https://github.com/tifflin',
-      linkedin_url: 'https://www.linkedin.com/in/tiffanylin/',
-      image: 'https://avatars2.githubusercontent.com/u/25909813?v=3&s=400',
+      linkedin_url: 'https://www.linkedin.com/in/minggfeng/',
+      image: 'https://www.linkedin.com/in/minggfeng/photo/',
       summary: 'Full stack engineer currently looking for opportunities',
     }).save()
   })
@@ -373,7 +373,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'tiffanylin',
+      username: 'mingfeng',
       password: 'password'
     }).save()
   })
@@ -385,11 +385,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 6,
       name: 'professional',
-      role: 'Software Engineer',
-      description: 'A team leader with hands-on experience in coding',
-      start_date: 2015,
+      role: 'Clinical Systems Analyst',
+      description: 'Supported the applications of OpTime, Anesthesia, and the surgical component of Phoenix. Devoted after hours on-call support for multiple projects. Increased team collaboration and improved the knowledge transfer process. Mentored new hires and provided technical expertise for consultants and other teams. Combined specs to build and implement various projects.',
+      start_date: 2014,
       end_date: 2017,
-      organization: 'Apple'
+      organization: 'Stanford Health Care'
     }).save()
   })
   .error(err => {
@@ -415,11 +415,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 6,
       name: 'education',
-      role: 'Student',
-      description: 'I graduated',
+      role: 'BA, Chemistry',
+      description: 'Grade 3.68',
       start_date: 2010,
       end_date: 2012,
-      organization: 'Berkeley'
+      organization: 'University of Wisconsin-Madison'
     }).save()
   })
   .error(err => {
@@ -430,12 +430,12 @@ exports.seed = function (knex, Promise) {
   // user7
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Matt Damon',
+      full_name: 'Jeffrey Chen',
       industry: 'Software Engineering',
-      github_url: 'https://github.com/mattd',
-      linkedin_url: 'https://www.linkedin.com/in/mattd/',
-      image: 'https://avatars2.githubusercontent.com/u/25909813?v=3&s=400',
-      summary: 'A technical architect looking for opportunities',
+      github_url: 'https://github.com/jeffc12',
+      linkedin_url: 'https://www.linkedin.com/in/jeffrey-chen/',
+      image: 'https://www.linkedin.com/in/jeffrey-chen/photo/',
+      summary: 'I like waffles',
     }).save()
   })
   .error(err => {
@@ -444,7 +444,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'mattd',
+      username: 'jeffc12',
       password: 'password'
     }).save()
   })
@@ -456,11 +456,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 7,
       name: 'professional',
-      role: 'Technical Architect',
-      description: 'Love architecing projects',
-      start_date: 2016,
-      end_date: 2017,
-      organization: 'Intuit'
+      role: 'Undergraduate Researcher',
+      description: 'Research',
+      start_date: 2015,
+      end_date: 2015,
+      organization: 'University of Oregon'
     }).save()
   })
   .error(err => {
@@ -487,10 +487,10 @@ exports.seed = function (knex, Promise) {
       users_id: 7,
       name: 'education',
       role: 'Student',
-      description: 'Bachelor of Engineering',
-      start_date: 2008,
-      end_date: 2012,
-      organization: 'MIT'
+      description: 'B.S. Physics',
+      start_date: 2011,
+      end_date: 2016,
+      organization: 'University of Oregon'
     }).save()
   })
   .error(err => {
@@ -501,11 +501,11 @@ exports.seed = function (knex, Promise) {
   // user8
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Chirstian Bale',
+      full_name: 'Tom Dickson',
       industry: 'Software Engineering',
-      github_url: 'https://github.com/Chirstianb',
-      linkedin_url: 'https://www.linkedin.com/in/Chirstianb/',
-      image: 'https://avatars2.githubusercontent.com/u/25909813?v=3&s=400',
+      github_url: 'https://github.com/t0mdicks0n',
+      linkedin_url: 'https://www.linkedin.com/in/t0mdicks0n/',
+      image: 'https://www.linkedin.com/in/t0mdicks0n/photo/',
       summary: 'I\'m an amazing software engineer' ,
     }).save()
   })
@@ -515,7 +515,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'chirstianb',
+      username: 'tomdickson',
       password: 'password'
     }).save()
   })
@@ -527,11 +527,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 8,
       name: 'professional',
-      role: 'Software Engineer',
-      description: 'Project manager',
-      start_date: 2014,
+      role: 'KAM and Business Development',
+      description: 'Your Digital Mailbox!',
+      start_date: 2013,
       end_date: 2017,
-      organization: 'Sales Force'
+      organization: 'Kivra'
     }).save()
   })
   .error(err => {
@@ -558,10 +558,10 @@ exports.seed = function (knex, Promise) {
       users_id: 8,
       name: 'education',
       role: 'Student',
-      description: 'Undergraduate',
+      description: 'BSc in Business, Finance',
       start_date: 2010,
-      end_date: 2012,
-      organization: 'Yale'
+      end_date: 2013,
+      organization: 'Stockholm University'
     }).save()
   })
   .error(err => {
@@ -572,12 +572,12 @@ exports.seed = function (knex, Promise) {
   // user9
   .then((user) => {
     return models.Users.forge({
-      full_name: 'Brad Pitt',
-      industry: 'Health Care',
-      github_url: 'https://github.com/bradpitt',
-      linkedin_url: 'https://www.linkedin.com/in/bradpitt/',
-      image: 'http://img.usmagazine.com/article-leads-vertical-300/1250530894_brad_pitt_290x402.jpg',
-      summary: 'I am a technical writer',
+      full_name: 'Jon Eric Escobedo, E.I.T.',
+      industry: 'Civil Engineering',
+      github_url: 'https://github.com/JonEricEscobedo',
+      linkedin_url: 'https://www.linkedin.com/in/jonericescobedo/',
+      image: 'https://www.linkedin.com/in/jonericescobedo/photo/',
+      summary: 'Project Manager with over five years of environmental experience advising environmental professionals in interpreting federal and state air regulatory guidelines and designing best in class customized plans to capture air pollutants for regulatory compliance demonstration. ',
     }).save()
   })
   .error(err => {
@@ -586,7 +586,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'bradpitt',
+      username: 'joneric',
       password: 'password'
     }).save()
   })
@@ -598,11 +598,11 @@ exports.seed = function (knex, Promise) {
     return models.Experience.forge({
       users_id: 9,
       name: 'professional',
-      role: 'Technical Writer',
-      description: 'I like to write about projects or products',
-      start_date: 2011,
-      end_date: 2017,
-      organization: 'facebook'
+      role: 'Sales Engineer / Project Manager',
+      description: 'Advise industrial professionals and engineers in interpreting federal and state air quality guidelines',
+      start_date: 2012,
+      end_date: 2016,
+      organization: 'Enthalpy Analytical'
     }).save()
   })
   .error(err => {
@@ -629,10 +629,10 @@ exports.seed = function (knex, Promise) {
       users_id: 9,
       name: 'education',
       role: 'Student',
-      description: 'I am educated',
-      start_date: 2010,
-      end_date: 2012,
-      organization: 'Havard'
+      description: 'B.S. Civil Engineering',
+      start_date: 2004,
+      end_date: 2009,
+      organization: 'UC Davis'
     }).save()
   })
   .error(err => {

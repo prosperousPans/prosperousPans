@@ -13,10 +13,11 @@ class PersonalCard extends Component {
   }
 
   render() {
+    let currentProfile = this.props.matches[0][0];      
     return (
       <View style={styles.card}>
         <Text style={styles.bigText}>Personal</Text>
-        <Text style={styles.smallText}>{this.props.matches[0].summary}</Text>
+        <Text style={styles.smallText}>{currentProfile.summary}</Text>
       </View>
     )
   }
@@ -29,17 +30,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bigText: {
+    justifyContent: 'center',    
     alignSelf: 'center',  
     color: 'grey',
     fontSize: 30,
     fontWeight: 'bold',
   },
-  smallText: {
-    alignSelf: 'center',  
+  medText: {
     color: 'grey',
-    fontSize: 10,
+    fontSize: 18,
     fontWeight: 'bold',
-  }  
+  },
+  smallText: {
+    color: 'grey',
+    fontSize: 12,
+    fontWeight: 'bold',
+  } 
 })
 
 module.exports = PersonalCard;

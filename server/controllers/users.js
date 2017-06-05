@@ -44,8 +44,7 @@ module.exports.getNewUsers = (req, res) => {
                       .fetchAll()
                         .then(experience => {
                           // console.log([JSON.stringify(params[2][params[1]]), JSON.stringify(experience)])
-                          result.push([JSON.stringify(params[2][params[1]]), JSON.stringify(experience)]);
-                          console.log('RESULT', result)
+                          result.push([params[2][params[1]], experience]);
                           if ( result.length === numOfMatchesReturned && sent === false) {
                             sent = true
                             console.log('SENT');
