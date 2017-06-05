@@ -35,4 +35,6 @@ app.use('/insert-connection', routes.insertConnection);
 
 app.use('/chat-list', routes.chat);
 
+app.use('/create-graphDB', routes.createGraphDB)
+
 module.exports = app;
