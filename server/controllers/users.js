@@ -35,19 +35,32 @@ module.exports.getNewUsers = (req, res) => {
           })
           .then(params => {
             models.Connection.forge()
-            .where({users_a_id: userA_Id, users_b_id: params[0]})
-            .fetchAll()
-              .then(connection => {
-                if ( JSON.parse(JSON.stringify(connection)).length === 0 ) {
-                  result.push(JSON.stringify(params[2][params[1]]));
-                };
-                if ( result.length === numOfMatchesReturned && sent === false) {
-                  sent = true
-                  console.log('SENT');
-                  console.log(typeof result);
-                  res.status(200).send(result);
-                }
-              })
+              .where({users_a_id: userA_Id, users_b_id: params[0]})
+              .fetchAll()
+                .then(connection => {
+                  if ( JSON.parse(JSON.stringify(connection)).length === 0 ) {
+                    models.Experience.forge()
+                      .where({users_id: params[2][params[1]].id})
+                      .fetchAll()
+                        .then(experience => {
+                          // console.log([JSON.stringify(params[2][params[1]]), JSON.stringify(experience)])
+                          result.push([JSON.stringify(params[2][params[1]]), JSON.stringify(experience)]);
+                          console.log('RESULT', result)
+                          if ( result.length === numOfMatchesReturned && sent === false) {
+                            sent = true
+                            console.log('SENT');
+                            console.log(typeof result);
+                            res.status(200).send(result);
+                          }
+                        })
+                        .error(err => {
+                          console.error('ERROR: failed to retrieve experience data')
+                        })
+                  }
+                })
+                .error(err => {
+                  console.error('ERROR: failed to retrieve connections data')
+                })
           })
           .error(err => {
             console.error('ERROR: failed to retrieve connections data')
