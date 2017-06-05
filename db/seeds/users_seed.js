@@ -875,7 +875,7 @@ exports.seed = function (knex, Promise) {
   })
   .then((login) => {
     return models.Login.forge({
-      username: 'Home Simpson',
+      username: 'Homer Simpson',
       password: 'password'
     }).save()
   })
@@ -903,7 +903,7 @@ exports.seed = function (knex, Promise) {
       users_id: 13,
       name: 'projects',
       role: 'Donut eating contest',
-      description: 'An app that manually counts how many donuts you ate',
+      description: 'An app that counts donuts',
       start_date: 2012,
       end_date: 2013,
       organization: 'Self-employed'
@@ -913,21 +913,21 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 13,
-      name: 'education',
-      role: 'Student',
-      description: 'Doctor of Donnuts',
-      start_date: 1998,
-      end_date: 2006,
-      organization: 'Donuts College of Math and Physics'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })
+  // .then((experience) => {
+  //   return models.Experience.forge({
+  //     users_id: 13,
+  //     name: 'education',
+  //     role: 'Student',
+  //     description: 'Doctor of Donuts',
+  //     start_date: 1998,
+  //     end_date: 2006,
+  //     organization: 'Donuts College of Math and Physics'
+  //   }).save()
+  // })
+  // .error(err => {
+  //   console.error('ERROR: failed to create experience');
+  //   throw err;
+  // })
 
 
 
@@ -1742,3 +1742,21 @@ exports.seed = function (knex, Promise) {
     console.log('WARNING: defualt user already exists.');
   });
 };
+
+
+
+
+// copy users (id, full_name, industry) to '/Users/rpk/development/github.com/prosperousPans/prosperousPans/db/migrations/csv-files/users.csv' delimiter ',' csv header;
+
+// copy connection (users_a_id, users_b_id, status) to '/Users/rpk/development/github.com/prosperousPans/prosperousPans/db/migrations/csv-files/connection.csv' delimiter ',' csv header;
+
+// copy experience (users_id, name, role, organization) to '/Users/rpk/development/github.com/prosperousPans/prosperousPans/db/migrations/csv-files/experience.csv' delimiter ',' csv header;
+
+
+
+
+// copy users (id, full_name, industry) to '/Users/rpk/Documents/Neo4j/default.graphdb/import/users.csv' delimiter ',' csv header;
+
+// copy connection (users_a_id, users_b_id, status) to '/Users/rpk/Documents/Neo4j/default.graphdb/import/connection.csv' delimiter ',' csv header;
+
+// copy experience (users_id, name, role, organization) to '/Users/rpk/Documents/Neo4j/default.graphdb/import/experience.csv' delimiter ',' csv header;
