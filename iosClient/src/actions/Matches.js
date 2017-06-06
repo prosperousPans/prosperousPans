@@ -46,7 +46,7 @@ export function getMatches (userID) {
   return (dispatch) => {
     dispatch(gettingMatches(userID));
 
-    axios.get('http://localhost:3000/users', {params: {userA_id: 12}})
+    axios.get('http://localhost:3000/users', {params: {userA_id: '_USERIDHERE'}})
     .then( result => {
       const matchObj = result.data;
       dispatch(gotMatches(matchObj));

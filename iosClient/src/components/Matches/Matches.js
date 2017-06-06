@@ -37,14 +37,11 @@ export class Matches extends Component{
   }
 
   componentDidMount() {
-    console.log('componentWillMount')
     this.fetchMatch();
-    console.log('this.swiper', typeof Swiper)
   }
 
   fetchMatch() {
-    console.log('INSIDE FETCH MATCH')
-    this.props.fetch('USERIDHERE');
+    this.props.fetch('_USERIDHERE');
   }
   
   _showModal() {

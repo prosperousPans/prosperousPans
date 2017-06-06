@@ -21,7 +21,7 @@ export class HighlightsCard extends Component {
   handleGitClick() {
     Linking.canOpenURL('https://www.github.com/').then(supported => {
       if (supported) {
-        var url = this.props.currentMatch[0].github_url        
+        var url = this.props.currentMatch.github_url        
         Linking.openURL(url);
       } else {
         console.log('Don\'t know how to open URI: ' + this.props.url);
@@ -32,7 +32,7 @@ export class HighlightsCard extends Component {
   handleLNKDClick() {
     Linking.canOpenURL('https://www.linkedin.com/').then(supported => {
       if (supported) {
-        var url = this.props.currentMatch[0].linkedin_url
+        var url = this.props.currentMatch.linkedin_url
         Linking.openURL(url);
       } else {
         console.log('Don\'t know how to open URI: ' + this.props.url);
