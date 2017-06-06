@@ -1,8 +1,13 @@
 const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {
-  models.Experience.fetchAll()
+  // console.log(req.query, 'req.query')
+  models.Experience
+    .forge()
+    .where({name: req.query.name, users_id: req.query.users_id})
+    .fetchAll()
     .then(experience => {
+      console.log(JSON.stringify(experience), 'experience')
       res.status(200).send(experience);
     })
     .catch(err => {

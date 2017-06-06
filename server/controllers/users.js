@@ -11,7 +11,7 @@ module.exports.getNewUsers = (req, res) => {
       // update these
       var userA_Id = 4;
       var maxCount = 10;
-      var numOfMatchesReturned = 4
+      var numOfMatchesReturned = 1
 
       var count = 0;
       var sent = false;

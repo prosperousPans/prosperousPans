@@ -14,6 +14,27 @@ function gotMatches (results) {
   }
 };
 
+function gotProfessionalExp (profExp) {
+  return {
+    type: 'GOT_PROFESSIONAL_EXP',
+    profExp
+  }
+};
+
+function gotEducationExp (eduExp) {
+  return {
+    type: 'GOT_EDUCATION_EXP',
+    eduExp
+  }
+};
+
+function gotProjectExp (projExp) {
+  return {
+    type: 'GOT_PROJECT_EXP',
+    projExp
+  }
+};
+
 function getMatchesError(getError) {
   return {
     type: 'GET_MATCHES_ERROR',
@@ -23,19 +44,41 @@ function getMatchesError(getError) {
 
 export function getMatches (userID) {
   return (dispatch) => {
+    console.log('INSIDE MATCHES - ACTION')
     dispatch(gettingMatches(userID));
 
-    return axios.get('http://localhost:3000/users')
+    axios.get('http://localhost:3000/users')
     .then( result => {
-      
-
       const matchArr = result.data;
-      // console.log('matchArr', matchArr)
-      for (var i=0; i<matchArr.length; i++){
-        matchArr[i] = JSON.parse(matchArr[i]);
-      }
       dispatch(gotMatches(matchArr));
+
+      console.log('matchID!!!!!', matchArr[0][0].id)
+      const matchID = matchArr[0][0].id;
+      return matchID;
     })
+    .then ( matchID => {
+
+      axios.all([
+        axios.get('http://localhost:3000/experience', {
+          params: {name: 'professional', users_id: matchID}
+        }),
+        axios.get('http://localhost:3000/experience', {
+          params: {name: 'education', users_id: matchID}
+        }),
+        axios.get('http://localhost:3000/experience', {
+          params: {name: 'projects', users_id: matchID}
+        })
+      ])
+      .then(axios.spread( function (profExp, eduExp, projExp) {
+        // console.log(profExp,'prof')
+        // console.log(eduExp,'edu')
+        // console.log(projExp,'proj')
+        dispatch(gotProfessionalExp(profExp));
+        dispatch(gotEducationExp(eduExp));
+        dispatch(gotProjectExp(projExp));
+      
+      }))
+    })          
     .catch( error => {
       dispatch(getMatchesError(error))
     });

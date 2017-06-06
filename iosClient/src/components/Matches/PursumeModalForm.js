@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 5   
   },
   bigText: {
     alignSelf: 'center',  
@@ -145,6 +144,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  pursumeButton: {
+    alignItems: 'center',     
+    padding: 10,
+    backgroundColor:'#2196F3',
+  },  
   submitButton: {  
     marginTop: 20,
     alignItems: 'center',     
@@ -152,7 +156,7 @@ const styles = StyleSheet.create({
     color: '#fff',    
     fontSize: 15,
     fontWeight: 'bold',    
-    backgroundColor:'#97CAE5',
+    backgroundColor:'#2196F3',
   },
   switch: {
     alignSelf: 'center',  
