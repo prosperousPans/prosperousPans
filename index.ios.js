@@ -22,7 +22,7 @@ const PursumeIOSApp = () => (
         style={styles.container}
         initialRoute={{
           title: '',
-          component: Login
+          component: Main
         }}
         navigationBarHidden={true}
          />
@@ -38,16 +38,3 @@ var styles = StyleSheet.create({
     backgroundColor: '#111111'
   }
 });
-
-// const styles = StyleSheet.create({
-//   container:{
-//     flex: 1,
-//     backgroundColor: '#111111'
-//   }
-// });
-//     <NavigatorIOS
-//       style={styles.container}
-//       initialRoute={{
-//         title: 'Pursumé',
-//         component: Login
-//       }} />

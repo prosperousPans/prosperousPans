@@ -22,29 +22,26 @@ import PursumeModalForm from './PursumeModalForm.js';
 
 import axios from 'axios';
 
-class Matches extends Component{
+export class Matches extends Component{
   constructor (props) {
     super(props);
     this.state = {
       isModalVisible: false,
-      allMatches: []
+      currentIndex: 0
     }
+    this.fetchMatch = this.fetchMatch.bind(this);
     this._showModal = this._showModal.bind(this);
     this._hideModal = this._hideModal.bind(this);
     this.handleModalSubmit = this.handleModalSubmit.bind(this);
+    this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this);
   }
 
-  componentWillMount() {
-    console.log('componentWillMount')
-    // this.props.fetch('USERIDHERE');
-    axios.get('http://localhost:3000/users')
-    .then( result => {
-      const matchArr = result.data;
-      console.log('matchArr', matchArr)
-      this.setState({
-        allMatches: matchArr
-      });    
-    })
+  componentDidMount() {
+    this.fetchMatch();
+  }
+
+  fetchMatch() {
+    this.props.fetch('_USERIDHERE');
   }
   
   _showModal() {
@@ -56,35 +53,37 @@ class Matches extends Component{
   }
 
   handleModalSubmit () {
-    var oldArr = this.state.allMatches;
-    var newArr = oldArr.slice(1);
-
-    this.setState({
-      allMatches: newArr
-    })
     this._hideModal();
+    this.fetchMatch();
+    this.refs.slider.scrollBy(this.state.currentIndex * -1)
   }
+
+  _onMomentumScrollEnd(e, state, context) {
+    this.state.currentIndex = state.index;    
+  }  
 
   render() {
     // AsyncStorage.getItem('AuthToken', (err, result) => {
     //   console.log('HELLOOO');
     // });
-    {console.log(this.state.allMatches, 'IN MATCHES RENDER') }
-    if (this.state.allMatches.length > 0) {
+    // {console.log(this.props, 'IN MATCHES COMPONENT RENDER') }
+    if (this.props.currentMatchProjExp) {
       return(
         <View>
-          <View style={styles.buttonContainer}>
+          <View>
+
             <TouchableOpacity
               onPress={this._showModal}
               style={styles.pursumeButton}
             >
-              <Text style={styles.text}>Pursumé</Text>
+              <Text style={styles.pursumeButtonText}>Pursumé</Text>
             </TouchableOpacity>
+
             <Modal isVisible={this.state.isModalVisible}>
               <TouchableOpacity
                 onPress={this._hideModal}
               >
-                <Text style={styles.text}>X</Text>
+                <Text style={styles.closeButton}>X</Text>
               </TouchableOpacity>
               <View style={{ flex: 1 }}>
                 <PursumeModalForm handleSubmit={this.handleModalSubmit}/>
@@ -96,12 +95,14 @@ class Matches extends Component{
             height = {height*0.83}
             loop = {false}
             showsButtons={true}
+            ref="slider"
+            onMomentumScrollEnd={this._onMomentumScrollEnd}
           >
-            <HighlightsCard exp={this.state.allExp} matches={this.state.allMatches}/>
-            <EducationCard matches={this.state.allMatches}/>
-            <ProfessionalCard matches={this.state.allMatches}/>
-            <ProjectCard matches={this.state.allMatches}/>
-            <PersonalCard matches={this.state.allMatches}/>
+            <HighlightsCard info={this.props.currentMatch}/>
+            <EducationCard />
+            <ProfessionalCard />
+            <ProjectCard />
+            <PersonalCard />
           </Swiper>
 
         </View>
@@ -114,42 +115,52 @@ class Matches extends Component{
 
 };
 
-export default Matches;
-// const mapStateToProps = (state) => {
-//   console.log('MATCHES STATE', state)
-//   return {
-//     ...state,
-//     matches: state.Matches.allMatches
-//   }
-// };
+// export default Matches;
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    currentMatch: state.Matches.allMatches,
+    currentMatchProfExp: state.Matches.professionalExp,
+    currentMatchEduExp: state.Matches.educationExp,
+    currentMatchProjExp: state.Matches.projectExp
+  }
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetch: (userID) => { dispatch( getMatches(userID) ) }
-//   }
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetch: (userID) => { dispatch( getMatches(userID) ) }
+  }
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Matches);
+export default connect(mapStateToProps, mapDispatchToProps)(Matches);
 
 const {width, height} = Dimensions.get('window')
 
 const styles = StyleSheet.create({ 
-  buttonContainer: {
-  },
   pursumeButton: {
     alignItems: 'center',     
     padding: 10,
-    backgroundColor:'#97CAE5',
+    backgroundColor:'#2196F3',
   },
   card: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    alignSelf: 'center',  
-    color: 'white',
+  pursumeButtonText: {
     fontSize: 30,
-    fontWeight: 'bold',
-  }
+    color: '#fff',
+    alignSelf: 'center'    
+  },
+  closeButton: {
+    fontSize: 30,
+    color: 'white',
+    fontWeight: 'bold',    
+  }  
 });
+
+            // <HighlightsCard />
+            // <EducationCard />
+            // <ProfessionalCard />
+            // <ProjectCard />
+            // <PersonalCard />

@@ -5,27 +5,31 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import ExperienceItem from './ExperienceItem.js'
-class ProfessionalCard extends Component {
+
+export class ProfessionalCard extends Component {
   render() {
-    let currentProfileExp = this.props.matches[0][1][0];    
+    let currentMatchProfExp = this.props.currentMatchProfExp.data;
     return (
-      <View style={styles.card}>
+      <View>
         <Text style={styles.bigText}>Professional</Text>
-        <Text style={styles.medText}>Organization: 
-          <Text style={styles.smallText}>{currentProfileExp.organization}</Text>
-        </Text>
-        <Text style={styles.medText}>Role: 
-          <Text style={styles.smallText}>{currentProfileExp.role}</Text>
-        </Text>
-        <Text style={styles.medText}>Description: 
-          <Text style={styles.smallText}>{currentProfileExp.description}</Text>
-        </Text>
+        {currentMatchProfExp.map( (exp)=> <ExperienceItem key={exp.id} exp={exp}/> )}
       </View>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    currentMatchProfExp: state.Matches.professionalExp
+  }
+};
+
+export default connect(mapStateToProps)(ProfessionalCard);
+
 
 const styles = StyleSheet.create({
   card: {
@@ -51,5 +55,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }     
 })
-
-module.exports = ProfessionalCard;
