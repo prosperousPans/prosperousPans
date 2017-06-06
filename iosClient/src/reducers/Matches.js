@@ -2,6 +2,8 @@ const initialState = {
   gettingMatches: null,
   allMatches: null,
   professionalExp: null,
+  educationExp: null,
+  projectExp: null,
   getMatchesError: null
 };
 
@@ -23,7 +25,19 @@ const Matches = (state = initialState, action) => {
         ...state,
         professionalExp: action.profExp,
         gettingMatches: true        
-      }      
+      }  
+    case 'GOT_EDUCATION_EXP':
+      return {
+        ...state,
+        educationExp: action.eduExp,
+        gettingMatches: true        
+      }  
+    case 'GOT_PROJECT_EXP':
+      return {
+        ...state,
+        projectExp: action.projExp,
+        gettingMatches: true        
+      }                  
     case 'GET_MATCHES_ERROR':
       return {
         ...state,

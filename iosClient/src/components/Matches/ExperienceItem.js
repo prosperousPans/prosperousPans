@@ -13,10 +13,10 @@ class ExperienceItem extends Component {
   render() {
     return (
       <View style={styles.card}>
-        <Text style={styles.medText}>Experience_</Text>
-        <Text style={styles.smallText}>Organization</Text>
-        <Text style={styles.smallText}>Role</Text>
-        <Text style={styles.smallText}>Description</Text>
+        <Text style={styles.medText}>{this.props.exp.organization}</Text>
+        <Text style={styles.smallText}>{this.props.exp.role}</Text>
+        <Text style={styles.smallText}>{this.props.exp.start_date} - {this.props.exp.end_date}</Text>
+        <Text style={styles.smallText}>Description: {this.props.exp.description}</Text>
       </View>
     )
   }
@@ -24,7 +24,7 @@ class ExperienceItem extends Component {
 
 const styles = StyleSheet.create({
   medText: {
-    alignSelf: 'center',  
+    // alignSelf: 'center',  
     color: 'grey',
     fontSize: 20,
     fontWeight: 'bold',

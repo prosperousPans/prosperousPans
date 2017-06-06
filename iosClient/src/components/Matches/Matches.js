@@ -27,47 +27,24 @@ export class Matches extends Component{
     super(props);
     this.state = {
       isModalVisible: false,
+      currentIndex: 0
     }
     this.fetchMatch = this.fetchMatch.bind(this);
     this._showModal = this._showModal.bind(this);
     this._hideModal = this._hideModal.bind(this);
     this.handleModalSubmit = this.handleModalSubmit.bind(this);
+    this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log('componentWillMount')
-    this.props.fetch('USERIDHERE');
-    // this.fetchMatch();
+    this.fetchMatch();
+    console.log('this.swiper', typeof Swiper)
   }
 
   fetchMatch() {
-    axios.all([
-      axios.get('http://localhost:3000/experience', {
-        params: {name: 'education', users_id: 1}
-      }),
-      axios.get('http://localhost:3000/experience', {
-        params: {name: 'professional', users_id: 1}
-      }),
-      axios.get('http://localhost:3000/experience', {
-        params: {name: 'projects', users_id: 1}
-      })
-    ])
-    .then(axios.spread( function (edu, prof, proj) {
-      console.log(edu,'edu')
-      console.log(prof,'prof')
-      console.log(proj,'proj')
-    }))
-    .catch(error => console.log(error));
-
-    // axios.get('http://localhost:3000/users')
-    // .then( result => {
-    //   const matchArr = result.data;
-    //   console.log('matchArr', matchArr)
-    //   this.setState({
-    //     allMatches: matchArr
-    //   });    
-    // })    
-
+    console.log('INSIDE FETCH MATCH')
+    this.props.fetch('USERIDHERE');
   }
   
   _showModal() {
@@ -79,22 +56,21 @@ export class Matches extends Component{
   }
 
   handleModalSubmit () {
-    // var oldArr = this.state.allMatches;
-    // var newArr = oldArr.slice(1);
-
-    // this.setState({
-    //   allMatches: newArr
-    // })
     this._hideModal();
     this.fetchMatch();
+    this.refs.slider.scrollBy(this.state.currentIndex * -1)
   }
+
+  _onMomentumScrollEnd(e, state, context) {
+    this.state.currentIndex = state.index;    
+  }  
 
   render() {
     // AsyncStorage.getItem('AuthToken', (err, result) => {
     //   console.log('HELLOOO');
     // });
-    {console.log(this.props, 'IN MATCHES COMPONENT RENDER') }
-    if (this.props.matches > 0) {
+    // {console.log(this.props, 'IN MATCHES COMPONENT RENDER') }
+    if (this.props.currentMatchProjExp) {
       return(
         <View>
           <View>
@@ -122,8 +98,10 @@ export class Matches extends Component{
             height = {height*0.83}
             loop = {false}
             showsButtons={true}
+            ref="slider"
+            onMomentumScrollEnd={this._onMomentumScrollEnd}
           >
-            <HighlightsCard />
+            <HighlightsCard info={this.props.currentMatch}/>
             <EducationCard />
             <ProfessionalCard />
             <ProjectCard />
@@ -142,10 +120,12 @@ export class Matches extends Component{
 
 // export default Matches;
 const mapStateToProps = (state) => {
-  // console.log('MATCHES STATE', state)
   return {
     ...state,
-    matches: state.Matches.allMatches
+    currentMatch: state.Matches.allMatches,
+    currentMatchProfExp: state.Matches.professionalExp,
+    currentMatchEduExp: state.Matches.educationExp,
+    currentMatchProjExp: state.Matches.projectExp
   }
 };
 
@@ -181,3 +161,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',    
   }  
 });
+
+            // <HighlightsCard />
+            // <EducationCard />
+            // <ProfessionalCard />
+            // <ProjectCard />
+            // <PersonalCard />

@@ -7,7 +7,6 @@ module.exports.getAll = (req, res) => {
     .where({name: req.query.name, users_id: req.query.users_id})
     .fetchAll()
     .then(experience => {
-      console.log(JSON.stringify(experience), 'experience')
       res.status(200).send(experience);
     })
     .catch(err => {

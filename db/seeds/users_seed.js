@@ -113,6 +113,21 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
+      name: 'professional',
+      role: 'Tech IB Analyst',
+      description: 'Excel Stuff',
+      start_date: 2014,
+      end_date: 2015,
+      organization: 'BMO Capital Markets'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })  
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
       name: 'projects',
       role: 'Pursumé',
       description: 'You see this app? We made this app!',
@@ -128,12 +143,27 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
+      name: 'projects',
+      role: 'Viator',
+      description: 'Legacy Project',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })  
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
       name: 'education',
       role: 'Student',
-      description: 'All this learning here',
+      description: 'B.S. Business Adminstration',
       start_date: 2010,
       end_date: 2014,
-      organization: 'Berkeley'
+      organization: 'UC Berkeley'
     }).save()
   })
   .error(err => {
@@ -328,6 +358,36 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 5,
+      name: 'professional',
+      role: 'Analyst',
+      description: 'Pace Harmon is a management consulting firm that provides consulting and advisory services to Fortune 500 and select middle-market companies in support of their most critical strategic sourcing, IT / business process outsourcing and complex technology transformation programs.',
+      start_date: 2013,
+      end_date: 2015,
+      organization: 'Pace Harmon'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 5,
+      name: 'professional',
+      role: 'Research Intern',
+      description: 'Big baller',
+      start_date: 2012,
+      end_date: 2012,
+      organization: 'McKinsey & Company'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })  
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 5,
       name: 'projects',
       role: 'Something Something Recipes',
       description: 'Eat everything!',
@@ -417,7 +477,7 @@ exports.seed = function (knex, Promise) {
       users_id: 6,
       name: 'education',
       role: 'Student',
-      description: 'BS Chemistry',
+      description: 'B.S. Chemistry',
       start_date: 2006,
       end_date: 2010,
       organization: 'University of Wisconsin-Madision'

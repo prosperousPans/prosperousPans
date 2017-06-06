@@ -44,16 +44,14 @@ function getMatchesError(getError) {
 
 export function getMatches (userID) {
   return (dispatch) => {
-    console.log('INSIDE MATCHES - ACTION')
     dispatch(gettingMatches(userID));
 
-    axios.get('http://localhost:3000/users')
+    axios.get('http://localhost:3000/users', {params: {userA_id: 12}})
     .then( result => {
-      const matchArr = result.data;
-      dispatch(gotMatches(matchArr));
+      const matchObj = result.data;
+      dispatch(gotMatches(matchObj));
 
-      console.log('matchID!!!!!', matchArr[0][0].id)
-      const matchID = matchArr[0][0].id;
+      const matchID = matchObj.id;
       return matchID;
     })
     .then ( matchID => {
@@ -69,14 +67,10 @@ export function getMatches (userID) {
           params: {name: 'projects', users_id: matchID}
         })
       ])
-      .then(axios.spread( function (profExp, eduExp, projExp) {
-        // console.log(profExp,'prof')
-        // console.log(eduExp,'edu')
-        // console.log(projExp,'proj')
+      .then(axios.spread( (profExp, eduExp, projExp) => {
         dispatch(gotProfessionalExp(profExp));
         dispatch(gotEducationExp(eduExp));
         dispatch(gotProjectExp(projExp));
-      
       }))
     })          
     .catch( error => {

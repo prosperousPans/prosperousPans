@@ -1,68 +1,63 @@
 const models = require('../../db/models');
 
 module.exports.getNewUsers = (req, res) => {
+  // let userA_id = req.query.userA_id;
+  // console.log(userA_id, 'userA_id')
+
   models.Users.fetchAll()
     .then(users => {
-      var jsonUsers = JSON.parse(JSON.stringify(users));
-      var numOfUsers = jsonUsers.length;
+      let jsonUsers = JSON.parse(JSON.stringify(users));
+      let numOfUsers = jsonUsers.length;
       return numOfUsers
     })
     .then(numOfUsers => {
-      // update these
-      var userA_Id = 4;
-      var maxCount = 10;
-      var numOfMatchesReturned = 1
+      let userA_id = 4;
+      let maxCount = 10; //try 10 times max - cap on while loop
+      let numOfMatchesToReturn = 1
 
-      var count = 0;
-      var sent = false;
-      var result = [];
-      var hashCheck = {};
+      let count = 0;
+      let sent = false;
+      let result = null; 
+      let hashCheck = {};
 
       while ( count < maxCount ) {
         count++;
         models.Users.fetchAll()
+          //function to find a random user
           .then(users => {
-            hashCheck[String(userA_Id)] = true;
-            var randIdx = Math.floor(Math.random() * numOfUsers);
+            
+            hashCheck[String(userA_id)] = true;
+            let jsonUsers = JSON.parse(JSON.stringify(users));
+            
+            let randIdx = Math.floor(Math.random() * numOfUsers);
             while ( hashCheck[String(randIdx + 1)] === true ) {
               randIdx = Math.floor(Math.random() * numOfUsers);
             }
-            var jsonUsers = JSON.parse(JSON.stringify(users));
-            hashCheck[String(randIdx + 1)] = true;
-            var userB_id = jsonUsers[randIdx].id;
-            // returns these as params in next function:
-            return [userB_id, randIdx, jsonUsers]
+            let userB_id = jsonUsers[randIdx].id;
+            
+            return {userB_id: userB_id, userB_idx: randIdx, allUsers: jsonUsers}
           })
-          .then(params => {
+
+          //function to see if random userB can be a new connection
+          .then( ( {userB_id , userB_idx, allUsers} ) => {
             models.Connection.forge()
-              .where({users_a_id: userA_Id, users_b_id: params[0]})
+              .where( { users_a_id: userA_id, users_b_id: userB_id } )
               .fetchAll()
-                .then(connection => {
-                  if ( JSON.parse(JSON.stringify(connection)).length === 0 ) {
-                    models.Experience.forge()
-                      .where({users_id: params[2][params[1]].id})
-                      .fetchAll()
-                        .then(experience => {
-                          // console.log([JSON.stringify(params[2][params[1]]), JSON.stringify(experience)])
-                          result.push([params[2][params[1]], experience]);
-                          if ( result.length === numOfMatchesReturned && sent === false) {
-                            sent = true
-                            console.log('SENT');
-                            console.log(typeof result);
-                            res.status(200).send(result);
-                          }
-                        })
-                        .error(err => {
-                          console.error('ERROR: failed to retrieve experience data')
-                        })
+              .then(connection => {
+                if ( JSON.parse(JSON.stringify(connection) ).length === 0 ) {
+                  result = allUsers[userB_idx];
+                  if ( result && sent === false) {
+                    sent = true
+                    res.status(200).send(result);
                   }
-                })
-                .error(err => {
-                  console.error('ERROR: failed to retrieve connections data')
-                })
+                }
+              })
+              .error(err => {
+                console.error('ERROR: failed to retrieve connections data')
+              })
           })
           .error(err => {
-            console.error('ERROR: failed to retrieve connections data')
+            console.error('ERROR: failed to retrieve all users data')
           })
       }
     })

@@ -21,7 +21,7 @@ export class HighlightsCard extends Component {
   handleGitClick() {
     Linking.canOpenURL('https://www.github.com/').then(supported => {
       if (supported) {
-        var url = this.props.matches[0][0].github_url        
+        var url = this.props.currentMatch[0].github_url        
         Linking.openURL(url);
       } else {
         console.log('Don\'t know how to open URI: ' + this.props.url);
@@ -32,7 +32,7 @@ export class HighlightsCard extends Component {
   handleLNKDClick() {
     Linking.canOpenURL('https://www.linkedin.com/').then(supported => {
       if (supported) {
-        var url = this.props.matches[0][0].linkedin_url
+        var url = this.props.currentMatch[0].linkedin_url
         Linking.openURL(url);
       } else {
         console.log('Don\'t know how to open URI: ' + this.props.url);
@@ -41,66 +41,63 @@ export class HighlightsCard extends Component {
   }
 
   render() {
-    // if (this.props.matches) {  
-      let currentProfile = this.props.matches[0][0];
-      let currentProfileExp = this.props.matches[0][1];
-      return (
-        <View style={styles.card}>
-          <Image
-            style={styles.profileImg}
-            source={{uri: currentProfile.image}}
-          />
-          <View style={{flex:1}}>
-            <Text style={styles.bigText}>{currentProfile.full_name}</Text>
-            <Text style={styles.smallTextTitle}>{currentProfile.industry}</Text>
-            <Text style={styles.medText}>Education: 
-              <Text style={styles.smallText}>{currentProfileExp[2].organization}</Text>
-            </Text>
-            <Text style={styles.medText}>Professional: 
-              <Text style={styles.smallText}>{currentProfileExp[0].organization}</Text>
-            </Text>
-            <Text style={styles.medText}>Project: 
-              <Text style={styles.smallText}>{currentProfileExp[1].role}</Text>
-            </Text>
-            <Text style={styles.medText}>Personal: 
-              <Text style={styles.smallText}>{currentProfile.summary}</Text>
-            </Text>
-            <TouchableOpacity onPress={this.handleGitClick}>
-              <Image 
-                style={styles.iconImg}            
-                source={{uri:'https://assets-cdn.github.com/favicon.ico'}}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.handleLNKDClick}>
-              <Image 
-                style={styles.iconImg}            
-                source={{uri:'https://www.iconfinder.com/data/icons/capsocial-round/500/linkedin-128.png'}}
-              />
-            </TouchableOpacity>          
-          </View>
+    let currentProfile = this.props.currentMatch;
+    let currentMatchEduExp = this.props.currentMatchEduExp.data[0];
+    let currentMatchProfExp = this.props.currentMatchProfExp.data[0];
+    let currentMatchProjExp = this.props.currentMatchProjExp.data[0];
+    return (
+      <View style={styles.card}>
+        <Image
+          style={styles.profileImg}
+          source={{uri: currentProfile.image}}
+        />
+        <View style={{flex:1}}>
+          
+          <Text style={styles.bigText}>{currentProfile.full_name}</Text>
+          <Text style={styles.smallTextTitle}>{currentProfile.industry}</Text>
+          <Text style={styles.medText}>Education:
+            <Text style={styles.smallText}> {currentMatchEduExp.description}, {currentMatchEduExp.organization}</Text>
+          </Text>
+          <Text style={styles.medText}>Professional: 
+            <Text style={styles.smallText}> {currentMatchProfExp.organization}, {currentMatchProfExp.role}</Text>
+          </Text>
+          <Text style={styles.medText}>Project: 
+            <Text style={styles.smallText}> {currentMatchProjExp.organization}, {currentMatchProjExp.role}</Text>
+          </Text>
+          <Text style={styles.medText}>Personal: 
+            <Text style={styles.smallText}>{currentProfile.summary}</Text>
+          </Text>
+          <TouchableOpacity onPress={this.handleGitClick}>
+            <Image 
+              style={styles.iconImg}            
+              source={{uri:'https://assets-cdn.github.com/favicon.ico'}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.handleLNKDClick}>
+            <Image 
+              style={styles.iconImg}            
+              source={{uri:'https://www.iconfinder.com/data/icons/capsocial-round/500/linkedin-128.png'}}
+            />
+          </TouchableOpacity>          
         </View>
-      )
-    // } 
-    // else {
-    //   return (
-    //     <View>
-    //       <Text style={styles.text}>No matches left today</Text>
-    //     </View>
-    //   )
-    // }
+      </View>
+    )
   }
 }
 
-export default HighlightsCard;
+// export default HighlightsCard;
 
-// const mapStateToProps = (state) => {
-//   return {
-//     ...state,k
-//     matches: state.Matches.allMatches
-//   }
-// };
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    currentMatch: state.Matches.allMatches,
+    currentMatchProfExp: state.Matches.professionalExp,
+    currentMatchEduExp: state.Matches.educationExp,
+    currentMatchProjExp: state.Matches.projectExp
+  }
+};
 
-// export default connect(mapStateToProps)(HighlightsCard);
+export default connect(mapStateToProps)(HighlightsCard);
 
 const {width, height} = Dimensions.get('window')
 
