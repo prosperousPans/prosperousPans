@@ -2,7 +2,7 @@ const db = require('../');
 
 const Tag = db.Model.extend({
   tableName: 'tag',
-  user_tag: function() {
+  users_tag: function() {
     return this.hasMany('users_tag');
   }
 });
