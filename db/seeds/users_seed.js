@@ -24,6 +24,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 8
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 4
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 9
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 10
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 1
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 1,
@@ -95,6 +145,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 8
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 8
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 8
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 8
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 8
+    })
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
@@ -113,21 +213,6 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
-      name: 'professional',
-      role: 'Tech IB Analyst',
-      description: 'Excel Stuff',
-      start_date: 2014,
-      end_date: 2015,
-      organization: 'BMO Capital Markets'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })  
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 2,
       name: 'projects',
       role: 'Pursumé',
       description: 'You see this app? We made this app!',
@@ -143,27 +228,12 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
-      name: 'projects',
-      role: 'Viator',
-      description: 'Legacy Project',
-      start_date: 2017,
-      end_date: 2017,
-      organization: 'Hack Reactor'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })  
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 2,
       name: 'education',
       role: 'Student',
-      description: 'B.S. Business Adminstration',
+      description: 'All this learning here',
       start_date: 2010,
       end_date: 2014,
-      organization: 'UC Berkeley'
+      organization: 'Berkeley'
     }).save()
   })
   .error(err => {
@@ -358,36 +428,6 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 5,
-      name: 'professional',
-      role: 'Analyst',
-      description: 'Pace Harmon is a management consulting firm that provides consulting and advisory services to Fortune 500 and select middle-market companies in support of their most critical strategic sourcing, IT / business process outsourcing and complex technology transformation programs.',
-      start_date: 2013,
-      end_date: 2015,
-      organization: 'Pace Harmon'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 5,
-      name: 'professional',
-      role: 'Research Intern',
-      description: 'Big baller',
-      start_date: 2012,
-      end_date: 2012,
-      organization: 'McKinsey & Company'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })  
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 5,
       name: 'projects',
       role: 'Something Something Recipes',
       description: 'Eat everything!',
@@ -477,7 +517,7 @@ exports.seed = function (knex, Promise) {
       users_id: 6,
       name: 'education',
       role: 'Student',
-      description: 'B.S. Chemistry',
+      description: 'BS Chemistry',
       start_date: 2006,
       end_date: 2010,
       organization: 'University of Wisconsin-Madision'
@@ -987,7 +1027,150 @@ exports.seed = function (knex, Promise) {
     throw err;
   })
 
-  
+
+  // user12
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Martha Stewart',
+      industry: 'Insider Trading',
+      github_url: 'https://github.com/marthastewart',
+      linkedin_url: 'https://www.linkedin.com/in/marthastewart/',
+      image: 'https://assets.entrepreneur.com/content/16x9/822/4-secrets-lifelong-success-martha-stewart.jpg',
+      summary: 'I manipulate stocks',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'Martha Stewart',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 12,
+      name: 'professional',
+      role: 'Midlevel Money Grabber',
+      description: 'I like to insider trade',
+      start_date: 2010,
+      end_date: 2013,
+      organization: 'NYSE'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 12,
+      name: 'projects',
+      role: 'Some project',
+      description: 'An app that steals money from people!',
+      start_date: 2014,
+      end_date: null,
+      organization: 'New York'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 12,
+      name: 'education',
+      role: 'Student',
+      description: 'Bachelor of Money',
+      start_date: 2001,
+      end_date: 2012,
+      organization: 'Trump University'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+
+
+  // user13
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Homer Simpson',
+      industry: 'Nuclear Engineering',
+      github_url: 'https://github.com/homersimpson',
+      linkedin_url: 'https://www.linkedin.com/in/homesimpson/',
+      image: 'https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png',
+      summary: 'I eat donuts',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'Home Simpson',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 13,
+      name: 'professional',
+      role: 'Nuclear Safety',
+      description: 'Monitor power plants',
+      start_date: 2000,
+      end_date: null,
+      organization: 'Burns Co.'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 13,
+      name: 'projects',
+      role: 'Donut eating contest',
+      description: 'An app that manually counts how many donuts you ate',
+      start_date: 2012,
+      end_date: 2013,
+      organization: 'Self-employed'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 13,
+      name: 'education',
+      role: 'Student',
+      description: 'Doctor of Donnuts',
+      start_date: 1998,
+      end_date: 2006,
+      organization: 'Donuts College of Math and Physics'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+
 
 
   // CREATE CONNECTIONS

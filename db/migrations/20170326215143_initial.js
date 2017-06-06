@@ -29,8 +29,6 @@ exports.up = function (knex, Promise) {
       table.integer('end_date').nullable();
       table.string('organization', 50).nullable();
       table.timestamps(true, true);
-      // may not be necessary, if end_date = null then it is current
-      // table.boolean('latest').nullable();
     }),
     knex.schema.createTableIfNotExists('tag', function (table) {
       table.increments('id').unsigned().primary();
@@ -69,8 +67,6 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   return Promise.all([
-    // knex.schema.dropTable('auths'),
-    // knex.schema.dropTable('profiles'),
     knex.schema.dropTable('login'),
     knex.schema.dropTable('users'),
     knex.schema.dropTable('experience'),
