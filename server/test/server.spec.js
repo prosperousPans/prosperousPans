@@ -12,21 +12,6 @@ describe('fetches data: ', function () {
       .end(done);
   })
 
-  // *** depracated ***
-  // it('fetches data in users table', function (done) {
-  //   request(app)
-  //     .get('/users')
-  //     .expect(200)
-  //     .expect(function(res) {
-  //       expect(res.body[0].full_name).to.equal('Rajas Kale');
-  //       expect(res.body[1].full_name).to.equal('Alan Zheng');
-  //       expect(res.body[2].full_name).to.equal('Lavanya AC');
-  //       expect(res.body[0].summary).to.equal('I like turtles');
-  //       expect(res.body[0].full_name).to.not.equal('Argle Bargle');
-  //     })
-  //     .end(done);
-  // })
-
   it('fetches all data in experience table', function (done) {
     request(app)
       .get('/experience')
@@ -43,6 +28,28 @@ describe('fetches data: ', function () {
   it('fetches data in users table', function (done) {
     request(app)
     .get('/users')
+    .expect(200)
+    .expect(function(res) {
+      expect(res.body[0])
+      expect(typeof res.body).to.equal('object')
+    })
+    .end(done);
+  })
+
+  it('creates a graphDB for an individual user\'s connections', function (done) {
+    request(app)
+    .get('/create-graphDB')
+    .expect(200)
+    .expect(function(res) {
+      expect(res.body[0])
+      expect(typeof res.body).to.equal('object')
+    })
+    .end(done);
+  })
+
+  it('creates a graphDB for an individual user\'s connections', function (done) {
+    request(app)
+    .get('/populate-full-graphDB')
     .expect(200)
     .expect(function(res) {
       expect(res.body[0])

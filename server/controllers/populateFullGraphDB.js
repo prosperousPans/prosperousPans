@@ -56,6 +56,5 @@ var createGDBQuery = (users, connections, experience) => {
     `CREATE (a${conn.users_a_id})-[:Connection {status:['${conn.status}']}]->(a${conn.users_b_id})\n`
     );
   });
-  // query += (`RETURN a1`)
   return query
 }
