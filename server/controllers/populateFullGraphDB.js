@@ -31,27 +31,31 @@ var createGDBQuery = (users, connections, experience) => {
   var users = JSON.parse(JSON.stringify(users))
   var connection = JSON.parse(JSON.stringify(connections))
   var experience = JSON.parse(JSON.stringify(experience))
-  console.log(experience);
-  users.forEach(function(userId) {
+  users.forEach(function(user) {
+    var expHolder = {};
+    // expArray = [];
+    experience.forEach(function(exp) {
+      if ( exp.users_id === user.id ) {
+        if ( exp.name === 'education' ) {
+          expHolder.education = exp.role
+        }
+        if ( exp.name === 'professional' ) {
+          expHolder.professional = exp.role
+        }
+        if ( exp.name === 'projects' ) {
+          expHolder.projects = exp.role
+        }
+      }
+    });
     query += (
-      `CREATE (a${userId.id}:Users {name: '${userId.full_name}'})\n`
+      `CREATE (a${user.id}:Users {name: '${user.full_name}', education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
     );
   });
   connection.forEach(function(conn) {
     query += (
-    `CREATE (UserA)-[:Connection {status:['${aConnection.status}']}]->(a${aConnection.users_b_id})\n`
-    );
-  })
-  a_connection.forEach(function(aConnection) {
-    query += (
-    `CREATE (UserA)-[:Connection {status:['${aConnection.status}']}]->(a${aConnection.users_b_id})\n`
+    `CREATE (a${conn.users_a_id})-[:Connection {status:['${conn.status}']}]->(a${conn.users_b_id})\n`
     );
   });
-  b_connection.forEach(function(bConnection) {
-    query += (
-    `CREATE (UserA)<-[:Connection {status:['${bConnection.status}']}]-(a${bConnection.users_a_id})\n`
-    );
-  });
-  query += (`RETURN UserA`)
+  // query += (`RETURN a1`)
   return query
 }
