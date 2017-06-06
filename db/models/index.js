@@ -1,5 +1,3 @@
-// module.exports.Auth = require('./auths');
-// module.exports.Profile = require('./profiles');
 module.exports.Users = require('./users');
 module.exports.Login = require('./login');
 module.exports.Experience = require('./experience');

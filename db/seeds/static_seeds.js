@@ -161,6 +161,15 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create tag');
     throw err;
   })
+  .then((tag) => {
+    return models.Tag.forge({
+      name: 'HTML'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create tag');
+    throw err;
+  })
 
 
 };
