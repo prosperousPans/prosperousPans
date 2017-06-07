@@ -19,21 +19,36 @@ module.exports.populateFullGraphDB = (req, res) => {
           return [params[0], params[1], experience];
         })
         .then(params => {
-          res.status(200).send(createGDBQuery(params[0], params[1], params[2]));
+        models.Users_tag.forge()
+          .fetchAll({columns: ['users_id', 'tag_id']})
+          .then(users_tag => {
+            return [params[0], params[1], params[2], users_tag];
+          })
+          .then(params => {
+          models.Tag.forge()
+            .fetchAll()
+            .then(tag => {
+              return [params[0], params[1], params[2], params[3], tag];
+            })
+            .then(params => {
+              res.status(200).send(createGDBQuery(params[0], params[1], params[2], params[3], params[4]));
+            })
+          })
         })
       })
     })
 }
 
-var createGDBQuery = (users, connections, experience) => {
+var createGDBQuery = (users, connections, experience, users_tag, tag) => {
   var query = '';
-  // `CREATE (UserA: Users)\n`;
+
   var users = JSON.parse(JSON.stringify(users))
   var connection = JSON.parse(JSON.stringify(connections))
   var experience = JSON.parse(JSON.stringify(experience))
+  var users_tag = JSON.parse(JSON.stringify(users_tag))
+  var tag = JSON.parse(JSON.stringify(tag))
   users.forEach(function(user) {
     var expHolder = {};
-    // expArray = [];
     experience.forEach(function(exp) {
       if ( exp.users_id === user.id ) {
         if ( exp.name === 'education' ) {
@@ -47,8 +62,18 @@ var createGDBQuery = (users, connections, experience) => {
         }
       }
     });
+    var tagHolder = [];
+    users_tag.forEach(function(uTags) {
+      if ( uTags.users_id === user.id ) {
+        tag.forEach(function(t) {
+          if ( t.id === uTags.tag_id) {
+            tagHolder.push(`'${t.name}'`);
+          }
+        });
+      }
+    });
     query += (
-      `CREATE (a${user.id}:Users {name: '${user.full_name}', education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
+      `CREATE (a${user.id}:Users {name: '${user.full_name}', tags: [${tagHolder}], education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
     );
   });
   connection.forEach(function(conn) {

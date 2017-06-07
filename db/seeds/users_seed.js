@@ -24,6 +24,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 9
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 10
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 1,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 1,
@@ -95,6 +145,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 2
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 2,
+      tag_id: 5
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
@@ -113,21 +213,6 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
-      name: 'professional',
-      role: 'Tech IB Analyst',
-      description: 'Excel Stuff',
-      start_date: 2014,
-      end_date: 2015,
-      organization: 'BMO Capital Markets'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })  
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 2,
       name: 'projects',
       role: 'Pursumé',
       description: 'You see this app? We made this app!',
@@ -143,27 +228,12 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
-      name: 'projects',
-      role: 'Viator',
-      description: 'Legacy Project',
-      start_date: 2017,
-      end_date: 2017,
-      organization: 'Hack Reactor'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })  
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 2,
       name: 'education',
       role: 'Student',
-      description: 'B.S. Business Adminstration',
+      description: 'All this learning here',
       start_date: 2010,
       end_date: 2014,
-      organization: 'UC Berkeley'
+      organization: 'Berkeley'
     }).save()
   })
   .error(err => {
@@ -192,6 +262,56 @@ exports.seed = function (knex, Promise) {
       username: 'lavanyaac',
       password: 'password'
     }).save()
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 3,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 3,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 3,
+      tag_id: 6
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 3,
+      tag_id: 7
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 3,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
   })
   .error(err => {
     console.error('ERROR: failed to create login');
@@ -263,6 +383,56 @@ exports.seed = function (knex, Promise) {
       username: 'shrimpwongton',
       password: 'password'
     }).save()
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 12
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 6
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 13
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 14
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
   })
   .error(err => {
     console.error('ERROR: failed to create login');
@@ -340,6 +510,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 5,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 5,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 5,
+      tag_id: 5
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 5,
+      tag_id: 15
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 5,
+      tag_id: 10
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 5,
@@ -355,36 +575,6 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 5,
-      name: 'professional',
-      role: 'Analyst',
-      description: 'Pace Harmon is a management consulting firm that provides consulting and advisory services to Fortune 500 and select middle-market companies in support of their most critical strategic sourcing, IT / business process outsourcing and complex technology transformation programs.',
-      start_date: 2013,
-      end_date: 2015,
-      organization: 'Pace Harmon'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 5,
-      name: 'professional',
-      role: 'Research Intern',
-      description: 'Big baller',
-      start_date: 2012,
-      end_date: 2012,
-      organization: 'McKinsey & Company'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })  
   .then((experience) => {
     return models.Experience.forge({
       users_id: 5,
@@ -442,6 +632,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 6,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 6,
+      tag_id: 11
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 6,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 6,
+      tag_id: 5
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 6,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 6,
@@ -477,7 +717,7 @@ exports.seed = function (knex, Promise) {
       users_id: 6,
       name: 'education',
       role: 'Student',
-      description: 'B.S. Chemistry',
+      description: 'BS Chemistry',
       start_date: 2006,
       end_date: 2010,
       organization: 'University of Wisconsin-Madision'
@@ -511,6 +751,56 @@ exports.seed = function (knex, Promise) {
   })
   .error(err => {
     console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 7,
+      tag_id: 5
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 7,
+      tag_id: 19
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 7,
+      tag_id: 7
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 7,
+      tag_id: 9
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 7,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
   .then((experience) => {
@@ -584,6 +874,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 8,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 8,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 8,
+      tag_id: 10
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 8,
+      tag_id: 15
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 8,
+      tag_id: 16
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 8,
@@ -653,6 +993,56 @@ exports.seed = function (knex, Promise) {
   })
   .error(err => {
     console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 9,
+      tag_id: 7
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 9,
+      tag_id: 19
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 9,
+      tag_id: 18
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 9,
+      tag_id: 13
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 9,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
   .then((experience) => {
@@ -726,6 +1116,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 10,
+      tag_id: 9
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 10,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 10,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 10,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 10,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 10,
@@ -795,6 +1235,56 @@ exports.seed = function (knex, Promise) {
   })
   .error(err => {
     console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 11,
+      tag_id: 17
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 11,
+      tag_id: 7
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 11,
+      tag_id: 19
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 11,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 11,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
   .then((experience) => {
@@ -869,6 +1359,56 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create login');
     throw err;
   })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 12,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 12,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 12,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 12,
+      tag_id: 15
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 12,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
   .then((experience) => {
     return models.Experience.forge({
       users_id: 12,
@@ -939,6 +1479,56 @@ exports.seed = function (knex, Promise) {
   })
   .error(err => {
     console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 13,
+      tag_id: 1
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 13,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 13,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 13,
+      tag_id: 4
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 13,
+      tag_id: 16
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
   .then((experience) => {

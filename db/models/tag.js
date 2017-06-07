@@ -1,6 +1,4 @@
 const db = require('../');
-const Promise = require('bluebird');
-const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 
 const Tag = db.Model.extend({
   tableName: 'tag',
