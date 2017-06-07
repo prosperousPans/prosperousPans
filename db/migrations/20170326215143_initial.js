@@ -12,7 +12,7 @@ exports.up = function (knex, Promise) {
       table.increments('id').unsigned().primary();
       table.string('auth_id', 200).nullable();
       table.string('full_name', 50).notNullable().unique();
-      table.string('industry', 50).nullable();
+      table.string('vertical', 50).nullable();
       table.string('github_url', 150).nullable();
       table.string('linkedin_url', 150).nullable();
       table.string('image', 150).nullable();
