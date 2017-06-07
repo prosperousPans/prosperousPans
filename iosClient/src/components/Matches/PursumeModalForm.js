@@ -33,11 +33,7 @@ class PursumeModalForm extends Component{
 
   formSubmit(e) {
     e.preventDefault();
-    //passed in props
-    this.props.handleSubmit();
-
-    //from redux 
-    // this.props.sendResponse(this.state);
+    this.props.handleSubmit(this.state);
   }
 
   render() {
