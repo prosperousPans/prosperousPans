@@ -11,8 +11,8 @@ exports.up = function (knex, Promise) {
     knex.schema.createTableIfNotExists('users', function (table) {
       table.increments('id').unsigned().primary();
       table.string('auth_id', 200).nullable();
-      table.string('full_name', 30).notNullable().unique();
-      table.string('industry', 30).nullable();
+      table.string('full_name', 50).notNullable().unique();
+      table.string('industry', 50).nullable();
       table.string('github_url', 150).nullable();
       table.string('linkedin_url', 150).nullable();
       table.string('image', 150).nullable();
@@ -39,20 +39,21 @@ exports.up = function (knex, Promise) {
       table.integer('users_id').unsigned().references('id').inTable('users');
       table.integer('tag_id').unsigned().references('id').inTable('tag');
     }),
-    knex.schema.createTableIfNotExists('reason', function (table) {
-      table.increments('id').unsigned().primary();
-      table.string('name').notNullable();
-    }),
-    knex.schema.createTableIfNotExists('connection_reason', function (table) {
-      table.increments('id').unsigned().primary();
-      table.integer('connection_id').unsigned().references('id').inTable('connection');
-      table.integer('reason_id').unsigned().references('id').inTable('reason');
-    }),
+    // knex.schema.createTableIfNotExists('reason', function (table) {
+    //   table.increments('id').unsigned().primary();
+    //   table.string('name').notNullable();
+    // }),
+    // knex.schema.createTableIfNotExists('connection_reason', function (table) {
+    //   table.increments('id').unsigned().primary();
+    //   table.integer('connection_id').unsigned().references('id').inTable('connection');
+    //   table.integer('reason_id').unsigned().references('id').inTable('reason');
+    // }),
     knex.schema.createTableIfNotExists('connection', function (table) {
       table.increments('id').unsigned().primary();
       table.integer('users_a_id').unsigned().references('id').inTable('users');
       table.integer('users_b_id').unsigned().references('id').inTable('users');
       table.string('status').notNullable();
+      table.string('reason').notNullable();
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('chat', function (table) {
@@ -72,8 +73,8 @@ exports.down = function (knex, Promise) {
     knex.schema.dropTable('experience'),
     knex.schema.dropTable('tag'),
     knex.schema.dropTable('info_tag'),
-    knex.schema.dropTable('reason'),
-    knex.schema.dropTable('connection_reason'),
+    // knex.schema.dropTable('reason'),
+    // knex.schema.dropTable('connection_reason'),
     knex.schema.dropTable('connection'),
     knex.schema.dropTable('chat')
   ]);

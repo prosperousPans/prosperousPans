@@ -8,7 +8,7 @@ exports.seed = function (knex, Promise) {
     github_url: 'https://github.com/Kale007',
     linkedin_url: 'https://www.linkedin.com/in/rajas-kale/',
     image: 'https://avatars2.githubusercontent.com/u/26387553?v=3&s=460',
-    summary: 'I like turtles',
+    summary: 'Combining Software with Neural Engineering',
   }).save()
   .error(err => {
     console.error('ERROR: failed to create user');
@@ -1578,809 +1578,368 @@ exports.seed = function (knex, Promise) {
   })
 
 
+  // user14
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Katheryn Wininger',
+      industry: 'Research Technologist',
+      github_url: 'https://www.linkedin.com/in/katheryn-wininger-614856b7/',
+      linkedin_url: 'https://www.linkedin.com/in/kathrynwininger/',
+      image: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJRAAAAJGJhZGI4ZjA5LTc0ZTItNDhhYi1hMGUyLWM2OTMzZjkzYzBhMg.jpg',
+      summary: 'Resarch for Neuroscience Laboratories',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'kwining',
+      password: 'password'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 14,
+      tag_id: 3
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 14,
+      tag_id: 5
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 14,
+      tag_id: 10
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 14,
+      tag_id: 12
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 14,
+      tag_id: 13
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 14,
+      name: 'professional',
+      role: 'Research Technologist',
+      description: 'Research in Neuroscience',
+      start_date: 2012,
+      end_date: 2016,
+      organization: 'Mayo Clinic'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 14,
+      name: 'projects',
+      role: 'Western Blotting',
+      description: 'Protein analysis for antidepressant and anti-anxiety mood research',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Neurochemical Lab'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 14,
+      name: 'education',
+      role: 'Student',
+      description: 'PhD in Neurobiology of Disease',
+      start_date: 2016,
+      end_date: null,
+      organization: 'Mayo Clinic Graduate School'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
 
-  // CREATE CONNECTIONS
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 2,
-      status: 'accept'
+
+  // user15
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Seungleal (Brian) Paek',
+      industry: 'Neural Engineering',
+      github_url: 'https://www.linkedin.com/in/seungleal-paek',
+      linkedin_url: 'https://www.linkedin.com/in/seungleal-brian-paek-5a0530bb/',
+      image: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAUaAAAAJGU2MjU3OTc2LWJhZTYtNDBhOC1iZmNmLTBiNzg2MWI2MzVlNQ.jpg',
+      summary: 'Doctoral Candidate',
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create user');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 3,
-      status: 'accept'
+  .then((login) => {
+    return models.Login.forge({
+      username: 'spaek',
+      password: 'password'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create login');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 4,
-      status: 'reject'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 15,
+      tag_id: 3
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 6,
-      status: 'reject'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 15,
+      tag_id: 1
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 8,
-      status: 'reject'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 15,
+      tag_id: 2
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 9,
-      status: 'accept'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 15,
+      tag_id: 7
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 1,
-      users_b_id: 10,
-      status: 'accept'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 15,
+      tag_id: 11
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 2,
-      users_b_id: 1,
-      status: 'accept'
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 15,
+      name: 'professional',
+      role: 'Research Technologist',
+      description: 'Research in Neuroscience',
+      start_date: 2012,
+      end_date: 2016,
+      organization: 'Mayo Clinic'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 2,
-      users_b_id: 3,
-      status: 'accept'
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 15,
+      name: 'projects',
+      role: 'Dopamine Reuptake for Parkinsons Disease',
+      description: 'Changes in evoked dopamine output in basal ganglia structures of the brain',
+      start_date: 2015,
+      end_date: null,
+      organization: 'Neural Engineering Lab'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 2,
-      users_b_id: 4,
-      status: 'reject'
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 15,
+      name: 'education',
+      role: 'Doctorate in Neurobiology of Disease',
+      description: 'PhD in Neurobiology of Disease',
+      start_date: 2015,
+      end_date: null,
+      organization: 'Mayo Clinic Graduate School'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 2,
-      users_b_id: 8,
-      status: 'reject'
+
+
+  // user16
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Alfredo Oliveros',
+      industry: 'Biomedical Sciences-Molecular Pharmacology',
+      github_url: 'https://www.linkedin.com/in/alfredo-oliveros',
+      linkedin_url: 'https://www.linkedin.com/in/alfredo-oliveros-2b632a83//',
+      image: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAnRAAAAJGZmOGZiMTE5LWE2OGItNDkxZS1iNTFiLWIyYjM1OThkYTliYQ.jpg',
+      summary: 'Doctoral Candidate',
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create user');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 2,
-      users_b_id: 9,
-      status: 'reject'
+  .then((login) => {
+    return models.Login.forge({
+      username: 'aoli',
+      password: 'password'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create login');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 2,
-      users_b_id: 11,
-      status: 'accept'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 16,
+      tag_id: 2
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 3,
-      users_b_id: 1,
-      status: 'accept'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 16,
+      tag_id: 6
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 3,
-      users_b_id: 2,
-      status: 'accept'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 16,
+      tag_id: 7
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 3,
-      users_b_id: 5,
-      status: 'accept'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 16,
+      tag_id: 13
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 3,
-      users_b_id: 8,
-      status: 'reject'
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 16,
+      tag_id: 15
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create users_tag');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 3,
-      users_b_id: 10,
-      status: 'reject'
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 16,
+      name: 'professional',
+      role: 'Data Analysis',
+      description: 'Preclinical model research on neurobiology',
+      start_date: 2009,
+      end_date: 2013,
+      organization: 'Mayo Clinic'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 3,
-      users_b_id: 11,
-      status: 'accept'
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 16,
+      name: 'projects',
+      role: 'Western Blotting',
+      description: 'Protein analysis of changes in neurochemical therepeutics',
+      start_date: 2016,
+      end_date: 2017,
+      organization: 'Neurochemical Lab'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create experience');
     throw err;
   })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 4,
-      users_b_id: 1,
-      status: 'reject'
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 16,
+      name: 'education',
+      role: 'Doctorate in Molecular Pharmacology',
+      description: 'Learning and contributing to neurobiology research',
+      start_date: 2013,
+      end_date: 2017,
+      organization: 'Mayo Clinic Graduate School'
     }).save()
   })
   .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 4,
-      users_b_id: 3,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 4,
-      users_b_id: 8,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 4,
-      users_b_id: 10,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 4,
-      users_b_id: 11,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 5,
-      users_b_id: 1,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 5,
-      users_b_id: 4,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 5,
-      users_b_id: 6,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 5,
-      users_b_id: 8,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 5,
-      users_b_id: 10,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 5,
-      users_b_id: 11,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 6,
-      users_b_id: 2,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 6,
-      users_b_id: 3,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 6,
-      users_b_id: 7,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 6,
-      users_b_id: 8,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 6,
-      users_b_id: 10,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 6,
-      users_b_id: 11,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 7,
-      users_b_id: 1,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 7,
-      users_b_id: 2,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 7,
-      users_b_id: 3,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 7,
-      users_b_id: 8,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 7,
-      users_b_id: 10,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 7,
-      users_b_id: 11,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 2,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 3,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 5,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 6,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 7,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 10,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 8,
-      users_b_id: 11,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 9,
-      users_b_id: 2,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 9,
-      users_b_id: 3,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 9,
-      users_b_id: 6,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 9,
-      users_b_id: 10,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 9,
-      users_b_id: 11,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 10,
-      users_b_id: 1,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 10,
-      users_b_id: 3,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 10,
-      users_b_id: 6,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 10,
-      users_b_id: 8,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 10,
-      users_b_id: 11,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 11,
-      users_b_id: 1,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 11,
-      users_b_id: 2,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 11,
-      users_b_id: 5,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 11,
-      users_b_id: 6,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 11,
-      users_b_id: 10,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 12,
-      users_b_id: 3,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 12,
-      users_b_id: 5,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 12,
-      users_b_id: 8,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 12,
-      users_b_id: 10,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 13,
-      users_b_id: 1,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 13,
-      users_b_id: 2,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 13,
-      users_b_id: 6,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 13,
-      users_b_id: 10,
-      status: 'accept'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
-    throw err;
-  })
-  .then((connection) => {
-    return models.Connection.forge({
-      users_a_id: 13,
-      users_b_id: 12,
-      status: 'reject'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create connection');
+    console.error('ERROR: failed to create experience');
     throw err;
   })
 };
