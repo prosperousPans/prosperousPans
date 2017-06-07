@@ -1079,4 +1079,4 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create connection');
     throw err;
   })
-})
+}
