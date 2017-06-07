@@ -1,8 +1,6 @@
 const initialState = {
-  gettingMatches: null,
-  allMatches: null,
-  getMatchesError: null,
-  gettingMatches: null
+  sendingResponse: null,
+  sendingResponse: null,
 };
 
 const Pursume = (state = initialState, action) => {
@@ -12,10 +10,9 @@ const Pursume = (state = initialState, action) => {
         ...state,
         sendingResponse: true        
       }
-    case 'SENT_RESPONSE_NEXT':
+    case 'SENT_RESPONSE':
       return {
-        ...state,
-        allMatches: action.next,
+        ...state
       }
     case 'SEND_RESPONSE_ERROR':
       return {

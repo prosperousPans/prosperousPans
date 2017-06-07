@@ -12,6 +12,7 @@ import Modal from 'react-native-modal'
 
 import { connect } from 'react-redux';
 import { getMatches } from '../../actions/Matches';
+import { sendResponse } from '../../actions/Pursume';
 
 import HighlightsCard from './HighlightsCard.js';
 import ProfessionalCard from './ProfessionalCard.js';
@@ -52,7 +53,45 @@ export class Matches extends Component{
     this.setState({ isModalVisible: false })
   }
 
-  handleModalSubmit () {
+  handleModalSubmit (response) {
+    let users_a_id = 4;
+    let users_b_id = this.props.currentMatch.id;
+
+    // let status = '';
+    // let reasonsArr = [];
+    // let reasonsWriteArr = [];
+    // response.meetSwitchIsOn ? status = 'accept' : status = 'reject';
+    // response.professionalSwitchIsOn ? reasonsArr.push(1) : false;
+    // response.educationSwitchIsOn ? reasonsArr.push(2) : false;
+    // response.projectSwitchIsOn ? reasonsArr.push(3) : false;
+    // response.personalSwitchIsOn ? reasonsArr.push(4) : false;
+
+    // console.log('reasons', 'reasonsARR' , status, reasonsArr)
+
+    // reasonsArr.map( (reason_id) => {reasonsWriteArr.push(
+    //   axios.post('http://localhost:3000/insert-reason', {
+    //     connection_id: 20,
+    //     reason_id: reason_id
+    //   })
+    // )})
+    // console.log('reasonsWriteArr' , reasonsWriteArr)
+
+    // axios.all(reasonsWriteArr)
+    // .then(axios.spread( () => {
+    //   console.log('INSIDE SPREAD')
+    //   console.log('results', arguments)
+    // })).catch( (error) => console.log(error, 'ERROR FROM AXIOS ALL'))
+
+
+    // axios.post('http://localhost:3000/insert-reason', {
+    //   connection_id: 20,
+    //   reason_id: 3
+    // }).then( result => {
+    //   console.log('ISERT REASON result', result);
+    // })
+
+    this.props.pursume(response, users_a_id, users_b_id)
+
     this._hideModal();
     this.fetchMatch();
     this.refs.slider.scrollBy(this.state.currentIndex * -1)
@@ -98,7 +137,7 @@ export class Matches extends Component{
             ref="slider"
             onMomentumScrollEnd={this._onMomentumScrollEnd}
           >
-            <HighlightsCard info={this.props.currentMatch}/>
+            <HighlightsCard />
             <EducationCard />
             <ProfessionalCard />
             <ProjectCard />
@@ -115,7 +154,6 @@ export class Matches extends Component{
 
 };
 
-// export default Matches;
 const mapStateToProps = (state) => {
   return {
     ...state,
@@ -128,7 +166,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetch: (userID) => { dispatch( getMatches(userID) ) }
+    fetch: (userID) => { dispatch( getMatches(userID) ) },
+    pursume: (response, users_a_id, users_b_id) => { dispatch( sendResponse(response, users_a_id, users_b_id) ) }
   }
 };
 
@@ -158,9 +197,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',    
   }  
 });
-
-            // <HighlightsCard />
-            // <EducationCard />
-            // <ProfessionalCard />
-            // <ProjectCard />
-            // <PersonalCard />

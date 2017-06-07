@@ -4,7 +4,6 @@ import {
   Text,
   View,
   Image,
-  Dimensions,
   TouchableOpacity,
   Linking
 } from 'react-native';
@@ -47,14 +46,34 @@ export class HighlightsCard extends Component {
     let currentMatchProjExp = this.props.currentMatchProjExp.data[0];
     return (
       <View style={styles.card}>
-        <Image
-          style={styles.profileImg}
-          source={{uri: currentProfile.image}}
-        />
-        <View style={{flex:1}}>
-          
+
+        <View style={ styles.imgHeader }>
+          <Image
+            style={styles.profileImg}
+            source={{uri: currentProfile.image}}
+          />
+          <View>
+            <TouchableOpacity onPress={this.handleGitClick}>
+              <Image 
+                style={styles.iconImg}            
+                source={{uri:'https://assets-cdn.github.com/favicon.ico'}}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.handleLNKDClick}>
+              <Image 
+                style={styles.iconImg}            
+                source={{uri:'https://www.iconfinder.com/data/icons/capsocial-round/500/linkedin-128.png'}}
+              />
+            </TouchableOpacity>          
+          </View>
+        </View>
+
+        <View style= { styles.nameSection }>
           <Text style={styles.bigText}>{currentProfile.full_name}</Text>
           <Text style={styles.smallTextTitle}>{currentProfile.industry}</Text>
+        </View>
+
+        <View>
           <Text style={styles.medText}>Education:
             <Text style={styles.smallText}> {currentMatchEduExp.description}, {currentMatchEduExp.organization}</Text>
           </Text>
@@ -67,25 +86,12 @@ export class HighlightsCard extends Component {
           <Text style={styles.medText}>Personal: 
             <Text style={styles.smallText}>{currentProfile.summary}</Text>
           </Text>
-          <TouchableOpacity onPress={this.handleGitClick}>
-            <Image 
-              style={styles.iconImg}            
-              source={{uri:'https://assets-cdn.github.com/favicon.ico'}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.handleLNKDClick}>
-            <Image 
-              style={styles.iconImg}            
-              source={{uri:'https://www.iconfinder.com/data/icons/capsocial-round/500/linkedin-128.png'}}
-            />
-          </TouchableOpacity>          
         </View>
+
       </View>
     )
   }
 }
-
-// export default HighlightsCard;
 
 const mapStateToProps = (state) => {
   return {
@@ -99,14 +105,16 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(HighlightsCard);
 
-const {width, height} = Dimensions.get('window')
-
 const styles = StyleSheet.create({
   card: {
     flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  imgHeader: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FAFAFA',
   },
   profileImg: {
     height: 125,
@@ -121,6 +129,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center'
   },
+  nameSection: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },  
   bigText: {
     alignSelf: 'center',  
     color: 'grey',

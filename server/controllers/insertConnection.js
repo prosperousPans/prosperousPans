@@ -1,9 +1,10 @@
 const models = require('../../db/models');
 
 module.exports.insertConnection = (req, res) => {
-  models.Connection.forge()
-    .save({users_a_id: req.query.users_a_id, users_b_id: req.query.users_b_id, status: req.query.status})
+  models.Connection.forge({users_a_id: req.body.users_a_id, users_b_id: req.body.users_b_id, status: req.body.status})
+    .save()
     .then(connection => {
-      res.status(202).send();
+      console.log('CONNECTION ID', connection.attributes.id)
+      res.json(connection.attributes.id);
     })
 }
