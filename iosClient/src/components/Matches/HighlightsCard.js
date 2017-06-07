@@ -70,18 +70,18 @@ export class HighlightsCard extends Component {
 
         <View style= { styles.nameSection }>
           <Text style={styles.bigText}>{currentProfile.full_name}</Text>
-          <Text style={styles.smallTextTitle}>{currentProfile.industry}</Text>
+          <Text style={styles.smallTextTitle}>{currentProfile.vertical}</Text>
         </View>
 
         <View>
           <Text style={styles.medText}>Education:
-            <Text style={styles.smallText}> {currentMatchEduExp.description}, {currentMatchEduExp.organization}</Text>
+            <Text style={styles.smallText}> {currentMatchEduExp.organization}, {currentMatchEduExp.role} </Text>
           </Text>
           <Text style={styles.medText}>Professional: 
             <Text style={styles.smallText}> {currentMatchProfExp.organization}, {currentMatchProfExp.role}</Text>
           </Text>
           <Text style={styles.medText}>Project: 
-            <Text style={styles.smallText}> {currentMatchProjExp.organization}, {currentMatchProjExp.role}</Text>
+            <Text style={styles.smallText}> {currentMatchProjExp.role}</Text>
           </Text>
           <Text style={styles.medText}>Personal: 
             <Text style={styles.smallText}>{currentProfile.summary}</Text>

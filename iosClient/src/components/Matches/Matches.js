@@ -57,39 +57,6 @@ export class Matches extends Component{
     let users_a_id = 4;
     let users_b_id = this.props.currentMatch.id;
 
-    // let status = '';
-    // let reasonsArr = [];
-    // let reasonsWriteArr = [];
-    // response.meetSwitchIsOn ? status = 'accept' : status = 'reject';
-    // response.professionalSwitchIsOn ? reasonsArr.push(1) : false;
-    // response.educationSwitchIsOn ? reasonsArr.push(2) : false;
-    // response.projectSwitchIsOn ? reasonsArr.push(3) : false;
-    // response.personalSwitchIsOn ? reasonsArr.push(4) : false;
-
-    // console.log('reasons', 'reasonsARR' , status, reasonsArr)
-
-    // reasonsArr.map( (reason_id) => {reasonsWriteArr.push(
-    //   axios.post('http://localhost:3000/insert-reason', {
-    //     connection_id: 20,
-    //     reason_id: reason_id
-    //   })
-    // )})
-    // console.log('reasonsWriteArr' , reasonsWriteArr)
-
-    // axios.all(reasonsWriteArr)
-    // .then(axios.spread( () => {
-    //   console.log('INSIDE SPREAD')
-    //   console.log('results', arguments)
-    // })).catch( (error) => console.log(error, 'ERROR FROM AXIOS ALL'))
-
-
-    // axios.post('http://localhost:3000/insert-reason', {
-    //   connection_id: 20,
-    //   reason_id: 3
-    // }).then( result => {
-    //   console.log('ISERT REASON result', result);
-    // })
-
     this.props.pursume(response, users_a_id, users_b_id)
 
     this._hideModal();
