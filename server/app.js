@@ -39,4 +39,7 @@ app.use('/chat-list', routes.chat);
 app.use('/create-graphDB', routes.createGraphDB)
 app.use('/populate-full-graphDB', routes.populateFullGraphDB)
 
+// *** FOR GRAPH DB
+app.use('/recommendation', routes.recommendation)
+
 module.exports = app;

@@ -6,3 +6,4 @@ module.exports.response = require('./response');
 module.exports.chat = require('./chat');
 module.exports.createGraphDB = require('./createGraphDB');
 module.exports.populateFullGraphDB = require('./populateFullGraphDB');
+module.exports.recommendation = require('./recommendation');

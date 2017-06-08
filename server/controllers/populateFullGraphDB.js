@@ -8,7 +8,7 @@ module.exports.populateFullGraphDB = (req, res) => {
     })
     .then(params => {
     models.Connection.forge()
-      .fetchAll({columns: ['users_a_id', 'users_b_id', 'status']})
+      .fetchAll({columns: ['users_a_id', 'users_b_id', 'status', 'reason']})
       .then(connection => {
         return [params, connection];
       })
@@ -78,7 +78,7 @@ var createGDBQuery = (users, connections, experience, users_tag, tag) => {
   });
   connection.forEach(function(conn) {
     query += (
-    `CREATE (a${conn.users_a_id})-[:Connection {status:['${conn.status}']}]->(a${conn.users_b_id})\n`
+    `CREATE (a${conn.users_a_id})-[:Connection {status:['${conn.status}'], reason: ['${conn.reason}']}]->(a${conn.users_b_id})\n`
     );
   });
   return query
