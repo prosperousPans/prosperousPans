@@ -73,13 +73,20 @@ var createGDBQuery = (users, connections, experience, users_tag, tag) => {
       }
     });
     query += (
-      `CREATE (a${user.id}:Users {name: '${user.full_name}', tags: [${tagHolder}], education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
+      `CREATE (a${user.id}:Users {id: '${user.id}', name: '${user.full_name}', tags: [${tagHolder}], education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
     );
   });
   connection.forEach(function(conn) {
     query += (
     `CREATE (a${conn.users_a_id})-[:Connection {status:['${conn.status}'], reason: ['${conn.reason}']}]->(a${conn.users_b_id})\n`
     );
+    connection.forEach(function(conn2) {
+      if ( conn.users_a_id === conn2.users_b_id && conn.users_b_id === conn2.users_a_id ) {
+        if ( conn.status === 'accept' && conn2.status === 'accept' ) {
+          query += (`CREATE (a${conn.users_a_id})-[:MATCHED]->(a${conn2.users_a_id})\n`);
+        }
+      }
+    })
   });
   return query
 }
