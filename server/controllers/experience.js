@@ -1,10 +1,8 @@
 const models = require('../../db/models');
 
-module.exports.getAll = (req, res) => {
-  // console.log(req.query, 'req.query')
-  models.Experience
-    .forge()
-    .where({name: req.query.name, users_id: req.query.users_id})
+module.exports.getAllExperience = (req, res) => {
+
+  models.Experience.forge()
     .fetchAll()
     .then(experience => {
       res.status(200).send(experience);

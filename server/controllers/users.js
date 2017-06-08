@@ -17,7 +17,7 @@ module.exports.getNewUsers = (req, res) => {
 
       let count = 0;
       let sent = false;
-      let result = null; 
+      let result = null;
       let hashCheck = {};
 
       while ( count < maxCount ) {
@@ -25,16 +25,16 @@ module.exports.getNewUsers = (req, res) => {
         models.Users.fetchAll()
           //function to find a random user
           .then(users => {
-            
+
             hashCheck[String(userA_id)] = true;
             let jsonUsers = JSON.parse(JSON.stringify(users));
-            
+
             let randIdx = Math.floor(Math.random() * numOfUsers);
             while ( hashCheck[String(randIdx + 1)] === true ) {
               randIdx = Math.floor(Math.random() * numOfUsers);
             }
             let userB_id = jsonUsers[randIdx].id;
-            
+
             return {userB_id: userB_id, userB_idx: randIdx, allUsers: jsonUsers}
           })
 
