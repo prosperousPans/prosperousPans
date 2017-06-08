@@ -19,7 +19,13 @@ import {
 import Matches from './Matches/Matches.js';
 import Dashboard from './Dashboard/Dashboard.js';
 import ChatMain from './Chat/ChatMain.js';
+import Profile from './Profile/Profile.js';
+import ProfileMain from './Profile/ProfileMain.js';
 
+
+const ProfileScreen = () => (
+  <ProfileMain />
+);
 const MatchesScreen = () => (
   <Matches />
 );
@@ -68,6 +74,11 @@ const CustomTabView = ({ router, navigation }) => {
 
 const CustomTabRouter = TabRouter(
   {
+    Profile: {
+      screen: ProfileScreen,
+      path: 'profile',
+    },
+
     Dashboard: {
       screen: DashboardScreen,
       path: 'dashboard',
