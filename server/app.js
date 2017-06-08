@@ -41,5 +41,6 @@ app.use('/populate-full-graphDB', routes.populateFullGraphDB)
 
 // *** FOR GRAPH DB
 app.use('/recommendation', routes.recommendation)
+app.use('/priority-recommendation', routes.priorityRecommendation)
 
 module.exports = app;

@@ -2,7 +2,7 @@ var neo4j = require('neo4j-driver').v1;
 var driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", "neo4j"));
 
 
-module.exports.getRecommendation = (req, res) => {
+module.exports.getPriorityRecommendation = (req, res) => {
 
   var query = req.query.query || `CREATE (a1:Users {name: 'Rajas Kale', tags: ['SQL','Node','Matlab','AWS','React'], education_role: 'PhD student', professional_role: 'Quality Control', projects_role: 'Pursumé'})
 CREATE (a2:Users {name: 'Alan Zheng', tags: ['React','Express','MongoDB','Node','AngularJS'], education_role: 'Student', professional_role: 'Finance & Operations Analyst', projects_role: 'Pursumé'})
@@ -173,11 +173,12 @@ CREATE (a21)-[:Connection {status:['reject'], reason: ['education']}]->(a8)
 CREATE (a21)-[:Connection {status:['reject'], reason: ['education']}]->(a18)
 
 
-  WITH a1 as me
-  MATCH (me:Users)-[:Connection]-(connected:Users)-[:Connection]-(potential:Users)
-  WHERE NOT (me)-[:Connection]-(potential:Users)
-  RETURN count(potential) as PotentientialMatch, potential.name as Suggesetion
-  ORDER BY PotentientialMatch DESC`;
+WITH a1 as me
+MATCH (me:Users)-[:Connection]-(connected:Users)
+WHERE NOT (me)-[:Connection]->(connected:Users)
+AND NOT (connected:Users)-[:Connection {status:"reject"}]->(me)
+RETURN count(connected) as PotentientialMatch, connected.name as Suggesetion
+ORDER BY PotentientialMatch DESC`;
 
 
   var result = [];
