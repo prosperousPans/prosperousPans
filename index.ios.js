@@ -13,8 +13,8 @@ import {
 
 import configureStore from './iosClient/src/configureStore';
 import Login from './iosClient/src/components/Login';
-import Main from './iosClient/src//components/Main';
-
+import Main from './iosClient/src/components/Main';
+import Profile from './iosClient/src/components/Profile/Profile';
 
 const PursumeIOSApp = () => (
   <Provider store = { store }>

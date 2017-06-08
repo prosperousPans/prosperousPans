@@ -17,7 +17,6 @@ class ChatMain extends Component {
   render() {
       return (
         <NavigatorIOS
-         
           initialRoute={{
             component: ChatList,
             title:''

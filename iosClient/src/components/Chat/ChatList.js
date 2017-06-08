@@ -13,20 +13,15 @@ import Separator from './Separator.js';
 
 class ChatList extends Component {
   constructor (props){
-    console.log("const called");
     super();
     this.state = {
       chatConnections: []
     }
   }
 
-  componentWillMount(){
-    console.log("cwm called");
-    
+  componentWillMount(){    
       AsyncStorage.getItem('userId')
       .then((userId) => {
-          console.log('AUth id &&&&&&&',userId);
-
           fetch("http://localhost:3000/chat-list?authId="+userId, {
             method: 'GET'//,
             // headers: {
@@ -46,7 +41,6 @@ class ChatList extends Component {
   }
 
   goToChat(userDetails){
-    console.log("gtc called", this, this.props, userDetails);
     this.props.navigator.push({
     component: Chat,
     title: 'Chat',
@@ -55,11 +49,8 @@ class ChatList extends Component {
   }
   
   render() {
-    console.log("render called");
     var chats = this.state.chatConnections;
-    console.log('from chats ', chats);
     var list = chats.map((item, index) => {
-      //var desc = chats[index].description ? <Text style={styles.description}>{repos[index].description}</Text> : <View/>;
       return (
         <View key={index}>
           <View style={styles.container} >
@@ -94,7 +85,8 @@ var styles = StyleSheet.create({
         padding:5
     },
     container: {
-        height:55,
+      marginTop: 65,
+      flex: 1
     },
     image:{
       height: 40,
