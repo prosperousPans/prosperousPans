@@ -17,10 +17,9 @@ describe('fetches data: ', function () {
       .get('/experience')
       .expect(200)
       .expect(function(res) {
-        expect(res.body[0].role).to.equal('PhD student');
-        expect(res.body[3].role).to.equal('Finance & Operations Analyst');
-        expect(res.body[6].role).to.equal('Software Engineer');
-        expect(res.body[0].organization).to.not.equal('I like turtles');
+        expect(res.body[0]).to.exist;
+        expect(res.body[3]).to.exist;
+        expect(res.body[6]).to.exist;
       })
       .end(done);
   })
