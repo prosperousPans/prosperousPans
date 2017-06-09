@@ -55,7 +55,7 @@ export function getMatches (userID) {
       return matchID;
     })
     .then ( matchID => {
-
+      console.log('MATCH ID - matches.js', matchID);
       axios.all([
         axios.get('http://localhost:3000/experience', {
           params: {name: 'professional', users_id: matchID}

@@ -147,7 +147,7 @@ exports.seed = function (knex, Promise) {
     return models.Connection.forge({
       users_a_id: 2,
       users_b_id: 4,
-      status: 'reject',
+      status: 'accept',
       reason: 'projects'
     }).save()
   })
@@ -386,6 +386,18 @@ exports.seed = function (knex, Promise) {
   .then((connection) => {
     return models.Connection.forge({
       users_a_id: 4,
+      users_b_id: 20,
+      status: 'accept',
+      reason: 'projects'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })  
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 4,
       users_b_id: 21,
       status: 'accept',
       reason: 'personal'
@@ -411,7 +423,7 @@ exports.seed = function (knex, Promise) {
     return models.Connection.forge({
       users_a_id: 5,
       users_b_id: 4,
-      status: 'reject',
+      status: 'accept',
       reason: 'professional'
     }).save()
   })
@@ -518,7 +530,7 @@ exports.seed = function (knex, Promise) {
   .then((connection) => {
     return models.Connection.forge({
       users_a_id: 6,
-      users_b_id: 7,
+      users_b_id: 4,
       status: 'accept',
       reason: 'personal'
     }).save()
@@ -626,7 +638,7 @@ exports.seed = function (knex, Promise) {
   .then((connection) => {
     return models.Connection.forge({
       users_a_id: 7,
-      users_b_id: 8,
+      users_b_id: 4,
       status: 'accept',
       reason: 'professional'
     }).save()

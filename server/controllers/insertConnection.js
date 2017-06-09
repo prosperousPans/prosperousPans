@@ -9,6 +9,6 @@ module.exports.insertConnection = (req, res) => {
   })
     .save()
     .then(result => {
-      res.send('Sucessful Response');
+      res.send(result.attributes);
     })
 }

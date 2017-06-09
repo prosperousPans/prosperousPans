@@ -32,6 +32,7 @@ app.use('/experience', routes.experience);
 
 // *** FOR INSERTING NEW CONNECTIONS
 app.use('/insert-connection', routes.insertConnection);
+app.use('/check-match', routes.checkMatch);
 app.use('/insert-reason', routes.insertReason);
 
 app.use('/chat-list', routes.chat);
