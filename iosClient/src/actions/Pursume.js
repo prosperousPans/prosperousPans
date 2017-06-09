@@ -43,7 +43,6 @@ export function sendResponse (response, users_a_id, users_b_id) {
       var users_a_id = result.data.users_a_id;
       var users_b_id = result.data.users_b_id;
       var users_a_res = result.data.status;
-      console.log('RESULT AFTER POST IN REDUX - STATE?', users_a_id, users_b_id, users_a_res)
       
       //check only if status is accept    
       if (users_a_res === 'accept') {

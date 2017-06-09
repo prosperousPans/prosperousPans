@@ -65,19 +65,15 @@ export class Matches extends Component{
  
   _hideMatchModal() {
     this.setState({ isMatchedModalVisible: false })
+    this.fetchMatch();
+    this.refs.slider.scrollBy(this.state.currentIndex * -1)
   }
 
   checkMatch() {
-    console.log('INSIDE checkMatch', this.props)
     if (this.props.matched === 'MATCH') {
-      console.log('INSIDE checkMatch iF STATEMENT - MATCHED')
       this._hideModal();
       setTimeout(this._showMatchModal, 1000);
-      setTimeout(this.fetchMatch, 2000);
-      // this.fetchMatch();
-      this.refs.slider.scrollBy(this.state.currentIndex * -1)
     } else {
-      console.log('INSIDE checkMatch iF STATEMENT - NOT MATCHED')    
       this._hideModal();
       this.fetchMatch();
       this.refs.slider.scrollBy(this.state.currentIndex * -1)
@@ -160,7 +156,7 @@ export class Matches extends Component{
     }
     if (this.state.isModalVisible){
       <View style={{ flex: 1 }}>
-        <MatchedModal handleSubmit={this.handleModalSubmit}/>
+        <MatchedModal />
       </View>      
     }
   }
@@ -187,7 +183,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matches);
-                // <PursumeModalForm handleSubmit={this.handleModalSubmit}/>
 
 const {width, height} = Dimensions.get('window')
 
