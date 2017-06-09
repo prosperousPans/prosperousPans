@@ -10,3 +10,6 @@ module.exports.createGraphDB = require('./createGraphDB');
 module.exports.populateFullGraphDB = require('./populateFullGraphDB');
 module.exports.recommendation = require('./recommendation');
 module.exports.priorityRecommendation = require('./priorityRecommendation');
+
+
+module.exports.getMatches = require('./getMatches');

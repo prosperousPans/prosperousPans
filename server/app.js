@@ -43,4 +43,8 @@ app.use('/populate-full-graphDB', routes.populateFullGraphDB)
 app.use('/recommendation', routes.recommendation)
 app.use('/priority-recommendation', routes.priorityRecommendation)
 
+
+// *** GET MATCHES THROUGH GRAPH DB AND POSTGRES
+app.use('/get-matches', routes.getMatches)
+
 module.exports = app;

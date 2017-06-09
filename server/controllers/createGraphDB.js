@@ -1,5 +1,7 @@
 const models = require('../../db/models');
 
+// DEPRACATED. Consider deleting
+
 module.exports.createGraphDB = (req, res) => {
   models.Connection.forge()
     .where({users_a_id: req.query.id || 2}) //UPDATE THIS AS NEEDED
