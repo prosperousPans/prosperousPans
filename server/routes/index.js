@@ -1,6 +1,7 @@
 module.exports.users = require('./users');
 module.exports.experience = require('./experience');
 module.exports.insertConnection = require('./insertConnection');
+module.exports.checkMatch = require('./checkMatch');
 module.exports.insertReason = require('./insertReason');
 module.exports.response = require('./response');
 module.exports.chat = require('./chat');

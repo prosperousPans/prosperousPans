@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  AsyncStorage  
+  AsyncStorage,
+  NavigatorIOS
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import Modal from 'react-native-modal'
@@ -20,6 +21,7 @@ import EducationCard from './EducationCard.js';
 import ProjectCard from './ProjectCard.js';
 import PersonalCard from './PersonalCard.js';
 import PursumeModalForm from './PursumeModalForm.js';
+import MatchedModal from './MatchedModal.js';
 
 import axios from 'axios';
 
@@ -28,11 +30,15 @@ export class Matches extends Component{
     super(props);
     this.state = {
       isModalVisible: false,
+      isMatchedModalVisible: false,
       currentIndex: 0
     }
     this.fetchMatch = this.fetchMatch.bind(this);
+    this.checkMatch = this.checkMatch.bind(this);
     this._showModal = this._showModal.bind(this);
     this._hideModal = this._hideModal.bind(this);
+    this._showMatchModal = this._showMatchModal.bind(this);
+    this._hideMatchModal = this._hideMatchModal.bind(this);    
     this.handleModalSubmit = this.handleModalSubmit.bind(this);
     this._onMomentumScrollEnd = this._onMomentumScrollEnd.bind(this);
   }
@@ -53,15 +59,37 @@ export class Matches extends Component{
     this.setState({ isModalVisible: false })
   }
 
+  _showMatchModal() {
+   this.setState({ isMatchedModalVisible: true }) 
+  }
+ 
+  _hideMatchModal() {
+    this.setState({ isMatchedModalVisible: false })
+  }
+
+  checkMatch() {
+    console.log('INSIDE checkMatch', this.props)
+    if (this.props.matched === 'MATCH') {
+      console.log('INSIDE checkMatch iF STATEMENT - MATCHED')
+      this._hideModal();
+      setTimeout(this._showMatchModal, 1000);
+      setTimeout(this.fetchMatch, 2000);
+      // this.fetchMatch();
+      this.refs.slider.scrollBy(this.state.currentIndex * -1)
+    } else {
+      console.log('INSIDE checkMatch iF STATEMENT - NOT MATCHED')    
+      this._hideModal();
+      this.fetchMatch();
+      this.refs.slider.scrollBy(this.state.currentIndex * -1)
+    }
+  }
+
   handleModalSubmit (response) {
     let users_a_id = 4;
     let users_b_id = this.props.currentMatch.id;
 
     this.props.pursume(response, users_a_id, users_b_id)
-
-    this._hideModal();
-    this.fetchMatch();
-    this.refs.slider.scrollBy(this.state.currentIndex * -1)
+    setTimeout(this.checkMatch, 1000);
   }
 
   _onMomentumScrollEnd(e, state, context) {
@@ -76,8 +104,8 @@ export class Matches extends Component{
     if (this.props.currentMatchProjExp) {
       return(
         <View>
-          <View>
 
+          <View>
             <TouchableOpacity
               onPress={this._showModal}
               style={styles.pursumeButton}
@@ -92,7 +120,20 @@ export class Matches extends Component{
                 <Text style={styles.closeButton}>X</Text>
               </TouchableOpacity>
               <View style={{ flex: 1 }}>
-                <PursumeModalForm handleSubmit={this.handleModalSubmit}/>
+                <PursumeModalForm handleSubmit={this.handleModalSubmit}/>             
+              </View>
+            </Modal>
+          </View>
+
+          <View>
+            <Modal isVisible={this.state.isMatchedModalVisible}>
+              <TouchableOpacity
+                onPress={this._hideMatchModal}
+              >
+                <Text style={styles.closeButton}>X</Text>
+              </TouchableOpacity>
+              <View style={{ flex: 1 }}>
+                <MatchedModal handleSubmit={this.handleModalSubmit}/>
               </View>
             </Modal>
           </View>
@@ -117,17 +158,24 @@ export class Matches extends Component{
       console.log('no more matches');
       return (<View style={styles.card}><Text style={styles.text}>No More Matches</Text></View>)
     }
+    if (this.state.isModalVisible){
+      <View style={{ flex: 1 }}>
+        <MatchedModal handleSubmit={this.handleModalSubmit}/>
+      </View>      
+    }
   }
 
 };
 
 const mapStateToProps = (state) => {
+  console.log('STATE IN mapStateToProps', state)
   return {
     ...state,
     currentMatch: state.Matches.allMatches,
     currentMatchProfExp: state.Matches.professionalExp,
     currentMatchEduExp: state.Matches.educationExp,
-    currentMatchProjExp: state.Matches.projectExp
+    currentMatchProjExp: state.Matches.projectExp,
+    matched: state.Pursume.matchStatus
   }
 };
 
@@ -139,6 +187,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matches);
+                // <PursumeModalForm handleSubmit={this.handleModalSubmit}/>
 
 const {width, height} = Dimensions.get('window')
 

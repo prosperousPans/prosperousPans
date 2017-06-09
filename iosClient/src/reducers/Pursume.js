@@ -1,6 +1,7 @@
 const initialState = {
   sendingResponse: null,
   sendingResponse: null,
+  matchStatus: null
 };
 
 const Pursume = (state = initialState, action) => {
@@ -12,7 +13,8 @@ const Pursume = (state = initialState, action) => {
       }
     case 'SENT_RESPONSE':
       return {
-        ...state
+        ...state,
+        matchStatus: action.matchStatus
       }
     case 'SEND_RESPONSE_ERROR':
       return {
