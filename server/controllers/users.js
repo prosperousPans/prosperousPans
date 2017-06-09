@@ -1,9 +1,6 @@
 const models = require('../../db/models');
 
 module.exports.getNewUsers = (req, res) => {
-  // let userA_id = req.query.userA_id;
-  // console.log(userA_id, 'userA_id')
-
   models.Users.fetchAll()
     .then(users => {
       let jsonUsers = JSON.parse(JSON.stringify(users));
@@ -11,7 +8,7 @@ module.exports.getNewUsers = (req, res) => {
       return numOfUsers
     })
     .then(numOfUsers => {
-      let userA_id = 4;
+      let userA_id = 2;
       let maxCount = 10; //try 10 times max - cap on while loop
       let numOfMatchesToReturn = 1
 
