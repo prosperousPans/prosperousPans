@@ -38,16 +38,14 @@ app.use('/insert-reason', routes.insertReason);
 // *** FOR DASHBOARD
 app.use('/get-connect', routes.getConnect);
 
-
+// *** FOR CHAT
 app.use('/chat-list', routes.chat);
 
+// *** FOR GRAPH DB
 app.use('/create-graphDB', routes.createGraphDB)
 app.use('/populate-full-graphDB', routes.populateFullGraphDB)
-
-// *** FOR GRAPH DB
 app.use('/recommendation', routes.recommendation)
 app.use('/priority-recommendation', routes.priorityRecommendation)
-
 
 // *** GET MATCHES THROUGH GRAPH DB AND POSTGRES
 app.use('/get-matches', routes.getMatches)
