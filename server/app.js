@@ -4,6 +4,9 @@ const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
 
+//required to call ./cron.js file
+const Cron = require('./cron.js')
+
 const app = express();
 
 app.use(middleware.morgan('dev'));
