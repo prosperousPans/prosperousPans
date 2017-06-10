@@ -35,6 +35,10 @@ app.use('/insert-connection', routes.insertConnection);
 app.use('/check-match', routes.checkMatch);
 app.use('/insert-reason', routes.insertReason);
 
+// *** FOR DASHBOARD
+app.use('/get-connect', routes.getConnect);
+
+
 app.use('/chat-list', routes.chat);
 
 app.use('/create-graphDB', routes.createGraphDB)

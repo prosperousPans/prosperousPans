@@ -6,6 +6,9 @@ module.exports.insertReason = require('./insertReason');
 module.exports.response = require('./response');
 module.exports.chat = require('./chat');
 
+// dashboard
+module.exports.getConnect = require('./getConnect');
+
 // graphDB
 module.exports.createGraphDB = require('./createGraphDB');
 module.exports.populateFullGraphDB = require('./populateFullGraphDB');
