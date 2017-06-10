@@ -42,6 +42,7 @@ module.exports.populateFullGraphDB = (req, res) => {
 let createGDBQuery = (users, connections, experience, users_tag, tag) => {
   let query = '';
 
+  // USE BOOKSHELF METHOD SERIALIZE INSTEAD OF JSON!
   var users = JSON.parse(JSON.stringify(users))
   var connection = JSON.parse(JSON.stringify(connections))
   var experience = JSON.parse(JSON.stringify(experience))
