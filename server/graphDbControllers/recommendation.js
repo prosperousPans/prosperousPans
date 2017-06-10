@@ -27,6 +27,8 @@ module.exports.getRecommendation = (req, res, next) => {
               sent = true;
               session.close();
               res.status(200).send([recommendation, {'Recommendation Result Length': result.length}])
+            } else {
+              res.status(200).send('null')
             }
           });
           if ( sent === false ) {

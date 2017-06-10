@@ -1,6 +1,6 @@
-var axios = require('axios');
+const axios = require('axios');
 
-var query = '';
+let query = '';
 axios.get('http://localhost:3000/populate-full-graphDB')
   .then(function (response) {
     module.exports.query = response.data;
