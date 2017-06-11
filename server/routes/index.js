@@ -4,6 +4,7 @@ module.exports.insertConnection = require('./insertConnection');
 module.exports.insertReason = require('./insertReason');
 module.exports.response = require('./response');
 module.exports.chat = require('./chat');
+module.exports.profile = require('./profile');
 
 // graphDB
 module.exports.createGraphDB = require('./createGraphDB');

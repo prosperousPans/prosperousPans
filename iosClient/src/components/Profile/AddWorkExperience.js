@@ -7,6 +7,7 @@ import {
   TextInput
 } from 'react-native';
 import Separator from '../Utilities/Separator';
+import axios from 'axios';
 
 
 class AddWorkExperience extends Component{
@@ -18,11 +19,11 @@ class AddWorkExperience extends Component{
     }
   }
 
-  handleDegreeChange(event){
+  handleJobChange(event){
     console.log(event.nativeEvent.text)
   }
 
-  handleUniversityChange(event){
+  handleAtChange(event){
     console.log(event.nativeEvent.text)
   }
 
@@ -30,21 +31,21 @@ class AddWorkExperience extends Component{
   	return(
       <View style={styles.container}>
         <View style={styles.eduContainer}>
-          <Text style={styles.name}>Degrees</Text>
+          <Text style={styles.name}>Job</Text>
           <TextInput 
             style={styles.searchInput}
-            placeholder={'Enter a degree'}
-            value={this.state.degree}
-            onChange={this.handleDegreeChange.bind(this)} />
+            placeholder={'Enter a role'}
+            value={this.state.job}
+            onChange={this.handleJobChange.bind(this)} />
         </View>
         <Separator/>
         <View style={styles.eduContainer}>
-          <Text style={styles.name}>School</Text>
+          <Text style={styles.name}>At</Text>
           <TextInput 
             style={styles.searchInput}
-            placeholder={'Enter a university'}
-            value={this.state.university}
-            onChange={this.handleUniversityChange.bind(this)} />
+            placeholder={'Enter an organization'}
+            value={this.state.at}
+            onChange={this.handleAtChange.bind(this)} />
         </View>
       </View>
   	);

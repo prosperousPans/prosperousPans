@@ -35,6 +35,8 @@ app.use('/insert-connection', routes.insertConnection);
 app.use('/insert-reason', routes.insertReason);
 
 app.use('/chat-list', routes.chat);
+app.use('/profile-user', routes.profile);
+
 
 app.use('/create-graphDB', routes.createGraphDB)
 app.use('/populate-full-graphDB', routes.populateFullGraphDB)

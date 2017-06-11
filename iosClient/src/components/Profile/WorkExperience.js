@@ -12,26 +12,33 @@ import Separator from '../Utilities/Separator';
 class WorkExperience extends Component{
   constructor (props) {
     super(props);
-    this.state = {
-      job: 'Test lead',
-      at: 'Target Technologies'
-    }
   }
 
   render(){
-    var userInfo = this.props.data;
+    if(this.props.workExperienceInfo && this.props.workExperienceInfo.data){
+      var list = this.props.workExperienceInfo.data.map(function(workExperience, index){
+        if(workExperience.name === 'professional'){
+          return (
+            <View key={index} style={styles.detailContainer} >
+              <Text style={styles.orgContent}>{workExperience.organization}, </Text> 
+              <Text style={styles.content}>{workExperience.role}</Text> 
+            </View>
+          )
+        }
+      })
+    } 
     return(
-      (userInfo) ? <View style={styles.detailContainer}>
-          <Text style={styles.rowTitle}>Education</Text><Text style={styles.content}>Add your Work Experience</Text><Text style={styles.addDetailsSymbol}>+</Text>
-        </View> 
-      :  
+      (this.props.workExperienceInfo && this.props.workExperienceInfo.data ) 
+      ? 
       <View>
-        <View style={styles.detailContainer}>
-          <Text style={styles.rowTitle}>Education</Text><Text style={styles.content}>{this.state.Job}</Text><Text style={styles.addDetailsSymbol}>+</Text>
-        </View>
-          <Text style={styles.rowContent}>{this.state.At}</Text>
+        <Text style={styles.rowTitle}>Previous Organizations</Text>
+        {list}
       </View>
-      );
+      :
+      <View style={styles.detailContainer}>
+        <Text style={styles.rowTitle}>WorkExperience\</Text><Text style={styles.content}>Add your Work Experience</Text><Text style={styles.addDetailsSymbol}>+</Text>
+      </View>
+    );
   }
 }
 
@@ -57,8 +64,13 @@ var styles = StyleSheet.create({
       fontFamily: 'Avenir-Medium'
     },
     content: {
-      fontSize: 15,
+      fontSize: 13,
       fontFamily: 'Avenir-Medium'
+    },
+    orgContent:{
+      fontSize: 13,
+      fontFamily: 'Avenir-Medium',
+      fontWeight: 'bold'
     }
 });
 

@@ -30,6 +30,7 @@ class ChatList extends Component {
           })
           .then((response) => {return response.json()})
           .then((responseJson) => {
+            console.log(responseJson)
             this.setState({chatConnections: responseJson});
           })
           .catch((error) => {

@@ -12,19 +12,19 @@ import Separator from '../Utilities/Separator';
 class Industry extends Component{
   constructor (props) {
     super(props);
-    this.state = {
-      industry: 'Technology'
-    }
   }
 
   render(){
-    var userInfo = this.props.data;
     return(
-      (userInfo) ? <View/> :  
+      (this.props.industryInfo !== '') ? 
+      <View style={styles.detailContainer} >
+          <Text style={styles.rowTitle}>My Industry</Text><Text style={styles.content}>{this.props.industryInfo.data.vertical}</Text>
+      </View> 
+      :  
       <View style={styles.detailContainer}>
-        <Text style={styles.rowTitle}>My Industry</Text><Text style={styles.content}>{this.state.industry}</Text><Text style={styles.addDetailsSymbol}>+</Text>
+        <Text style={styles.rowTitle}>My Industry</Text><Text style={styles.content}>Select an Industry</Text>
       </View>
-      );
+    );
   }
 }
 
@@ -50,7 +50,7 @@ var styles = StyleSheet.create({
       fontFamily: 'Avenir-Medium'
     },
     content: {
-      fontSize: 15,
+      fontSize: 13,
       fontFamily: 'Avenir-Medium'
     }
 });

@@ -8,12 +8,20 @@ import {
   NavigatorIOS
 } from 'react-native';
 
+import {
+  StackNavigator
+} from 'react-navigation';
+
 import Profile from './Profile'
 
 class ProfileMain extends Component {
   constructor (props){
-    super();
+    super(); 
   }
+
+ 
+
+ 
   
   render() {
       return (
