@@ -1,9 +1,10 @@
 const initialState = {
   gettingMatches: null,
   allMatches: null,
-  professionalExp: null,
-  educationExp: null,
-  projectExp: null,
+  currentMatch: null,
+  // professionalExp: null,
+  // educationExp: null,
+  // projectExp: null,
   getMatchesError: null
 };
 
@@ -18,26 +19,20 @@ const Matches = (state = initialState, action) => {
       return {
         ...state,
         allMatches: action.results,
-        gettingMatches: true
+        currentMatch: action.results[0],
+        gettingMatches: false
       }
-    case 'GOT_PROFESSIONAL_EXP':
+
+    //case for slicing a copy of the allMatches array - after submitting response
+    case 'GET_NEXT_MATCH': {
+      const newMatches = state.allMatches.slice(1);
+      
       return {
-        ...state,
-        professionalExp: action.profExp,
-        gettingMatches: true        
-      }  
-    case 'GOT_EDUCATION_EXP':
-      return {
-        ...state,
-        educationExp: action.eduExp,
-        gettingMatches: true        
-      }  
-    case 'GOT_PROJECT_EXP':
-      return {
-        ...state,
-        projectExp: action.projExp,
-        gettingMatches: true        
-      }                  
+        allMatches: newMatches,
+        currentMatch: newMatches[0]
+      }
+    }
+                     
     case 'GET_MATCHES_ERROR':
       return {
         ...state,

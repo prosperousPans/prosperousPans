@@ -20,7 +20,7 @@ export class HighlightsCard extends Component {
   handleGitClick() {
     Linking.canOpenURL('https://www.github.com/').then(supported => {
       if (supported) {
-        var url = this.props.currentMatch.github_url        
+        var url = this.props.currentMatch.profile[0].github_url        
         Linking.openURL(url);
       } else {
         console.log('Don\'t know how to open URI: ' + this.props.url);
@@ -31,7 +31,7 @@ export class HighlightsCard extends Component {
   handleLNKDClick() {
     Linking.canOpenURL('https://www.linkedin.com/').then(supported => {
       if (supported) {
-        var url = this.props.currentMatch.linkedin_url
+        var url = this.props.currentMatch.profile[0].linkedin_url
         Linking.openURL(url);
       } else {
         console.log('Don\'t know how to open URI: ' + this.props.url);
@@ -40,10 +40,8 @@ export class HighlightsCard extends Component {
   }
 
   render() {
-    let currentProfile = this.props.currentMatch;
-    let currentMatchEduExp = this.props.currentMatchEduExp.data[0];
-    let currentMatchProfExp = this.props.currentMatchProfExp.data[0];
-    let currentMatchProjExp = this.props.currentMatchProjExp.data[0];
+    let currentProfile = this.props.currentMatch.profile[0];
+    console.log('currentProfile', currentProfile);
     return (
       <View style={styles.card}>
 
@@ -75,13 +73,13 @@ export class HighlightsCard extends Component {
 
         <View>
           <Text style={styles.medText}>Education:
-            <Text style={styles.smallText}> {currentMatchEduExp.organization}, {currentMatchEduExp.role} </Text>
+            <Text style={styles.smallText}> Education </Text>
           </Text>
           <Text style={styles.medText}>Professional: 
-            <Text style={styles.smallText}> {currentMatchProfExp.organization}, {currentMatchProfExp.role}</Text>
+            <Text style={styles.smallText}> Professional </Text>
           </Text>
           <Text style={styles.medText}>Project: 
-            <Text style={styles.smallText}> {currentMatchProjExp.role}</Text>
+            <Text style={styles.smallText}>Project</Text>
           </Text>
           <Text style={styles.medText}>Personal: 
             <Text style={styles.smallText}>{currentProfile.summary}</Text>
@@ -96,10 +94,8 @@ export class HighlightsCard extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    currentMatch: state.Matches.allMatches,
-    currentMatchProfExp: state.Matches.professionalExp,
-    currentMatchEduExp: state.Matches.educationExp,
-    currentMatchProjExp: state.Matches.projectExp
+    allMatches: state.Matches.allMatches,
+    currentMatch: state.Matches.currentMatch
   }
 };
 

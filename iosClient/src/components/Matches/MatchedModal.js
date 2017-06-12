@@ -20,7 +20,7 @@ export class MatchedModal extends Component{
     return (
       <View style={styles.card}>
         <View>
-          <Text style={styles.bigText}>{this.props.currentMatch.full_name} wants to meet you too!</Text>
+          <Text style={styles.bigText}>{this.props.currentMatch.profile[0].full_name} wants to meet you too!</Text>
           <Text style={styles.medText}>Go chat with them now!</Text>
         </View>
       </View>
@@ -31,7 +31,7 @@ export class MatchedModal extends Component{
 const mapStateToProps = (state) => {
   return {
     ...state,
-    currentMatch: state.Matches.allMatches,
+    currentMatch: state.Matches.currentMatch
   }
 };
 

@@ -11,7 +11,7 @@ import ExperienceItem from './ExperienceItem.js'
 
 export class ProfessionalCard extends Component {
   render() {
-    let currentMatchProfExp = this.props.currentMatchProfExp.data;
+    let currentMatchProfExp = this.props.currentMatch.profExp;
     return (
       <View>
         <Text style={styles.bigText}>Professional</Text>
@@ -24,7 +24,7 @@ export class ProfessionalCard extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    currentMatchProfExp: state.Matches.professionalExp
+    currentMatch: state.Matches.currentMatch
   }
 };
 

@@ -14,27 +14,6 @@ function gotMatches (results) {
   }
 };
 
-function gotProfessionalExp (profExp) {
-  return {
-    type: 'GOT_PROFESSIONAL_EXP',
-    profExp
-  }
-};
-
-function gotEducationExp (eduExp) {
-  return {
-    type: 'GOT_EDUCATION_EXP',
-    eduExp
-  }
-};
-
-function gotProjectExp (projExp) {
-  return {
-    type: 'GOT_PROJECT_EXP',
-    projExp
-  }
-};
-
 function getMatchesError(getError) {
   return {
     type: 'GET_MATCHES_ERROR',
@@ -42,39 +21,33 @@ function getMatchesError(getError) {
   }
 }
 
+function getNextMatch() {
+  return {
+    type: 'GET_NEXT_MATCH'
+  }
+}
+
+
+
 export function getMatches (userID) {
   return (dispatch) => {
     dispatch(gettingMatches(userID));
 
-    axios.get('http://localhost:3000/users', {params: {userA_id: '_USERIDHERE'}})
+    axios.get('http://localhost:3000/get-profile', {params: {id: userID}})
     .then( result => {
-      const matchObj = result.data;
-      dispatch(gotMatches(matchObj));
+      var allMatches = JSON.parse(result.data[0].daily_all_matches)
+      dispatch(gotMatches(allMatches));
 
-      const matchID = matchObj.id;
-      return matchID;
+      return allMatches;
     })
-    .then ( matchID => {
-      console.log('MATCH ID - matches.js', matchID);
-      axios.all([
-        axios.get('http://localhost:3000/experience', {
-          params: {name: 'professional', users_id: matchID}
-        }),
-        axios.get('http://localhost:3000/experience', {
-          params: {name: 'education', users_id: matchID}
-        }),
-        axios.get('http://localhost:3000/experience', {
-          params: {name: 'projects', users_id: matchID}
-        })
-      ])
-      .then(axios.spread( (profExp, eduExp, projExp) => {
-        dispatch(gotProfessionalExp(profExp));
-        dispatch(gotEducationExp(eduExp));
-        dispatch(gotProjectExp(projExp));
-      }))
-    })          
     .catch( error => {
       dispatch(getMatchesError(error))
     });
+  }
+};
+
+export function nextMatch (userID) {
+  return (dispatch) => {
+    dispatch( getNextMatch() );
   }
 };
