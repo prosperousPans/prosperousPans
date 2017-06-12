@@ -10,5 +10,3 @@ pod 'Lock/TouchID'
 pod 'Lock/SMS'
 pod 'Lock/Email'
 pod 'Lock/Safari'
-pod 'RNVectorIcons', :path => 'node_modules/react-native-vector-icons'
-

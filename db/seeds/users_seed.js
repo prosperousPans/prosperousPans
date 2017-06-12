@@ -2638,6 +2638,128 @@ exports.seed = function (knex, Promise) {
     throw err;
   })
 
+  //user22
+  .then((user) => {
+    return models.Users.forge({
+      full_name: 'Apurva Shastry',
+      vertical: 'Technology',
+      github_url: 'https://github.com/shrimpwongton',
+      linkedin_url: 'https://www.linkedin.com/in/anthonywg/',
+      image: 'https://avatars0.githubusercontent.com/u/6591210?v=3&s=400',
+      summary: 'Android Developer transitioning towards Full Stack Software Engineering.',
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create user');
+    throw err;
+  })
+  .then((login) => {
+    return models.Login.forge({
+      username: 'shrimpwongton',
+      password: 'password'
+    }).save()
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 12
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 8
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 6
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 13
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .then((tag) => {
+    return models.Users_tag.forge({
+      users_id: 4,
+      tag_id: 14
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create users_tag');
+    throw err;
+  })
+  .error(err => {
+    console.error('ERROR: failed to create login');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 4,
+      name: 'professional',
+      role: 'Andriod Developer',
+      description: 'Java Baby',
+      start_date: 2016,
+      end_date: 2016,
+      organization: 'DabKick'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 4,
+      name: 'projects',
+      role: 'Viator',
+      description: 'Material UI',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 4,
+      name: 'education',
+      role: 'Student',
+      description: 'BS Computer Science',
+      start_date: 2012,
+      end_date: 2016,
+      organization: 'UC San Diego'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+
+
 };
 
 
