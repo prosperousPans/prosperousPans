@@ -6,7 +6,8 @@ import {
 	TouchableHighlight,
   TextInput,
   Button,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView
 } from 'react-native';
 import Separator from '../Utilities/Separator';
 import axios from 'axios';
@@ -21,16 +22,18 @@ class AddTags extends Component{
   }
 
   async addTagDetails(){
-    console.log("inside addTagDetails")
     try {  
-      await AsyncStorage.getItem('userId', (err, result) => {
-        console.log('asyncstorage result from ADD tags ********', result);
-        axios.post('http://localhost:3000/profile-user/add-tag', {
-          authid: result,
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var config = {
+          headers:{'Authorization': 'Bearer '+result[1][1] }
+        }
+        var options = {
+          authid: result[0][1],
           text: this.state.text
-        })
+        }
+        axios.post('http://localhost:3000/profile-user/add-tag', options, config)
         .then( result => {
-          console.log('Add Tag results:',result);
+          console.log('Add Tag: ', 'Successful');
         })
         .catch( error => {
           console.log('error: ', error);
@@ -42,16 +45,18 @@ class AddTags extends Component{
   }
 
   async deleteTagDetails(tag){
-    console.log("inside deleteTagDetails")
     try {  
-      await AsyncStorage.getItem('userId', (err, result) => {
-        console.log('asyncstorage result from delete tags ********', result);
-        axios.post('http://localhost:3000/profile-user/delete-tag', {
-          authid: result,
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var config = {
+          headers:{'Authorization': 'Bearer '+result[1][1] }
+        }
+        var options = {
+          authid: result[0][1],
           tag: tag.tag
-        })
+        }
+        axios.post('http://localhost:3000/profile-user/delete-tag', options, config)
         .then( result => {
-          console.log('Delete Tag results:',result);
+          console.log('Delete Tag results: ','Successful');
         })
         .catch( error => {
           console.log('error: ', error);
@@ -84,12 +89,10 @@ class AddTags extends Component{
   }
 
   handleDeleteTags(tag){
-    console.log(tag);
     this.deleteTagDetails(tag);
   }
 
   handleOk(event){
-    console.log('Handle Ok',this.state.text);
     this.addTagDetails();
   }
 
@@ -116,7 +119,7 @@ class AddTags extends Component{
       }
     })
   	return(
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.TagsVerbiage}>{TagsVerbiage}</Text>
         <View style={styles.tagsContainer}>
           <TextInput 
@@ -140,7 +143,7 @@ class AddTags extends Component{
           </View>
           {list}
         </View>
-      </View>
+      </ScrollView>
   		);
   }
 }

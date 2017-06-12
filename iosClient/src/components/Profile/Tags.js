@@ -5,9 +5,8 @@ import {
 	StyleSheet,
 	TouchableHighlight,
   AsyncStorage,
-  ListView
+  ListView,
 } from 'react-native';
-import axios from 'axios';
 
 class Tags extends Component{
   constructor (props) {
@@ -16,7 +15,6 @@ class Tags extends Component{
 
   render(){
     if(this.props.tagInfo && this.props.tagInfo.data ){
-    
       var list = this.props.tagInfo.data.map(function(tag, index){
         return (
             <View key={index} style={styles.tagBox} >
@@ -84,7 +82,6 @@ var styles = StyleSheet.create({
     paddingTop: 3,
     paddingBottom: 3,
     color: '#646464'
-
   }
 });
 

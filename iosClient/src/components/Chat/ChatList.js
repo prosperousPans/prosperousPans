@@ -9,7 +9,8 @@ import {
   Image
 } from 'react-native';
 import Chat from './Chat';
-import Separator from './Separator.js';
+import Separator from '../Utilities/Separator.js';
+import axios from 'axios';
 
 class ChatList extends Component {
   constructor (props){
@@ -20,25 +21,29 @@ class ChatList extends Component {
   }
 
   componentWillMount(){    
-      AsyncStorage.getItem('userId')
-      .then((userId) => {
-          fetch("http://localhost:3000/chat-list?authId="+userId, {
-            method: 'GET'//,
-            // headers: {
-            //   ‘Authorization’: ‘Bearer ‘+<idToken fetched from Asyncstorage>
-            // }
-          })
-          .then((response) => {return response.json()})
-          .then((responseJson) => {
-            console.log(responseJson)
-            this.setState({chatConnections: responseJson});
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+    this.getChatUsersList();
+  }
 
+  async getChatUsersList(){
+    try {  
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var authid = result[0][1];
+        var config = {
+          headers:{'Authorization': 'Bearer '+ result[1][1] }
+        }
+        axios.get('http://localhost:3000/chat-list?authid='+ authid, config)
+        .then( result => {
+          this.setState({
+            chatConnections: result
           })
-      .catch((e) => console.log(e));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      })
+    }catch (error) {
+        console.log('AsyncStorage error: ' + error.message);
+    }
   }
 
   goToChat(userDetails){
@@ -51,25 +56,27 @@ class ChatList extends Component {
   
   render() {
     var chats = this.state.chatConnections;
-    var list = chats.map((item, index) => {
-      return (
-        <View key={index}>
-          <View style={styles.container} >
-            <TouchableHighlight
-              onPress={this.goToChat.bind(this, item)}
-              underlayColor='transparent'>
-              <View>
-              <View style={styles.containerProfile} >
-              <Image style={styles.image} source={{uri: item.image}}/>
-              <Text style={styles.name}>{item.full_name}</Text>
-              </View>
-              <Separator/>
-              </View>
-            </TouchableHighlight>
+    if(chats && chats.data){
+      var list = chats.data.map((item, index) => {
+        return (
+          <View key={index}>
+            <View style={styles.container} >
+              <TouchableHighlight
+                onPress={this.goToChat.bind(this, item)}
+                underlayColor='transparent'>
+                <View>
+                  <View style={styles.containerProfile} >
+                    <Image style={styles.image} source={{uri: item.image}}/>
+                    <Text style={styles.name}>{item.full_name}</Text>
+                  </View>
+                  <Separator/>
+                </View>
+              </TouchableHighlight>
+            </View>
           </View>
-        </View>
-      )
-    })
+        )
+      })
+    }
 
     return(
       <ScrollView>

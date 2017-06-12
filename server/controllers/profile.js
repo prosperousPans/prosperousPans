@@ -3,6 +3,7 @@ const knex = require('knex')(require('../../knexfile'));
 
 
 module.exports.getUserDetails = (req, res) => {
+  console.log('from getUserDetails', req.headers)
   var authid = req.query.authid.replace('|', '%7C')
   knex('users')
     .where('auth_id', authid)
@@ -50,7 +51,7 @@ module.exports.addTag = (req, res) => {
   knex
   .raw("insert into users_tag (users_id, tag_id) values ((select id from users where auth_id = ?), (select id from tag where name = ?));", [req.body.authid, req.body.text])
   .then(result => {
-    res.status(202).send(data);
+    res.status(202).send(result);
   });
 };
 

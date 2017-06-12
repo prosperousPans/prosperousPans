@@ -6,7 +6,7 @@ import {
 	Image,
     AsyncStorage
 	 } from 'react-native';
-import axios from 'axios';
+// import axios from 'axios';
 
 var styles = StyleSheet.create({
     container: {

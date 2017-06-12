@@ -9,6 +9,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import SocketIOClient from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
+import axios from 'axios';
 
 class Chat extends Component {
   constructor(props) {
@@ -32,25 +33,20 @@ class Chat extends Component {
     this.determineUser();
   }
 
-
-  determineUser() {
-
-
-    AsyncStorage.getItem('userId')
-      .then((userId) => {
-        fetch("http://localhost:3000/chat-list/user?authId=" + userId, {
-            method: 'GET' //,
-              // headers: {
-              //   ‘Authorization’: ‘Bearer ‘+<idToken fetched from Asyncstorage>
-              // }
-          })
+  async determineUser(){
+    try {  
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var authid = result[0][1];
+        var config = {
+          headers:{ 'Authorization': 'Bearer '+ result[1][1] }
+        }
+        axios.get('http://localhost:3000/chat-list/user?authid='+ authid, config)
           .then((response) => {
-            return response.json() })
-          .then((responseJson) => {
+            response = response.data;
             var user = {};
-            user["_id"] = responseJson.id;
-            user["name"] = responseJson.full_name;
-            user["avatar"] = responseJson.image;
+            user["_id"] = response.id;
+            user["name"] = response.full_name;
+            user["avatar"] = response.image;
 
             this.setState({ user: user });
             this.socket.emit('userJoined', {
@@ -62,30 +58,23 @@ class Chat extends Component {
             console.error(error);
           });
 
-
-           fetch("http://localhost:3000/chat-list/userDetails?user=" + this.state.toUserId, {
-            method: 'GET' //,
-              // headers: {
-              //   ‘Authorization’: ‘Bearer ‘+<idToken fetched from Asyncstorage>
-              // }
-          })
+        axios.get('http://localhost:3000/chat-list/userDetails?user=' + this.state.toUserId, config)
           .then((response) => {
-            return response.json() })
-          .then((responseJson) => {
+            response = response.data;
             var other_user = {};
-            other_user["_id"] = responseJson.id;
-            other_user["name"] = responseJson.full_name;
-            other_user["avatar"] = responseJson.image;
+            other_user["_id"] = response.id;
+            other_user["name"] = response.full_name;
+            other_user["avatar"] = response.image;
 
             this.setState({ other_user: other_user });
           })
           .catch((error) => {
             console.error(error);
           });
-
       })
-      .catch((e) => console.log(e));
-
+    }catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+    }
   }
 
   onReceivedMessage(messages) {
@@ -99,7 +88,7 @@ class Chat extends Component {
           newmessage['user'] = context.state.user;
       else
           newmessage['user'] = context.state.other_user;
-      newmessage['to_user'] = message['to_id'];
+          newmessage['to_user'] = message['to_id'];
       return newmessage;
     });
     messages = newMsgObj;

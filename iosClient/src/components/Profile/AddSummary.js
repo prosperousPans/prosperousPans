@@ -26,7 +26,6 @@ class AddSummary extends Component{
   }
 
   handleChange(event){
-    console.log('Handle Change', event.nativeEvent.text)
     this.setState({
       text: event.nativeEvent.text
     })
@@ -39,21 +38,22 @@ class AddSummary extends Component{
   }
 
   handleOk(event){
-    console.log('Handle Ok',this.state.text)
     this.addSummaryDetails();
   }
 
   async addSummaryDetails(){
-    console.log("inside addTagDetails")
     try {  
-      await AsyncStorage.getItem('userId', (err, result) => {
-        console.log('asyncstorage result from ADD Summary ********', result);
-        axios.post('http://localhost:3000/profile-user/add-summary', {
-          authid: result,
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var config = {
+          headers:{'Authorization': 'Bearer '+result[1][1] }
+        }
+        var options = {
+          authid: result[0][1],
           text: this.state.text
-        })
+        }
+        axios.post('http://localhost:3000/profile-user/add-summary', options, config)
         .then( result => {
-          console.log('Add Summary results:',result);
+          console.log('Add Summary results:','Successful');
         })
         .catch( error => {
           console.log('error: ', error);
@@ -99,41 +99,41 @@ class AddSummary extends Component{
 }
 
 var styles = StyleSheet.create({
-    container:{
-      flex:1,
-      paddingTop: 10,
-      backgroundColor: '#F3F3F3'
-    },
-    tagContainer:{
-      flexDirection: 'row',
-      margin: 5,
-      padding:8,
-      justifyContent: 'space-between'
-    },
-    tagRowContainer:{
-      flexDirection: 'row',
-      margin: 5,
-      padding:8,
-      justifyContent: 'space-between'
-    },
-    summaryContainer:{
-      backgroundColor: '#FFFFFF'
-    },
-    searchInput: {
-      height: 100,
-      padding: 4,
-      margin: 5,
-      fontSize: 14,
-      color: '#525050',
-      fontFamily: 'Avenir-Medium',
-    },
-    charDisplay:{
-      height: 30,
-      padding: 4,
-      fontSize: 15,
-      textAlign: 'right',
-      fontFamily: 'Avenir-Medium',
-    }
+  container:{
+    flex:1,
+    paddingTop: 10,
+    backgroundColor: '#F3F3F3'
+  },
+  tagContainer:{
+    flexDirection: 'row',
+    margin: 5,
+    padding:8,
+    justifyContent: 'space-between'
+  },
+  tagRowContainer:{
+    flexDirection: 'row',
+    margin: 5,
+    padding:8,
+    justifyContent: 'space-between'
+  },
+  summaryContainer:{
+    backgroundColor: '#FFFFFF'
+  },
+  searchInput: {
+    height: 100,
+    padding: 4,
+    margin: 5,
+    fontSize: 14,
+    color: '#525050',
+    fontFamily: 'Avenir-Medium',
+  },
+  charDisplay:{
+    height: 30,
+    padding: 4,
+    fontSize: 15,
+    textAlign: 'right',
+    fontFamily: 'Avenir-Medium',
+  }
 });
 
 

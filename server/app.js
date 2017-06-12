@@ -3,11 +3,18 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+const jwtCheck = require('./middleware/auth');
 
 //required to call ./cron.js file
 const Cron = require('./cron.js')
 
 const app = express();
+
+// var express = require('express');
+// const app = require('../app');
+
+
+app.use(jwtCheck);
 
 app.use(middleware.morgan('dev'));
 app.use(middleware.cookieParser());
@@ -44,6 +51,8 @@ app.use('/get-connect', routes.getConnect);
 // *** FOR CHAT
 app.use('/chat-list', routes.chat);
 app.use('/profile-user', routes.profile);
+app.use('/login', routes.login);
+
 
 
 // *** FOR GRAPH DB

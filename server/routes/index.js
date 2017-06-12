@@ -10,6 +10,7 @@ module.exports.insertReason = require('./insertReason');
 // chat
 module.exports.chat = require('./chat');
 module.exports.profile = require('./profile');
+module.exports.login = require('./login');
 
 // dashboard
 module.exports.getConnect = require('./getConnect');
