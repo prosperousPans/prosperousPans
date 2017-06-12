@@ -17,6 +17,7 @@ exports.up = function (knex, Promise) {
       table.string('linkedin_url', 150).nullable();
       table.string('image', 150).nullable();
       table.text('summary').nullable();
+      table.text('daily_all_matches').nullable();      
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('experience', function (table) {
