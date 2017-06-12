@@ -4,12 +4,15 @@ import {
   Text, 
   StyleSheet,
   TouchableHighlight,
-  TextInput
+  TextInput,
+  Button
 } from 'react-native';
 import Separator from '../Utilities/Separator';
+import AddEducation from './AddEducation';
 
 
-class AddEducation extends Component{
+
+class EditEducation extends Component{
   constructor (props) {
     super(props);
     this.state = {
@@ -17,35 +20,38 @@ class AddEducation extends Component{
       university: ''
     }
   }
-
-  handleDegreeChange(event){
-    console.log(event.nativeEvent.text)
-  }
-
-  handleUniversityChange(event){
-    console.log(event.nativeEvent.text)
+  handleAdd(event){
+    console.log('Handle Add')
+    this.props.navigator.push({
+      component: AddEducation,
+      title: 'Add Education',
+      passProps: {
+            educationInfo: this.props.educationInfo
+          }
+    });
   }
 
   render(){
     return(
       <View style={styles.container}>
-        <View style={styles.eduContainer}>
-          <Text style={styles.name}>Degrees</Text>
-          <TextInput 
-            style={styles.searchInput}
-            placeholder={'Enter a degree'}
-            value={this.state.degree}
-            onChange={this.handleDegreeChange.bind(this)} />
+        <View>
+          <View style={styles.eduContainer}>
+            <Text style={styles.name}>Degrees</Text>
+            <Text style={styles.name}>hello</Text>
+          </View>
+          <Separator/>
+          <View style={styles.eduContainer}>
+            <Text style={styles.name}>School</Text>
+            <Text style={styles.name}>hi</Text>
+          </View>
+          <Separator/>
         </View>
-        <Separator/>
-        <View style={styles.eduContainer}>
-          <Text style={styles.name}>School</Text>
-          <TextInput 
-            style={styles.searchInput}
-            placeholder={'Enter a university'}
-            value={this.state.university}
-            onChange={this.handleUniversityChange.bind(this)} />
-        </View>
+        <Button
+          onPress={this.handleAdd.bind(this)}
+          title="Add"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </View>
     );
   }
@@ -81,4 +87,4 @@ var styles = StyleSheet.create({
     },
 });
 
-module.exports = AddEducation;
+module.exports = EditEducation;

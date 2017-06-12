@@ -3,9 +3,9 @@ const knex = require('knex')(require('../../knexfile'));
 module.exports.getAll = (req, res) => {
   var auth_id = req.query.authId;
   knex('users')
-    .where('auth_id', auth_id)
+    .where('auth_id', encodeURI(auth_id))
     .then((data) => {
-
+      console.log("[controllers:chat]",data, encodeURI(auth_id));
       var subquery = knex('connection').where('users_a_id', data[0].id).andWhere('status', 'accept').select('users_b_id');
       knex('users')
         .where('id', 'in', subquery)
@@ -17,9 +17,6 @@ module.exports.getAll = (req, res) => {
           // This code indicates an outside service (the database) did not respond in time
           res.status(503).send(err);
         })
-
-
-
     })
     .catch(err => {
       console.log(err);
@@ -32,7 +29,7 @@ module.exports.getAll = (req, res) => {
 module.exports.getUser = (req, res) => {
   var auth_id = req.query.authId;
   knex('users')
-    .where('auth_id', auth_id)
+    .where('auth_id', encodeURI(auth_id))
     .then((data) => {
       res.status(200).send(data[0]);
     })

@@ -43,6 +43,8 @@ app.use('/get-connect', routes.getConnect);
 
 // *** FOR CHAT
 app.use('/chat-list', routes.chat);
+app.use('/profile-user', routes.profile);
+
 
 // *** FOR GRAPH DB
 app.use('/create-graphDB', routes.createGraphDB)

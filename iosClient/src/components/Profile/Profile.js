@@ -7,6 +7,7 @@ import {
 	AsyncStorage,
 	ScrollView
  } from 'react-native';
+
 import Badge from './Badge';
 import Separator from '../Utilities/Separator';
 import Tags from './Tags';
@@ -17,74 +18,201 @@ import Industry from './Industry';
 import AddIndustry from './AddIndustry';
 import Education from './Education';
 import AddEducation from './AddEducation';
-
+import EditEducation from './EditEducation';
+import WorkExperience from './WorkExperience';
+import AddWorkExperience from './AddWorkExperience';
+import EditWorkExperience from './EditWorkExperience';
+import axios from 'axios';
 
 class Profile extends Component{
   constructor (props) {
     super(props);
+    this.state = {
+      userDetails: '',
+      tags: [],
+      experience: ''
+    } 
+  }
+
+  async getUserDetails(){
+    try {  
+      await AsyncStorage.getItem('userId', (err, result) => {
+        console.log('asyncstorage result', result);
+        var user = {'authid': result};
+        axios.get('http://localhost:3000/profile-user?authid='+ result)
+        .then( result => {
+          console.log('profile user',result);
+          this.setState({
+            userDetails: result
+          })
+        })
+      })
+    }catch (error) {
+        console.log('AsyncStorage error: ' + error.message);
+    }
+  }
+
+  async getTagDetails(){
+    console.log("inside getTagDetails")
+    try {  
+      await AsyncStorage.getItem('userId', (err, result) => {
+        console.log('asyncstorage result from tags ********', result);
+        var user = {'authid': result};
+        axios.get('http://localhost:3000/profile-user/tags?authid='+ result)
+        .then( result => {
+          console.log('Tag results:',result);
+          this.setState({
+            tags: result
+          })
+        })
+        .catch( error => {
+          console.log('error: ', error);
+        })
+      })
+    }catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+    }
+  }
+
+  async getExperienceDetails(){
+    console.log("inside getExperienceDetails")
+    try {  
+      await AsyncStorage.getItem('userId', (err, result) => {
+        console.log('asyncstorage result from getExperienceDetails  ********', result);
+        var user = {'authid': result};
+        axios.get('http://localhost:3000/profile-user/experience?authid='+ result)
+        .then( result => {
+          console.log('experience results:',result);
+          this.setState({
+            experience: result
+          })
+        })
+        .catch( error => {
+          console.log('error: ', error);
+        })
+      })
+    }catch (error) {
+      console.log('AsyncStorage error: ' + error.message);
+    }
+  }
+
+  componentWillMount(){
+    this.getUserDetails();
+    this.getTagDetails();
+    this.getExperienceDetails();
   }
 
   goToAddTags(){
   	this.props.navigator.push({
 			component: AddTags,
-			title: 'Add Tags'
+			title: 'Add Tags',
+      passProps: {
+            tagInfo: this.state.tags
+          }
 		});
   }
 
   goToAddSummary(){
   	this.props.navigator.push({
 			component: AddSummary,
-			title: 'Add Summary'
+			title: 'Add Summary',
+      passProps: {
+            summaryInfo: this.state.userDetails
+          }
 		});
   }
 
   goToAddIndustry(){
   	this.props.navigator.push({
 			component: AddIndustry,
-			title: 'Add Industry'
+			title: 'Add Industry',
+      passProps: {
+            industryInfo: this.state.userDetails
+          }
 		});
   }
 
   goToAddEducation(){
-  	this.props.navigator.push({
-			component: AddEducation,
-			title: 'Add Education'
-		});
+    if(!this.state.experience){
+    	this.props.navigator.push({
+  			component: AddEducation,
+  			title: 'Add Education',
+        passProps: {
+              educationInfo: this.state.experience
+            }
+  		});
+    } else {
+      this.props.navigator.push({
+        component: EditEducation,
+        title: 'Edit Education',
+        passProps: {
+              educationInfo: this.state.experience
+            }
+      });
+    }
+  }
+
+  goToAddWorkExperience(){
+    if(!this.state.experience){
+      this.props.navigator.push({
+        component: AddWorkExperience,
+        title: 'Add WorkExperience',
+        passProps: {
+              workExperienceInfo: this.state.experience
+            }
+      });
+    } else {
+      this.props.navigator.push({
+        component: EditWorkExperience,
+        title: 'Edit WorkExperience',
+        passProps: {
+              workExperienceInfo: this.state.experience
+            }
+      });
+    }
   }
 
   render(){
+    console.log('from profile: ', this.state.userDetails )
   	return(
   		<ScrollView style={styles.listcontainer}>
-				<Badge/>
+				<Badge imageInfo={this.state.userDetails} experience = {this.state.experience}/>
         <View>
-					<TouchableHighlight style={styles.rowContainer} onPress={ () => this.goToAddTags() }>
+					<TouchableHighlight style={styles.rowContainer} underlayColor="transparent"  onPress={ () => this.goToAddTags() }>
 						<View
 							style={styles.detailContainer}>
-							<Tags/>
+							<Tags tagInfo={this.state.tags}/>
 						</View>
 					</TouchableHighlight>
 					<Separator/>	
-					<TouchableHighlight style={styles.rowContainer} onPress={ () => this.goToAddSummary() }>
+					<TouchableHighlight style={styles.rowContainer} underlayColor="transparent" onPress={ () => this.goToAddSummary() }>
 						<View
 							style={styles.detailContainer}>
-							<Summary/>
+							<Summary summaryInfo={this.state.userDetails}/>
 						</View>
 					</TouchableHighlight>
 					<Separator/>
-					<TouchableHighlight style={styles.rowContainer} onPress={ () => this.goToAddIndustry() }>
+					<TouchableHighlight style={styles.rowContainer} underlayColor="transparent"  onPress={ () => this.goToAddIndustry() }>
 						<View
 							style={styles.detailContainer}>
-							<Industry/>
+							<Industry industryInfo={this.state.userDetails}/>
 						</View>
 					</TouchableHighlight>
 					<Separator/>
-					<TouchableHighlight style={styles.rowContainer} onPress={ () => this.goToAddEducation() }>
+					<TouchableHighlight style={styles.rowContainer} underlayColor="transparent"  onPress={ () => this.goToAddEducation() }>
 						<View
 							style={styles.detailContainer}>
-							<Education/>
+							<Education educationInfo={this.state.experience}/>
 						</View>
 					</TouchableHighlight>
-					<Separator/>				
+					<Separator/>	
+          <TouchableHighlight style={styles.rowContainer} underlayColor="transparent"  onPress={ () => this.goToAddWorkExperience() }>
+            <View
+              style={styles.detailContainer}>
+              <WorkExperience workExperienceInfo={this.state.experience}/>
+            </View>
+          </TouchableHighlight>
+          <Separator/>  			
 				</View>
       </ScrollView>
   		);

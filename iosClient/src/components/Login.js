@@ -89,6 +89,21 @@ class Login extends Component{
   	});
 	}
 
+    // _onLogin_Local(){
+
+    //     this._onValueChange({
+    //         userId:"auth0%7C592e5a4f8fb5fe30a672ce8b",
+    //         AuthToken:"",
+    //         nickname:"",
+    //         picture:""
+    //     },"undefined");
+    //     this.props.navigator.push({
+    //             component: Main,
+    //             title: 'Main'
+    //     });
+   
+    // }
+
 	render(){
 		return(
 			<View style={styles.mainContainer}>
@@ -105,3 +120,11 @@ class Login extends Component{
 }
 
 module.exports = Login;
+
+
+// <TouchableHighlight 
+//                     style={styles.button} 
+//                     onPress={this._onLogin_Local.bind(this)}
+//                     underlayColor="white">
+//                         <Text style={styles.buttonText}> Login </Text>
+//                 </TouchableHighlight>

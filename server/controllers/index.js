@@ -16,3 +16,5 @@ module.exports.GetConnect = require('./getConnect');
 // graphDB
 module.exports.CreateGraphDB = require('./createGraphDB');
 module.exports.PopulateFullGraphDB = require('./populateFullGraphDB');
+module.exports.Profile = require('./profile');
+

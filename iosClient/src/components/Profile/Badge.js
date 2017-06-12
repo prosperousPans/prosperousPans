@@ -3,15 +3,18 @@ import {
 	View, 
 	Text, 
 	StyleSheet,
-	Image
+	Image,
+    AsyncStorage
 	 } from 'react-native';
+import axios from 'axios';
 
 var styles = StyleSheet.create({
     container: {
-        height: 250,
+        height: 225,
         paddingBottom: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,.2)'
     },
     name: {
         alignSelf: 'center',
@@ -42,15 +45,37 @@ var styles = StyleSheet.create({
 });
 
 class Badge extends Component{
-	render(){
+    constructor(props){
+        super(props);
+    }
+
+	render(){ 
+        console.log(this.props.experience);
+
+    var experience = this.props.experience;
+    var currentPosition = "";
+    var organization = ""; 
+    var end_date =-1;
+    if(experience && experience.data  && experience.data.length>0 ){
+        for (var current of experience.data ){
+            if(current.name ==="professional" && current.end_date > end_date){
+                currentPosition = current.role;
+                organization = current.organization;
+                end_date = current.end_date;
+            }
+        }
+    }
+
+
 		return(
+        (this.props.userDetails === '' || !this.props.imageInfo) ? <View/> : 
 			<Image
-      source={{uri: "https://avatars0.githubusercontent.com/u/25909813?v=3&s=460"}}
+      source={{uri: this.props.imageInfo.data.image}}
       style={styles.container}
-      blurRadius={30}>
-				<Image style={styles.image} source={{uri: "https://avatars0.githubusercontent.com/u/25909813?v=3&s=460"}} />
-				<Text style={styles.name}>Lavanya Ammi Chandrashekara</Text>
-				<Text style={styles.handle}>lavanyaac</Text>
+      blurRadius={45}>
+				<Image style={styles.image} source={{uri: this.props.imageInfo.data.image}} />
+				<Text style={styles.name}>{this.props.imageInfo.data.full_name}</Text>
+				<Text style={styles.handle}>{currentPosition} at {organization}</Text>
 			</Image>
 			)
 	}

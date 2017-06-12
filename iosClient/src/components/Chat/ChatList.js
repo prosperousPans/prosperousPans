@@ -30,6 +30,7 @@ class ChatList extends Component {
           })
           .then((response) => {return response.json()})
           .then((responseJson) => {
+            console.log(responseJson)
             this.setState({chatConnections: responseJson});
           })
           .catch((error) => {
@@ -82,11 +83,12 @@ var styles = StyleSheet.create({
     containerProfile:{
         flexDirection: 'row',
         marginLeft: 10,
-        padding:5
+        padding:5,
+        height: 60
     },
     container: {
-      marginTop: 65,
-      flex: 1
+      flex: 1,
+      marginTop:5
     },
     image:{
       height: 40,
