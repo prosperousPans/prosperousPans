@@ -7,10 +7,10 @@ function sendingResponse (response) {
   }
 };
 
-function sentResponse (status) {
+function sentResponse (matchStatus) {
   return {
     type: 'SENT_RESPONSE',
-    status
+    matchStatus
   }
 };
 
@@ -38,9 +38,31 @@ export function sendResponse (response, users_a_id, users_b_id) {
       users_b_id: users_b_id,
       status: status,
       reason: reason
-    }).then( result => {
-      dispatch(sentResponse(result.data));
     })
-    dispatch(sendResponseError('error'));
+    .then( result => {
+      var users_a_id = result.data.users_a_id;
+      var users_b_id = result.data.users_b_id;
+      var users_a_res = result.data.status;
+      
+      //check only if status is accept    
+      if (users_a_res === 'accept') {
+        axios.get('http://localhost:3000/check-match', {params: {
+          users_a_id: users_a_id,
+          users_b_id: users_b_id,
+          status: 'accept'
+        }})
+        .then( result => {
+          if (result.data.length === 1) {
+            dispatch( sentResponse('MATCH') );
+          } else {
+            dispatch( sentResponse('NO_MATCH') );
+          }
+        })          
+      }
+      dispatch( sentResponse('NO_MATCH') );
+    })
+    .catch( error => {
+      dispatch( sendResponseError('error') );
+    })
   }
 }

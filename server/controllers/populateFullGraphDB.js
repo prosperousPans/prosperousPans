@@ -39,16 +39,17 @@ module.exports.populateFullGraphDB = (req, res) => {
     })
 }
 
-var createGDBQuery = (users, connections, experience, users_tag, tag) => {
-  var query = '';
+let createGDBQuery = (users, connections, experience, users_tag, tag) => {
+  let query = '';
 
+  // USE BOOKSHELF METHOD SERIALIZE INSTEAD OF JSON!
   var users = JSON.parse(JSON.stringify(users))
   var connection = JSON.parse(JSON.stringify(connections))
   var experience = JSON.parse(JSON.stringify(experience))
   var users_tag = JSON.parse(JSON.stringify(users_tag))
   var tag = JSON.parse(JSON.stringify(tag))
   users.forEach(function(user) {
-    var expHolder = {};
+    let expHolder = {};
     experience.forEach(function(exp) {
       if ( exp.users_id === user.id ) {
         if ( exp.name === 'education' ) {
@@ -62,7 +63,7 @@ var createGDBQuery = (users, connections, experience, users_tag, tag) => {
         }
       }
     });
-    var tagHolder = [];
+    let tagHolder = [];
     users_tag.forEach(function(uTags) {
       if ( uTags.users_id === user.id ) {
         tag.forEach(function(t) {
@@ -73,13 +74,20 @@ var createGDBQuery = (users, connections, experience, users_tag, tag) => {
       }
     });
     query += (
-      `CREATE (a${user.id}:Users {name: '${user.full_name}', tags: [${tagHolder}], education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
+      `CREATE (\`${user.id}\`:Users {id: '${user.id}', name: '${user.full_name}', tags: [${tagHolder}], education_role: '${expHolder.education}', professional_role: '${expHolder.professional}', projects_role: '${expHolder.projects}'})\n`
     );
   });
   connection.forEach(function(conn) {
     query += (
-    `CREATE (a${conn.users_a_id})-[:Connection {status:['${conn.status}'], reason: ['${conn.reason}']}]->(a${conn.users_b_id})\n`
+    `CREATE (\`${conn.users_a_id}\`)-[:Connection {status:['${conn.status}'], reason: ['${conn.reason}']}]->(\`${conn.users_b_id}\`)\n`
     );
+    connection.forEach(function(conn2) {
+      if ( conn.users_a_id === conn2.users_b_id && conn.users_b_id === conn2.users_a_id ) {
+        if ( conn.status === 'accept' && conn2.status === 'accept' ) {
+          query += (`CREATE (\`${conn.users_a_id}\`)-[:MATCHED]->(\`${conn2.users_a_id}\`)\n`);
+        }
+      }
+    })
   });
   return query
 }

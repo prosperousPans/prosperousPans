@@ -5,6 +5,9 @@ const middleware = require('./middleware');
 const routes = require('./routes');
 const jwtCheck = require('./middleware/auth');
 
+//required to call ./cron.js file
+const Cron = require('./cron.js')
+
 const app = express();
 
 // var express = require('express');
@@ -39,24 +42,26 @@ app.use('/experience', routes.experience);
 
 // *** FOR INSERTING NEW CONNECTIONS
 app.use('/insert-connection', routes.insertConnection);
+app.use('/check-match', routes.checkMatch);
 app.use('/insert-reason', routes.insertReason);
 
+// *** FOR DASHBOARD
+app.use('/get-connect', routes.getConnect);
+
+// *** FOR CHAT
 app.use('/chat-list', routes.chat);
 app.use('/profile-user', routes.profile);
 app.use('/login', routes.login);
 
 
 
+// *** FOR GRAPH DB
 app.use('/create-graphDB', routes.createGraphDB)
 app.use('/populate-full-graphDB', routes.populateFullGraphDB)
-
-// *** FOR GRAPH DB
 app.use('/recommendation', routes.recommendation)
 app.use('/priority-recommendation', routes.priorityRecommendation)
 
-
-
-
-
+// *** GET MATCHES THROUGH GRAPH DB AND POSTGRES
+app.use('/get-matches', routes.getMatches)
 
 module.exports = app;

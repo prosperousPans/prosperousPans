@@ -1,13 +1,12 @@
 const models = require('../../db/models');
 
-module.exports.getAllExperience = (req, res) => {
-
-  models.Experience
+module.exports.checkMatch = (req, res) => {
+  models.Connection
     .forge()
-    .where({name: req.query.name, users_id: req.query.users_id})
+    .where({users_a_id: req.query.users_b_id, users_b_id: req.query.users_a_id, status: 'accept'})
     .fetchAll()
-    .then(experience => {
-      res.status(200).send(experience);
+    .then(connection => {
+      res.status(200).send(connection);
     })
     .catch(err => {
       // This code indicates an outside service (the database) did not respond in time

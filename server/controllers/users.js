@@ -1,9 +1,7 @@
 const models = require('../../db/models');
 
 module.exports.getNewUsers = (req, res) => {
-  // let userA_id = req.query.userA_id;
-  // console.log(userA_id, 'userA_id')
-
+  let result = null;
   models.Users.fetchAll()
     .then(users => {
       let jsonUsers = JSON.parse(JSON.stringify(users));
@@ -11,13 +9,13 @@ module.exports.getNewUsers = (req, res) => {
       return numOfUsers
     })
     .then(numOfUsers => {
-      let userA_id = 4;
+      let userA_id = 2;
       let maxCount = 10; //try 10 times max - cap on while loop
       let numOfMatchesToReturn = 1
 
       let count = 0;
       let sent = false;
-      let result = null;
+      // let result = null;
       let hashCheck = {};
 
       while ( count < maxCount ) {
@@ -27,6 +25,8 @@ module.exports.getNewUsers = (req, res) => {
           .then(users => {
 
             hashCheck[String(userA_id)] = true;
+
+            // USE BOOKSHELF METHOD SERIALIZE INSTEAD OF JSON!
             let jsonUsers = JSON.parse(JSON.stringify(users));
 
             let randIdx = Math.floor(Math.random() * numOfUsers);
@@ -61,4 +61,5 @@ module.exports.getNewUsers = (req, res) => {
           })
       }
     })
+    return result;
 };

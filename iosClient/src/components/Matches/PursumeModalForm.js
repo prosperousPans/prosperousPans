@@ -14,6 +14,7 @@ import { sendResponse } from '../../actions/Pursume';
 import { getMatches } from '../../actions/Matches';
 
 import ExperienceItem from './ExperienceItem.js'
+import MatchedModal from './MatchedModal.js';
 
 class PursumeModalForm extends Component{
   constructor (props){
@@ -33,7 +34,7 @@ class PursumeModalForm extends Component{
 
   formSubmit(e) {
     e.preventDefault();
-    this.props.handleSubmit(this.state);
+    this.props.handleSubmit(this.state);   
   }
 
   render() {
