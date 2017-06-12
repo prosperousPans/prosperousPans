@@ -15,7 +15,7 @@ export class PersonalCard extends Component {
   }
 
   render() {
-    let currentProfile = this.props.currentMatch;
+    let currentProfile = this.props.currentMatch.profile[0];
     return (
       <View>
         <Text style={styles.bigText}>Personal</Text>
@@ -28,7 +28,7 @@ export class PersonalCard extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    currentMatch: state.Matches.allMatches
+    currentMatch: state.Matches.currentMatch
   }
 };
 

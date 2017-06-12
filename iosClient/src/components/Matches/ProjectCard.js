@@ -11,7 +11,7 @@ import ExperienceItem from './ExperienceItem.js'
 
 export class ProjectCard extends Component {
   render() {
-    let currentMatchProjExp = this.props.currentMatchProjExp.data;
+    let currentMatchProjExp = this.props.currentMatch.projExp;
     return (
       <View>
         <Text style={styles.bigText}>Project</Text>
@@ -24,7 +24,7 @@ export class ProjectCard extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    currentMatchProjExp: state.Matches.projectExp
+    currentMatch: state.Matches.currentMatch
   }
 };
 

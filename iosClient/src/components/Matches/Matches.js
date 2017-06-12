@@ -13,6 +13,7 @@ import Modal from 'react-native-modal'
 
 import { connect } from 'react-redux';
 import { getMatches } from '../../actions/Matches';
+import { nextMatch } from '../../actions/Matches';
 import { sendResponse } from '../../actions/Pursume';
 
 import HighlightsCard from './HighlightsCard.js';
@@ -33,7 +34,6 @@ export class Matches extends Component{
       isMatchedModalVisible: false,
       currentIndex: 0
     }
-    this.fetchMatch = this.fetchMatch.bind(this);
     this.checkMatch = this.checkMatch.bind(this);
     this._showModal = this._showModal.bind(this);
     this._hideModal = this._hideModal.bind(this);
@@ -44,11 +44,7 @@ export class Matches extends Component{
   }
 
   componentDidMount() {
-    this.fetchMatch();
-  }
-
-  fetchMatch() {
-    this.props.fetch('_USERIDHERE');
+    this.props.fetch(4); //replace with authID    
   }
   
   _showModal() {
@@ -65,8 +61,8 @@ export class Matches extends Component{
  
   _hideMatchModal() {
     this.setState({ isMatchedModalVisible: false })
-    this.fetchMatch();
     this.refs.slider.scrollBy(this.state.currentIndex * -1)
+    this.props.nextMatch();
   }
 
   checkMatch() {
@@ -75,14 +71,14 @@ export class Matches extends Component{
       setTimeout(this._showMatchModal, 1000);
     } else {
       this._hideModal();
-      this.fetchMatch();
       this.refs.slider.scrollBy(this.state.currentIndex * -1)
+      this.props.nextMatch();
     }
   }
 
   handleModalSubmit (response) {
     let users_a_id = 4;
-    let users_b_id = this.props.currentMatch.id;
+    let users_b_id = this.props.currentMatch.profile[0].id;
 
     this.props.pursume(response, users_a_id, users_b_id)
     setTimeout(this.checkMatch, 1000);
@@ -97,7 +93,7 @@ export class Matches extends Component{
     //   console.log('HELLOOO');
     // });
     // {console.log(this.props, 'IN MATCHES COMPONENT RENDER') }
-    if (this.props.currentMatchProjExp) {
+    if (this.props.currentMatch) {
       return(
         <View>
 
@@ -152,25 +148,24 @@ export class Matches extends Component{
       ) 
     } else {
       console.log('no more matches');
-      return (<View style={styles.card}><Text style={styles.text}>No More Matches</Text></View>)
-    }
-    if (this.state.isModalVisible){
-      <View style={{ flex: 1 }}>
-        <MatchedModal />
-      </View>      
+      return (
+        <View>
+          <TouchableOpacity
+            style={styles.pursumeButton}
+          >
+            <Text style={styles.pursumeButtonText}>No more matches</Text>
+          </TouchableOpacity>
+        </View>
+      )
     }
   }
-
 };
 
 const mapStateToProps = (state) => {
-  console.log('STATE IN mapStateToProps', state)
   return {
     ...state,
-    currentMatch: state.Matches.allMatches,
-    currentMatchProfExp: state.Matches.professionalExp,
-    currentMatchEduExp: state.Matches.educationExp,
-    currentMatchProjExp: state.Matches.projectExp,
+    allMatches: state.Matches.allMatches,
+    currentMatch: state.Matches.currentMatch,
     matched: state.Pursume.matchStatus
   }
 };
@@ -178,7 +173,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetch: (userID) => { dispatch( getMatches(userID) ) },
-    pursume: (response, users_a_id, users_b_id) => { dispatch( sendResponse(response, users_a_id, users_b_id) ) }
+    pursume: (response, users_a_id, users_b_id) => { dispatch( sendResponse(response, users_a_id, users_b_id) ) },
+    nextMatch: () => { dispatch( nextMatch() ) }
   }
 };
 
@@ -206,5 +202,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     fontWeight: 'bold',    
-  }  
+  },
+  bigText: {
+    flex: 1,    
+    justifyContent: 'center',
+    alignItems: 'center',    
+    color: 'grey',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },  
 });

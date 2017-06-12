@@ -11,7 +11,7 @@ import ExperienceItem from './ExperienceItem.js'
 
 export class EducationCard extends Component {
   render() {
-    let currentMatchEduExp = this.props.currentMatchEduExp.data;
+    let currentMatchEduExp = this.props.currentMatch.eduExp;
     return (
       <View>
         <Text style={styles.bigText}>Education</Text>
@@ -24,7 +24,7 @@ export class EducationCard extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    currentMatchEduExp: state.Matches.educationExp
+    currentMatch: state.Matches.currentMatch
   }
 };
 
