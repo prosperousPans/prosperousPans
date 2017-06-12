@@ -19,10 +19,6 @@ class ProfileMain extends Component {
     super(); 
   }
 
- 
-
- 
-  
   render() {
       return (
         <NavigatorIOS

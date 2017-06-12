@@ -22,7 +22,7 @@ const PursumeIOSApp = () => (
         style={styles.container}
         initialRoute={{
           title: '',
-          component: Main
+          component: Login
         }}
         navigationBarHidden={true}
          />
@@ -32,6 +32,7 @@ const PursumeIOSApp = () => (
 const store = configureStore();
 
 AppRegistry.registerComponent('PursumeIOSApp', () => PursumeIOSApp);
+
 var styles = StyleSheet.create({
   container:{
     flex: 1,

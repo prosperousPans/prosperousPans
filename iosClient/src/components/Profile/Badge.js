@@ -13,7 +13,8 @@ var styles = StyleSheet.create({
         height: 225,
         paddingBottom: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,.2)'
     },
     name: {
         alignSelf: 'center',

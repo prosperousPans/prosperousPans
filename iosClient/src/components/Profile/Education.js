@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import Separator from '../Utilities/Separator';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Education extends Component{
   constructor (props) {
@@ -15,11 +15,13 @@ class Education extends Component{
   }
 
   render(){
+    const educationIcon = (<Icon name="graduation-cap" size={15} color="#2196F3" />)
+
     if(this.props.educationInfo && this.props.educationInfo.data ){
       var list = this.props.educationInfo.data.map(function(education, index){
         if(education.name === 'education'){
           return (
-            <View key={index} style={styles.detailContainer} >
+            <View key={index} style={styles.contentContainer} >
               <Text style={styles.orgContent}>{education.organization}, </Text> 
               <Text style={styles.content}>{education.role}</Text> 
             </View>
@@ -31,7 +33,10 @@ class Education extends Component{
       (this.props.educationInfo && this.props.educationInfo.data ) 
       ? 
       <View>
-        <Text style={styles.rowTitle}>Education</Text>
+        <View style={styles.detailContainer}>
+          <Text>{educationIcon}</Text>
+          <Text style={styles.rowTitle}>Education</Text>
+        </View>
         {list}
       </View>
       :
@@ -47,17 +52,24 @@ var styles = StyleSheet.create({
       fontFamily: 'Avenir-Medium'
     },
     rowTitle: {
-      color: 'orange',
-      fontSize: 16,
-      fontFamily: 'Avenir-Medium'
+      marginLeft: 15,
+      fontSize: 14,
+      fontFamily: 'Avenir-Medium',
+      fontWeight: 'bold',
+      color: '#2196F3',
     },
     detailContainer: {
       flexDirection:'row', 
       flexWrap:'wrap',
-      justifyContent: 'space-between'
+      marginLeft: 15
+    },
+    contentContainer: {
+      flexDirection:'row', 
+      flexWrap:'wrap',
+      marginLeft: 50  
     },
     addDetailsSymbol: {
-      color: 'orange',
+      color:'#2196F3',
       fontSize: 18,
       fontWeight: 'bold',
       textAlign: 'right',
@@ -65,11 +77,8 @@ var styles = StyleSheet.create({
     },
     content: {
       fontSize: 13,
-      fontFamily: 'Avenir-Medium'
-    },
-    detailContainer: {
-      flexDirection:'row', 
-      flexWrap:'wrap'
+      fontFamily: 'Avenir-Medium',
+      color: '#525050',
     },
     orgContent:{
       fontSize: 13,

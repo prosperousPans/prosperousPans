@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 
 import Separator from '../Utilities/Separator';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 
 class WorkExperience extends Component{
@@ -15,11 +17,13 @@ class WorkExperience extends Component{
   }
 
   render(){
+    const organizationIcon = (<Icon name="sitemap" size={15} color="#2196F3" />)
+
     if(this.props.workExperienceInfo && this.props.workExperienceInfo.data){
       var list = this.props.workExperienceInfo.data.map(function(workExperience, index){
         if(workExperience.name === 'professional'){
           return (
-            <View key={index} style={styles.detailContainer} >
+            <View key={index} style={styles.contentContainer} >
               <Text style={styles.orgContent}>{workExperience.organization}, </Text> 
               <Text style={styles.content}>{workExperience.role}</Text> 
             </View>
@@ -30,7 +34,8 @@ class WorkExperience extends Component{
     return(
       (this.props.workExperienceInfo && this.props.workExperienceInfo.data ) 
       ? 
-      <View>
+      <View style={styles.detailContainer}>
+        <Text>{organizationIcon}</Text>
         <Text style={styles.rowTitle}>Previous Organizations</Text>
         {list}
       </View>
@@ -47,17 +52,32 @@ var styles = StyleSheet.create({
       fontFamily: 'Avenir-Medium'
     },
     rowTitle: {
-      color: 'orange',
-      fontSize: 16,
-      fontFamily: 'Avenir-Medium'
+      marginLeft: 15,
+      fontSize: 14,
+      fontFamily: 'Avenir-Medium',
+      fontWeight: 'bold',
+      color: '#2196F3',
     },
+
+    // rowTitle: {
+    //   color: 'orange',
+    //   fontSize: 16,
+    //   fontFamily: 'Avenir-Medium'
+    // },
+
+    // detailContainer: {
+    //   flexDirection:'row', 
+    //   flexWrap:'wrap',
+    //   justifyContent: 'space-between'
+    // },
+
     detailContainer: {
       flexDirection:'row', 
       flexWrap:'wrap',
-      justifyContent: 'space-between'
+      marginLeft: 15
     },
     addDetailsSymbol: {
-      color: 'orange',
+      color: '#2196F3',
       fontSize: 18,
       fontWeight: 'bold',
       textAlign: 'right',
@@ -65,7 +85,13 @@ var styles = StyleSheet.create({
     },
     content: {
       fontSize: 13,
-      fontFamily: 'Avenir-Medium'
+      fontFamily: 'Avenir-Medium',
+      color: '#525050',
+    },
+    contentContainer: {
+      flexDirection:'row', 
+      flexWrap:'wrap',
+      marginLeft: 30  
     },
     orgContent:{
       fontSize: 13,

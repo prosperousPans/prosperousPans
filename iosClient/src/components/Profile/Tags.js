@@ -49,8 +49,8 @@ var styles = StyleSheet.create({
     flexDirection:'row', 
     flexWrap:'wrap',
     justifyContent: 'space-between',
-    paddingLeft:30,
-    paddingRight:20
+    paddingLeft:35,
+    paddingRight:30
   },
   rowTitle: {
     color: 'orange',
@@ -58,7 +58,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir-Medium'
   },
   addDetailsSymbol: {
-    color: 'orange',
+    color: '#2196F3',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'right',
@@ -72,7 +72,8 @@ var styles = StyleSheet.create({
   tagBox: {
     borderWidth:1,
     borderRadius:7,
-    borderColor: '#646464',
+    // borderColor: '#646464',
+    borderColor:'#2196F3',
     margin: 5,
   },
   tagContent: {
