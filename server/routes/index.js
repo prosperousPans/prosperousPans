@@ -1,5 +1,6 @@
 // retrieving matches
 module.exports.users = require('./users');
+module.exports.getProfile = require('./getProfile');
 module.exports.experience = require('./experience');
 
 // inserting response

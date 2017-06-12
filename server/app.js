@@ -38,6 +38,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // *** FOR RETRIEVING USERS
 app.use('/users', routes.users);
+app.use('/get-profile', routes.getProfile);
 app.use('/experience', routes.experience);
 
 // *** FOR INSERTING NEW CONNECTIONS
