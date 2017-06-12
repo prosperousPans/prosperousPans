@@ -1,21 +1,8 @@
-const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
-const redisClient = require('redis').createClient();
+var jwt = require('express-jwt');
+var credentials = require('../../config/config.js');
+var jwtCheck = jwt(credentials.jwtAuth0);
 
-module.exports.verify = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-};
+// enforce on all endpoints
 
-module.exports.session = session({
-  store: new RedisStore({
-    client: redisClient,
-    host: 'localhost',
-    port: 6379
-  }),
-  secret: 'more laughter, more love, more life',
-  resave: false,
-  saveUninitialized: false
-});
+
+module.exports = jwtCheck;

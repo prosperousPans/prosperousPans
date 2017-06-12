@@ -48,43 +48,43 @@ class Education extends Component{
 }
 
 var styles = StyleSheet.create({
-    container:{
-      fontFamily: 'Avenir-Medium'
-    },
-    rowTitle: {
-      marginLeft: 15,
-      fontSize: 14,
-      fontFamily: 'Avenir-Medium',
-      fontWeight: 'bold',
-      color: '#2196F3',
-    },
-    detailContainer: {
-      flexDirection:'row', 
-      flexWrap:'wrap',
-      marginLeft: 15
-    },
-    contentContainer: {
-      flexDirection:'row', 
-      flexWrap:'wrap',
-      marginLeft: 50  
-    },
-    addDetailsSymbol: {
-      color:'#2196F3',
-      fontSize: 18,
-      fontWeight: 'bold',
-      textAlign: 'right',
-      fontFamily: 'Avenir-Medium'
-    },
-    content: {
-      fontSize: 13,
-      fontFamily: 'Avenir-Medium',
-      color: '#525050',
-    },
-    orgContent:{
-      fontSize: 13,
-      fontFamily: 'Avenir-Medium',
-      fontWeight: 'bold'
-    }
+  container:{
+    fontFamily: 'Avenir-Medium'
+  },
+  rowTitle: {
+    marginLeft: 15,
+    fontSize: 14,
+    fontFamily: 'Avenir-Medium',
+    fontWeight: 'bold',
+    color: '#2196F3',
+  },
+  detailContainer: {
+    flexDirection:'row', 
+    flexWrap:'wrap',
+    marginLeft: 15
+  },
+  contentContainer: {
+    flexDirection:'row', 
+    flexWrap:'wrap',
+    marginLeft: 50  
+  },
+  addDetailsSymbol: {
+    color:'#2196F3',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    fontFamily: 'Avenir-Medium'
+  },
+  content: {
+    fontSize: 13,
+    fontFamily: 'Avenir-Medium',
+    color: '#525050',
+  },
+  orgContent:{
+    fontSize: 13,
+    fontFamily: 'Avenir-Medium',
+    fontWeight: 'bold'
+  }
 });
 
 module.exports = Education;

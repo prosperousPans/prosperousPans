@@ -3,8 +3,15 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
+const jwtCheck = require('./middleware/auth');
 
 const app = express();
+
+// var express = require('express');
+// const app = require('../app');
+
+
+app.use(jwtCheck);
 
 app.use(middleware.morgan('dev'));
 app.use(middleware.cookieParser());
@@ -36,6 +43,8 @@ app.use('/insert-reason', routes.insertReason);
 
 app.use('/chat-list', routes.chat);
 app.use('/profile-user', routes.profile);
+app.use('/login', routes.login);
+
 
 
 app.use('/create-graphDB', routes.createGraphDB)
@@ -44,5 +53,10 @@ app.use('/populate-full-graphDB', routes.populateFullGraphDB)
 // *** FOR GRAPH DB
 app.use('/recommendation', routes.recommendation)
 app.use('/priority-recommendation', routes.priorityRecommendation)
+
+
+
+
+
 
 module.exports = app;

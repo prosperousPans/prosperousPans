@@ -5,6 +5,7 @@ module.exports.insertReason = require('./insertReason');
 module.exports.response = require('./response');
 module.exports.chat = require('./chat');
 module.exports.profile = require('./profile');
+module.exports.login = require('./login');
 
 // graphDB
 module.exports.createGraphDB = require('./createGraphDB');

@@ -36,12 +36,13 @@ class Profile extends Component{
 
   async getUserDetails(){
     try {  
-      await AsyncStorage.getItem('userId', (err, result) => {
-        console.log('asyncstorage result', result);
-        var user = {'authid': result};
-        axios.get('http://localhost:3000/profile-user?authid='+ result)
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var authid = result[0][1];
+        var config = {
+          headers:{ 'Authorization': 'Bearer '+ result[1][1] }
+        }
+        axios.get('http://localhost:3000/profile-user?authid='+ authid, config)
         .then( result => {
-          console.log('profile user',result);
           this.setState({
             userDetails: result
           })
@@ -53,14 +54,14 @@ class Profile extends Component{
   }
 
   async getTagDetails(){
-    console.log("inside getTagDetails")
     try {  
-      await AsyncStorage.getItem('userId', (err, result) => {
-        console.log('asyncstorage result from tags ********', result);
-        var user = {'authid': result};
-        axios.get('http://localhost:3000/profile-user/tags?authid='+ result)
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var authid = result[0][1];
+        var config = {
+          headers:{'Authorization': 'Bearer '+result[1][1] }
+        }
+        axios.get('http://localhost:3000/profile-user/tags?authid='+ authid, config)
         .then( result => {
-          console.log('Tag results:',result);
           this.setState({
             tags: result
           })
@@ -75,14 +76,14 @@ class Profile extends Component{
   }
 
   async getExperienceDetails(){
-    console.log("inside getExperienceDetails")
     try {  
-      await AsyncStorage.getItem('userId', (err, result) => {
-        console.log('asyncstorage result from getExperienceDetails  ********', result);
-        var user = {'authid': result};
-        axios.get('http://localhost:3000/profile-user/experience?authid='+ result)
+      await AsyncStorage.multiGet(['userId','AuthToken' ], (err, result) => {
+        var authid = result[0][1];
+        var config = {
+          headers:{ 'Authorization': 'Bearer '+result[1][1] }
+        }
+        axios.get('http://localhost:3000/profile-user/experience?authid='+ authid, config)
         .then( result => {
-          console.log('experience results:',result);
           this.setState({
             experience: result
           })
@@ -173,7 +174,6 @@ class Profile extends Component{
   }
 
   render(){
-    console.log('from profile: ', this.state.userDetails )
   	return(
   		<ScrollView style={styles.listcontainer}>
 				<Badge imageInfo={this.state.userDetails} experience = {this.state.experience}/>
